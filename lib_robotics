@@ -1,3 +1,0 @@
-function ir_position {
-    print ship:parts[7]:getmodulebyindex(0):setfield("target position",90).
-}
