@@ -1,0 +1,1 @@
+"<Activity>" & vbNewLine & _"		<Type>" & vbNewLine & _"			<Work/>" & vbNewLine & _"		</Type>" & vbNewLine & _"		<StartDateTime>2018-09-13T06:00:00</StartDateTime>" & vbNewLine & _"		<EndDateTime>2018-09-13T21:00:00</EndDateTime>" & vbNewLine & _"		<crewing>yes</crewing>" & vbNewLine & _"	</Activity>"

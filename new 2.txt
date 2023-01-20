@@ -1,0 +1,40 @@
+function moon_return {
+	parameter p_peri.
+	
+	local Vesc.
+	local m_mu to SHIP:BODY:MU.
+	local p_mu to SHIP:BODY:OBT:BODY:MU.
+	local m_peri to SHIP:OBT:SEMIMAJORAXIS.
+	local m_SOI to SHIP:BODY:SOIRADIUS.
+	local p_rad to SHIP:BODY:OBT:BODY:RADIUS.
+	local p_tom to SHIP:BODY:ALTITUDE.
+	
+	set Vesc to sqrt((2*m_mu)/(m_peri)).
+	
+	set Vhoh to sqrt(p_mu*((2/p_tom)-(2/(p_tom+p_peri))))
+	set Vinf to vhoh-BODY:VELOCITY:OBT. //craft velocity relative to moon_return
+	set Vbo to sqrt(Vinf^2 + Vesc^2).
+	
+	local ecc to sqrt((((m_peri*Vbo^2)/m_mu)-1)^2 * cos(0)^2 + sin(0)^2)
+	local transferAngle to arccos(-1/ecc).
+	
+	local shippos to ship:orbit:position - ship:body:position.
+	local p_pos to ship:body:orbit:body:position - ship:orbit:body:position.
+	local phaseangle to vang(p_pos,shippos).
+	local phaseanglecrs to vcrs(p_pos,shippos).
+	if vdot(v(1,1,1), phaseanglecrs) <= 0 {
+		set phaseangle to -1 * phaseangle.
+	}
+
+	
+	local p_AngVel is 2*constant:radtodeg*constant:pi/ship:body:orbit:period.
+	local shipAngVel is 2*constant:radtodeg*constant:pi/ship:orbit:period.
+	local angdiff is phaseangle-transferAngle.
+	if angdiff < 0 set angdiff to angdiff+360.
+	
+	local transtimeUTC to TIME:SECONDS + (angdiff)/ABS(p_AngVel-shipAngVel).
+	
+	// nodetime to vang(needed position,current position) / current speed + speed of moon
+	
+	local nd to NODE(transtimeUTC,0,0,Vbo).
+}

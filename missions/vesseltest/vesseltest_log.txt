@@ -1,0 +1,10 @@
+hi
+None Selected
+None Selected
+T+00-000 00:00:00 None Selected
+T+00-000 00:00:00 None Selected
+T+00-000 00:00:00 None Selected
+T+00-000 00:00:00 SAS Off.
+T+00-000 00:00:00 SAS Off.
+T+00-000 00:00:00 Commence Launch Program at 1y 144d 5h 29m 12s.
+T+00-000 00:00:00 Stage. Current stage: 3.
