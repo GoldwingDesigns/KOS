@@ -6,11 +6,11 @@ run koos_hillclimb_lib.
 {
 	global MNV is lexicon(
 		"launch atmo",			launch_atmo@,
-        "launch no atmo",		launch_no_atmo@,
+    "launch no atmo",		launch_no_atmo@,
 		"circ",					circularize@,
 		"change inc lan",		change_inc_lan@,
 		"change inc lan alt",	change_inc_lan_alt@,
-        "match inc lan",    	match_inc_lan@,
+    "match inc lan",    	match_inc_lan@,
 		"exec node",			exec_node@,
 		"change apo",			change_apo@,
 		"change per",			change_per@,
