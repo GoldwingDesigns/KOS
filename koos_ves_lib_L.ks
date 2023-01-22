@@ -37,6 +37,7 @@
             commslist:clear().
             for p in ship:parts { //add ohscrap parts to list and comms antenna parts.
 		        if p:modules:contains("ModuleUPFMEvents"){ failablelist:add(p:getmodule("ModuleUPFMEvents")). }
+                if p:modules:contains("Reliability"){failablelist:add(p:getmodule("Reliability")).}
                 if p:modules:contains("ModuleDataTransmitter"){ commslist:add(p). } 
             }
 
@@ -133,6 +134,7 @@
         }
         function meth_check_fail {
             for pm in failablelist {
+                if pm:name:tostring:contains("ModuleUPFMEvents"){ //OhScrap
                 if pm:allevents:tostring:contains("failure") { 
                     if not failedlist:contains(pm:part:uid) {
                         failedlist:add(pm:part:uid).
@@ -140,6 +142,16 @@
                         local V0 TO GetVoice(0).
 						V0:PLAY( NOTE( 440, 1) ). 
                     }
+                }
+                }else if pm:name:tostring:contains("Reliability"){ //Kerbalism
+                if pm:allfieldnames[0]:tostring:contains("malfunction") { 
+                    if not failedlist:contains(pm:part:uid) {
+                        failedlist:add(pm:part:uid).
+                        UI["msg add"](pm:part:title + " has failed").
+                        local V0 TO GetVoice(0).
+						V0:PLAY( NOTE( 440, 1) ). 
+                    }
+                }
                 }
             }
             return true.         

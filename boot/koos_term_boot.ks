@@ -24,11 +24,11 @@ print("Waiting for connection...").
 
 IF SHIP:STATUS = "PRELAUNCH" or homeConnection:isconnected { //create a check here to see if there is an update
 	for b in BOOTFILES {
-        compile "0:/boot/"+b to "1:/boot/".
+        compile "0:/boot/"+b to "1:/boot/"+b.
         //copypath("0:/boot/"+b+".ksm","1:/boot/").
     }
     for f in LIBFILES {
-        compile "0:/"+f to "1:/".
+        compile "0:/"+f to "1:/"+f.
 		//copypath("0:/"+f+".ksm","1:").
         
 		//copypath("0:/"+f,"1:").

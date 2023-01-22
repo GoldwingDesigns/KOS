@@ -42,20 +42,20 @@ run koos_hillclimb_lib.
 	}
 
 	function launch_atmo{
-		parameter launchalt, launchinc, launchcirc.
+		parameter launchalt, launchinc, thrByEta, setpoint is 2, minThrtl is 0, TurnExponent is 0.3.
         local waitstart to 0.
 		local th to 1. //Variable for locked throttle.  1.0 is the max, 0.0 is idle.
-		local Steering_Lock TO HEADING(90,90). //Variable for locked steering.
+		local Steering_Lock TO HEADING(90,90,-90). //Variable for locked steering.
 		local TurnEnd TO launchalt. //The ending altitude for the ascent turn.
-		local TurnExponent TO 0.3. //Turn exponent for curvature. Higher is more vertical.
+		//local TurnExponent TO 0.3. //Turn exponent for curvature. Higher is more vertical.
 		local TurnStart TO 0.  //Used to mark the altitude that the ascent turn begins.
 		local MyPitch TO 90. //Initial setting for pitch on launch (straight up).
-		local DesiredTWR TO 2. //DesiredTWR throughout launch
 		local newth to 0.
 		local stopatstage to VES1["&launchstage"]().
 		local launchaz to LAZcalc(LAZcalc_init(launchalt,launchinc)).
-		local TWRPID is PIDLOOP(0.1,0,0.01,-0.5,0.5). //PID loop to set throttle to DesiredTWR.
-		SET TWRPID:SETPOINT to DesiredTWR.
+		//local DesiredTWR TO 2. //DesiredTWR throughout launch
+		local THRPID to CHOOSE PIDLOOP(0.1,0.0,0.1,-0.5,0.5) if thrByEta else PIDLOOP(0.1,0,0.01,-0.5,0.5). //PID loop to set throttle to DesiredTWR.
+		SET THRPID:SETPOINT to setpoint.
 		VES1["sas off"]().
 
 		//**Setup Throttle and Steering Locks.
@@ -65,18 +65,18 @@ run koos_hillclimb_lib.
 		//**Declare Triggers.
 
 		//**Trigger to open the Solar Panels and turn on Lights when above atmosphere.
-		// WHEN SHIP:ALTITUDE > SHIP:ORBIT:BODY:ATM:HEIGHT THEN {
+		WHEN SHIP:ALTITUDE > SHIP:ORBIT:BODY:ATM:HEIGHT THEN {
 		// 	PANELS ON.
 		// 	LIGHTS ON.
-		// 	UI["msg add"]("Panels Extended.").
-		// }
+			UI["msg add"]("Panels Extended.").
+	 }
 		// //**Trigger to mark the altitue the ascent turn begins
 
 		if STARTTIME = 0 {set STARTTIME to TIME. local mtime to time. UI["msg add"]("Commence Launch Program at "+mTime:year+"y "+mtime:day+"d "+mtime:hour+"h "+mtime:minute+"m "+mtime:second+"s.").}
 		
         return list(
             {
-                SET Steering_Lock TO HEADING(90,90).
+                SET Steering_Lock TO HEADING(90,90,-90).
                 man_check_stage(stopatstage).
                 return SHIP:VELOCITY:SURFACE:MAG > 50. //Initial launch will be straight up 
             },
@@ -88,18 +88,19 @@ run koos_hillclimb_lib.
             },
             {
                 set MyPitch TO 90 * (1 - ((SHIP:ALTITUDE-TurnStart) / TurnEnd) ^ TurnExponent).
-                local CurTWR to ShipTWR.
-                SET Steering_Lock TO HEADING(launchaz,MyPitch).
-                set newth to th+TWRPID:UPDATE(time:seconds, CurTWR)*min(1,(launchalt-ship:apoapsis)/1000).
-                SET th to MIN(1,MAX(newth,0)).
+								if(thrByEta)
+                local CurPoint to CHOOSE ETA:APOAPSIS if thrByEta else ShipTWR.
+                SET Steering_Lock TO HEADING(launchaz,MyPitch,-90).
+                set newth to th+THRPID:UPDATE(time:seconds, CurPoint)*min(1,(launchalt-ship:apoapsis)/1000).
+                SET th to MIN(1,MAX(newth,minThrtl)).
                 man_check_stage(stopatstage).
                 return SHIP:ALTITUDE > TurnEnd or SHIP:APOAPSIS > launchalt. //If still following the launch curve and desired apoapsis not reached
             },
             {
-                local CurTWR to ShipTWR.
-                SET Steering_Lock TO HEADING(launchaz,0).
+                local CurPoint to CHOOSE ETA:APOAPSIS if thrByEta else ShipTWR.
+                SET Steering_Lock TO HEADING(launchaz,0,-90).
                 IF SHIP:APOAPSIS < launchalt { //Apoapsis value has dropped due to drag.
-                    set newth to (th+TWRPID:UPDATE(time:seconds, CurTWR))*min(1,(launchalt-ship:apoapsis)/1000).
+                    set newth to th+THRPID:UPDATE(time:seconds, CurPoint)*min(1,(launchalt-ship:apoapsis)/1000).
                 } ELSE { //Coasting to Apoapsis.
                     set newth to 0.
                 }
