@@ -1,15 +1,15 @@
 @lazyglobal off.
 run koos_obtcalc_small_lib.
 run koos_hillclimb_lib.
-//Launch Maneuvers
 
 {
 	global MNV is lexicon(
 		"launch atmo",			launch_atmo_gravity_turn@,
-  //  "launch no atmo",		launch_no_atmo@,
+  	"launch no atmo",		launch_no_atmo@,
 		"circ",					circularize@,
 		"change inc lan",		change_inc_lan@,
 		"change inc lan alt",	change_inc_lan_alt@,
+		"match landing lat", match_landing_lat@,
     "match inc lan",    	match_inc_lan@,
 		"exec node",			exec_node@,
 		"change apo",			change_apo@,
@@ -22,22 +22,23 @@ run koos_hillclimb_lib.
 		"moon return",			moon_return@,
 		"pwr land",				pwr_ldg@,
 		"land align init",		ldg_align_burn_init@,
-		"land align final", 	ldg_align_burn@
+		"land align final", 	ldg_align_burn@,
+		"aero land",			aero_ldg@
 	).
 
-	function ShipTWR {
-		local thst is 0.
-		local englist to list().
-		list engines in englist.
-		// local mth to englist[englist:LENGTH - 1]:THRUST.
-		//set mth to SHIP:MAXTHRUST. // (depends on fixed kOS issue 940)
-		for e in englist {
-			set thst to e:availablethrust + thst.
-		}
-		local r to SHIP:ALTITUDE+SHIP:BODY:RADIUS.
-		local w to SHIP:MASS * SHIP:BODY:MU / r / r.
-		return thst/w.
-	}
+	// function ShipTWR {
+	// 	local thst is 0.
+	// 	local englist to list().
+	// 	list engines in englist.
+	// 	// local mth to englist[englist:LENGTH - 1]:THRUST.
+	// 	//set mth to SHIP:MAXTHRUST. // (depends on fixed kOS issue 940)
+	// 	for e in englist {
+	// 		set thst to e:availablethrust + thst.
+	// 	}
+	// 	local rd to SHIP:ALTITUDE+SHIP:BODY:RADIUS.
+	// 	local w to SHIP:MASS * SHIP:BODY:MU / rd / rd.
+	// 	return thst/w.
+	// }
 
 	function MinThrottle {
 		local thst is 0.
@@ -48,10 +49,13 @@ run koos_hillclimb_lib.
 		for e in englist {
 			set thst to e:availablethrust + thst.
 		}
-		local r to SHIP:ALTITUDE+SHIP:BODY:RADIUS.
-		local w to SHIP:MASS * SHIP:BODY:MU / r / r.
-		local answer to max(w/thst,0.05).
-		return answer.
+		if thst >0{
+			local rd to SHIP:ALTITUDE+SHIP:BODY:RADIUS.
+			local w to SHIP:MASS * SHIP:BODY:MU / rd / rd.
+			local answer to max(w/thst,0.05).
+			return answer.
+		}
+		else return 1.
 	}
 
 	// function launch_atmo{
@@ -141,19 +145,15 @@ run koos_hillclimb_lib.
 	// }
 
 	function launch_atmo_gravity_turn{
-		parameter launchalt, launchinc, thrByEta, setpoint is 2, minThrtl is 0, TurnExponent is 0.3.
-        local waitstart to 0.
+		parameter launchalt, launchinc, thrByEta is true, setpoint is 45, pitchoverDeg is 4.
+    local waitstart to 0.
 		local th to 1. //Variable for locked throttle.  1.0 is the max, 0.0 is idle.
 		local Steering_Lock TO HEADING(90,90,-90). //Variable for locked steering.
 		local TurnEnd TO launchalt. //The ending altitude for the ascent turn.
-		//local TurnExponent TO 0.3. //Turn exponent for curvature. Higher is more vertical.
-		local TurnStart TO 0.  //Used to mark the altitude that the ascent turn begins.
 		local MyPitch TO 90. //Initial setting for pitch on launch (straight up).
 		local newth to 0.
-		local pitchoverDeg to 3.
 		local stopatstage to VES1["&launchstage"]().
 		local launchaz to LAZcalc(LAZcalc_init(launchalt,launchinc)).
-		//local DesiredTWR TO 2. //DesiredTWR throughout launch
 		local THRPID to CHOOSE PIDLOOP(0.1,0.0,0.1,-0.5,0.5) if thrByEta else PIDLOOP(0.1,0,0.01,-0.5,0.5). //PID loop to set throttle to DesiredTWR.
 		SET THRPID:SETPOINT to setpoint.
 		VES1["sas off"]().
@@ -165,63 +165,139 @@ run koos_hillclimb_lib.
 		//**Declare Triggers.
 
 		//**Trigger to open the Solar Panels and turn on Lights when above atmosphere.
-		WHEN SHIP:ALTITUDE > SHIP:ORBIT:BODY:ATM:HEIGHT THEN {
-		// 	PANELS ON.
-		// 	LIGHTS ON.
+		WHEN SHIP:altitude > 50000 THEN {
 			VES1["fairing deploy"]().
     	VES1["panels on"]().
-    	VES1["comms ext"]().  
-			UI["msg add"]("Panels Extended.").
-	 }
-		// //**Trigger to mark the altitue the ascent turn begins
+	 	}
 
 		if STARTTIME = 0 {set STARTTIME to TIME. local mtime to time. UI["msg add"]("Commence Launch Program at "+mTime:year+"y "+mtime:day+"d "+mtime:hour+"h "+mtime:minute+"m "+mtime:second+"s.").}
 		
+		return list(
+			{
+				SET Steering_Lock TO HEADING(90,90,-90).
+				stage.
+				return true.
+			},
+			{
+				man_check_stage(stopatstage).
+				return ALT:RADAR > 100.
+			},
+			{
+				VES1["gear up"]().
+				UI["msg add"]("Commence Pitchover.").
+				return true.
+			},
+			{
+				set MyPitch to 90-pitchoverDeg.
+				local CurPoint to  ETA:APOAPSIS .
+				// local CurPoint to CHOOSE ETA:APOAPSIS if thrByEta else ShipTWR.
+				SET Steering_Lock TO HEADING(launchaz,MyPitch,-90).
+				set newth to th+THRPID:UPDATE(time:seconds, CurPoint)*min(1,(launchalt-ship:apoapsis)/1000).
+				SET th to MIN(1,MAX(newth,MinThrottle)).
+				man_check_stage(stopatstage).
+				return vcrs(Steering_Lock:VECTOR,SHIP:srfPrograde:VECTOR):mag < 0.01. 
+			},
+			{
+				UI["msg add"]("Steering Unlocked. Gravity Turn Initiated.").
+				return true.
+			},
+			{
+				//set MyPitch TO 90 * (1 - ((SHIP:ALTITUDE-TurnStart) / TurnEnd) ^ TurnExponent).
+				SET Steering_Lock to LOOKDIRUP(SHIP:srfPrograde:FOREVECTOR,SHIP:FACING:TOPVECTOR).
+				local CurPoint to  ETA:APOAPSIS .
+				// local CurPoint to CHOOSE ETA:APOAPSIS if thrByEta else ShipTWR.
+				set newth to th+THRPID:UPDATE(time:seconds, CurPoint)*min(1,(launchalt-ship:apoapsis)/1000).
+				SET th to MIN(1,MAX(newth,MinThrottle)).
+				man_check_stage(stopatstage).
+				return SHIP:ALTITUDE > TurnEnd or SHIP:APOAPSIS > launchalt. //If still following the launch curve and desired apoapsis not reached
+			},
+			{
+				SET Steering_Lock TO HEADING(launchaz,0,-90).
+				IF SHIP:APOAPSIS < launchalt AND SHIP:ALTITUDE >=SHIP:ORBIT:BODY:ATM:HEIGHT{ //Apoapsis value has dropped due to drag.
+						set newth to 1*min(1,(launchalt-ship:apoapsis)/1000).
+				} ELSE { //Coasting to Apoapsis.
+						set newth to 0.
+				}
+				SET th to MIN(1,MAX(newth,0)).
+				man_check_stage(stopatstage).
+				return SHIP:APOAPSIS >= launchalt AND SHIP:ALTITUDE >=SHIP:ORBIT:BODY:ATM:HEIGHT.
+			},
+			{
+				//**At this point, our apoapsis is above the desired value and our main loop has ended. Next
+				//**we'll make sure our throttle is zero and that we're pointed prograde.
+				LOCK THROTTLE TO 0.
+				WAIT 1.
+				UNLOCK THROTTLE.
+				SET Steering_Lock TO LOOKDIRUP(ship:prograde:forevector, SHIP:BODY:POSITION).
+				set waitstart to time:seconds.
+				VES1["comms ext"]().
+				return true.
+			},
+			{
+				return waitstart+10 < time:seconds.
+			},
+			{
+				UNLOCK STEERING.
+				UI["msg add"]("Launch Complete.").
+				return true.
+			}
+		).
+	}
+
+  function launch_no_atmo{
+		parameter launchalt, launchinc, launchcirc.
+        local waitstart to 0.
+		local th to 1. //Variable for locked throttle.  1.0 is the max, 0.0 is idle.
+		local Steering_Lock TO HEADING(90,90). //Variable for locked steering.
+		local TurnEnd TO launchalt. //The ending altitude for the ascent turn.
+		local TurnExponent TO 0.1. //Turn exponent for curvature. Higher is more vertical.
+		local TurnStart TO 0.  //Used to mark the altitude that the ascent turn begins.
+		local MyPitch TO 90. //Initial setting for pitch on launch (straight up).
+		local launchaz to LAZcalc(LAZcalc_init(launchalt,launchinc)).
+		VES1["sas off"]().
+
+		//**Setup Throttle and Steering Locks.
+		LOCK THROTTLE TO th.   
+		LOCK STEERING TO Steering_Lock. // from now on we'll be able to change steering by just assigning a new value to Steering_Lock
+		
+		//**Declare Triggers.
+
+		//**Trigger to open the Solar Panels and turn on Lights when above atmosphere.
+		// WHEN SHIP:ALTITUDE > SHIP:ORBIT:BODY:ATM:HEIGHT THEN {
+		// 	PANELS ON.
+		// 	LIGHTS ON.
+		// 	UI["msg add"]("Panels Extended.").
+		// }
+		
+				if STARTTIME = 0 set STARTTIME to TIME.
+
         return list(
             {
-                SET Steering_Lock TO HEADING(90,90,-90).
-                man_check_stage(stopatstage).
-                //return SHIP:VELOCITY:SURFACE:MAG > 50. //Initial launch will be straight up 
-								return ALT:RADAR > 100.
+                SET Steering_Lock TO HEADING(90,90).
+                man_check_stage(0).
+                return SHIP:VELOCITY:SURFACE:MAG > 50. //Initial launch will be straight up 
             },
-            {
+            {//**Trigger to mark the altitue the ascent turn begins
                 VES1["gear up"]().
 			    SET TurnStart TO SHIP:ALTITUDE - 10.
 			    UI["msg add"]("Commence Pitchover.").
                 return true.
             },
             {
-                //set MyPitch TO 90 * (1 - ((SHIP:ALTITUDE-TurnStart) / TurnEnd) ^ TurnExponent).
-								set MyPitch to 90-pitchoverDeg.
-                local CurPoint to CHOOSE ETA:APOAPSIS if thrByEta else ShipTWR.
-                SET Steering_Lock TO HEADING(launchaz,MyPitch,-90).
-                set newth to th+THRPID:UPDATE(time:seconds, CurPoint)*min(1,(launchalt-ship:apoapsis)/1000).
-                SET th to MIN(1,MAX(newth,MinThrottle)).
-                man_check_stage(stopatstage).
-                return vcrs(Steering_Lock:VECTOR,SHIP:srfPrograde:VECTOR):mag < 0.01. //If still following the launch curve and desired apoapsis not reached
-            },
-						{
-								UI["msg add"]("Steering Unlocked. Gravity Turn Initiated.").
-								return true.
-						},
-						{
-                //set MyPitch TO 90 * (1 - ((SHIP:ALTITUDE-TurnStart) / TurnEnd) ^ TurnExponent).
-								SET Steering_Lock to SHIP:srfPrograde.
-								local CurPoint to CHOOSE ETA:APOAPSIS if thrByEta else ShipTWR.
-                set newth to th+THRPID:UPDATE(time:seconds, CurPoint)*min(1,(launchalt-ship:apoapsis)/1000).
-                SET th to MIN(1,MAX(newth,MinThrottle)).
-                man_check_stage(stopatstage).
+                set MyPitch TO 90 * (1 - ((SHIP:ALTITUDE-TurnStart) / TurnEnd) ^ TurnExponent).
+                SET Steering_Lock TO HEADING(launchaz,MyPitch).
+                SET th to 1.
+                man_check_stage(0).
                 return SHIP:ALTITUDE > TurnEnd or SHIP:APOAPSIS > launchalt. //If still following the launch curve and desired apoapsis not reached
             },
             {
-                SET Steering_Lock TO HEADING(launchaz,0,-90).
-                IF SHIP:APOAPSIS < launchalt AND SHIP:ALTITUDE >=SHIP:ORBIT:BODY:ATM:HEIGHT{ //Apoapsis value has dropped due to drag.
-                    set newth to 1*min(1,(launchalt-ship:apoapsis)/1000).
+                SET Steering_Lock TO HEADING(launchaz,0).
+                IF SHIP:APOAPSIS < launchalt { //Apoapsis value has dropped due to drag.
+                    set th to 1.
                 } ELSE { //Coasting to Apoapsis.
-                    set newth to 0.
+                    set th to 0.
                 }
-                SET th to MIN(1,MAX(newth,0)).
-                man_check_stage(stopatstage).
+                man_check_stage(0).
                 return SHIP:APOAPSIS >= launchalt AND SHIP:ALTITUDE >=SHIP:ORBIT:BODY:ATM:HEIGHT.
             },
             {
@@ -245,83 +321,6 @@ run koos_hillclimb_lib.
         ).
 	}
 
-  // function launch_no_atmo{
-	// 	parameter launchalt, launchinc, launchcirc.
-  //       local waitstart to 0.
-	// 	local th to 1. //Variable for locked throttle.  1.0 is the max, 0.0 is idle.
-	// 	local Steering_Lock TO HEADING(90,90). //Variable for locked steering.
-	// 	local TurnEnd TO launchalt. //The ending altitude for the ascent turn.
-	// 	local TurnExponent TO 0.1. //Turn exponent for curvature. Higher is more vertical.
-	// 	local TurnStart TO 0.  //Used to mark the altitude that the ascent turn begins.
-	// 	local MyPitch TO 90. //Initial setting for pitch on launch (straight up).
-	// 	local launchaz to LAZcalc(LAZcalc_init(launchalt,launchinc)).
-	// 	VES1["sas off"]().
-
-	// 	//**Setup Throttle and Steering Locks.
-	// 	LOCK THROTTLE TO th.   
-	// 	LOCK STEERING TO Steering_Lock. // from now on we'll be able to change steering by just assigning a new value to Steering_Lock
-		
-	// 	//**Declare Triggers.
-
-	// 	//**Trigger to open the Solar Panels and turn on Lights when above atmosphere.
-	// 	// WHEN SHIP:ALTITUDE > SHIP:ORBIT:BODY:ATM:HEIGHT THEN {
-	// 	// 	PANELS ON.
-	// 	// 	LIGHTS ON.
-	// 	// 	UI["msg add"]("Panels Extended.").
-	// 	// }
-		
-	// 			if STARTTIME = 0 set STARTTIME to TIME.
-
-  //       return list(
-  //           {
-  //               SET Steering_Lock TO HEADING(90,90).
-  //               man_check_stage(0).
-  //               return SHIP:VELOCITY:SURFACE:MAG > 50. //Initial launch will be straight up 
-  //           },
-  //           {//**Trigger to mark the altitue the ascent turn begins
-  //               VES1["gear up"]().
-	// 		    SET TurnStart TO SHIP:ALTITUDE - 10.
-	// 		    UI["msg add"]("Commence Pitchover.").
-  //               return true.
-  //           },
-  //           {
-  //               set MyPitch TO 90 * (1 - ((SHIP:ALTITUDE-TurnStart) / TurnEnd) ^ TurnExponent).
-  //               SET Steering_Lock TO HEADING(launchaz,MyPitch).
-  //               SET th to 1.
-  //               man_check_stage(0).
-  //               return SHIP:ALTITUDE > TurnEnd or SHIP:APOAPSIS > launchalt. //If still following the launch curve and desired apoapsis not reached
-  //           },
-  //           {
-  //               SET Steering_Lock TO HEADING(launchaz,0).
-  //               IF SHIP:APOAPSIS < launchalt { //Apoapsis value has dropped due to drag.
-  //                   set th to 1.
-  //               } ELSE { //Coasting to Apoapsis.
-  //                   set th to 0.
-  //               }
-  //               man_check_stage(0).
-  //               return SHIP:APOAPSIS >= launchalt AND SHIP:ALTITUDE >=SHIP:ORBIT:BODY:ATM:HEIGHT.
-  //           },
-  //           {
-  //               //**At this point, our apoapsis is above the desired value and our main loop has ended. Next
-  //               //**we'll make sure our throttle is zero and that we're pointed prograde.
-  //               LOCK THROTTLE TO 0.
-  //               WAIT 1.
-  //               UNLOCK THROTTLE.
-  //               SET Steering_Lock TO LOOKDIRUP(ship:prograde:forevector, SHIP:BODY:POSITION).
-  //               set waitstart to time:seconds.
-  //               return true.
-  //           },
-  //           {
-  //               return waitstart+10 < time:seconds.
-  //           },
-  //           {
-  //               UNLOCK STEERING.
-  //               UI["msg add"]("Launch Complete.").
-  //               return true.
-  //           }
-  //       ).
-	// }
-
 	function man_check_stage{
 		parameter laststage.
 		if stage:number >= laststage {
@@ -342,138 +341,97 @@ run koos_hillclimb_lib.
 	}
 
 	function circularize{
-		local Mi to SHIP:MASS.
 		local thisMU to BODY:MU.
 		local thisR to BODY:RADIUS + SHIP:APOAPSIS.
 		local thisA to BODY:RADIUS + ((SHIP:APOAPSIS + SHIP:PERIAPSIS)/2).
 		local thisDV to SQRT(thisMU * (2/thisR - 1/thisR)) - SQRT(thisMU * (2/thisR - 1/thisA)).
 		local nd to NODE(TIME:SECONDS + ETA:APOAPSIS,0,0,thisDV).
 		ADD nd.
-        UI["msg add"]("Circularize Node Added At Apoapsis.").
-        return true.
+		UI["msg add"]("Circularize Node Added At Apoapsis.").
+		return true.
 	}
-function change_inc_lan {
-		parameter inc_t, lan_t to orbit:lan.
-		if lan_t:istype("UserDelegate") set lan_t to lan_t:call.
+	
+	function plane_change_info {
+		parameter inc_t, lan_t.
 		local inc_i to SHIP:OBT:inclination.
 		local lan_i to SHIP:OBT:LAN.
-		if inc_t < 0 {  set lan_t to mod(lan_t+180,360).}
-		
-		local a1 is sin(inc_i)*cos(lan_i).
-		local a2 is sin(inc_i)*sin(lan_i).
-		local a3 is cos(inc_i).
-		local b1 is sin(inc_t)*cos(lan_t).
-		local b2 is sin(inc_t)*sin(lan_t).
-		local b3 is cos(inc_t).
-
-		// local theta is arccos(sin(inc_i)*cos(lan_i)*sin(inc_t)*cos(lan_t) + sin(inc_i)*sin(lan_i)*sin(inc_t)*sin(lan_t) + cos(inc_i)*cos(inc_t)).
-
-		// local c1 is sin(inc_i)*sin(lan_i)*cos(inc_t) - cos(inc_i)*sin(inc_t)*sin(lan_t).
-		// local c2 is cos(inc_i)*sin(inc_t)*cos(lan_t) - sin(inc_i)*cos(lan_i)*cos(inc_t).
-		local theta is arccos(a1*b1 + a2*b2 + a3*b3).
-
-		local c1 is a2*b3 - a3*b2.
-		local c2 is a3*b1 - a1*b3.
-		// local c3 is a1*b2 - a2*b1.
-
-		local long1 is 0.
-		// local lat1 is arctan(c3/sqrt(c1^2 + c2^2)).
-		if c1 < 0 { set long1 to arctan(c2/c1)+90. }
-		else { set long1 to arctan(c2/c1)+270. }
-
-		// local lat2 is -lat1.
-		local long2 is long1 + 180.
-		if long2 > 360 { set long2 to long2 - 360. } 
-		local negind is 1.
-		local nd_eta is 0.
-		local nd_eta1 is eta_true_anom(long1).
-		local nd_eta2 is eta_true_anom(long2).
-		if nd_eta1 < nd_eta2 {
-			set nd_eta to nd_eta1.
-		} else {
-			set nd_eta to nd_eta2.
+		local Va to V(sin(inc_i)*cos(lan_i+90),sin(inc_i)*sin(lan_i+90),cos(inc_i)).
+		local Vb to V(sin(inc_t)*cos(lan_t+90),sin(inc_t)*sin(lan_t+90),cos(inc_t)).
+	// important to use the reverse order
+		local Vc to VCRS(Vb,Va).
+		local theta to arccos (vdot(Vb,Va) ).
+		local node_lng to mod(arctan2(Vc:Y,Vc:X)+360,360).
+		local negind to 1.
+		//compute burn_point and set to the range of [0,360]
+		local ship_ref to mod(obt:lan+obt:argumentofperiapsis+obt:trueanomaly,360).
+		local ship_2_node to mod((720 + node_lng - ship_ref),360).
+		if ship_2_node > 180 {
 			set negind to -1.
-		}
-			
+			set node_lng to mod(node_lng + 180,360).
+		} 		
+		local nd_eta is eta_true_anom(node_lng).
 		local nd_time is nd_eta + time:seconds.
+		return LIST(theta,nd_time,negind).
+	}
+
+	function change_inc_lan {
+		//100% from https://www.reddit.com/r/Kos/comments/3r5pbj/set_inclination_from_orbit_script/  I tried to do on my own but couldn't
+		parameter inc_t, lan_t to orbit:lan.
+		if lan_t:istype("UserDelegate") set lan_t to lan_t:call.
+		local info to plane_change_info(inc_t,lan_t).
+		local theta to info[0].
+		local nd_time to info[1].
+		local negind to info[2].
 		local vel is velocityAt(ship,nd_time):orbit:mag.
 		local norm to vel * sin(theta).
 		local pro to vel * cos(theta) - vel.
-		local nd is NODE(nd_time, 0,0,0).
+    local nd is NODE(nd_time, 0,0,0).
 		set nd:normal to negind * norm.
 		set nd:prograde to pro.
-       
 		Add nd.
-        UI["msg add"]("Inc/LAN Node Added: "+inc_t+"/"+lan_t).
-        return true.
-
+		UI["msg add"]("Inc/LAN Node Added: "+inc_t+"/"+lan_t).
+		return true.   
 	}
 
 	function change_inc_lan_alt {
 		parameter inc_t, lan_t, alt_t.
 		if lan_t:istype("UserDelegate") set lan_t to lan_t:call.
-		local inc_i to SHIP:OBT:inclination.
-		local lan_i to SHIP:OBT:LAN.
-		if inc_t < 0 { set lan_t to mod(lan_t+180,360).}
-		local a1 is sin(inc_i)*cos(lan_i).
-		local a2 is sin(inc_i)*sin(lan_i).
-		local a3 is cos(inc_i).
-		local b1 is sin(inc_t)*cos(lan_t).
-		local b2 is sin(inc_t)*sin(lan_t).
-		local b3 is cos(inc_t).
-
-		local theta is arccos(a1*b1 + a2*b2 + a3*b3).
-
-		local c1 is a2*b3 - a3*b2.
-		local c2 is a3*b1 - a1*b3.
-		local c3 is a1*b2 - a2*b1.
-		// local theta is arccos(sin(inc_i)*cos(lan_i)*sin(inc_t)*cos(lan_t) + sin(inc_i)*sin(lan_i)*sin(inc_t)*sin(lan_t) + cos(inc_i)*cos(inc_t)).
-
-		// local c1 is sin(inc_i)*sin(lan_i)*cos(inc_t) - cos(inc_i)*sin(inc_t)*sin(lan_t).
-		// local c2 is cos(inc_i)*sin(inc_t)*cos(lan_t) - sin(inc_i)*cos(lan_i)*cos(inc_t).
-
-
-		local long1 is 0.
-		// local lat1 is arctan(c3/sqrt(c1^2 + c2^2)).
-		if c1 < 0 { set long1 to arctan(c2/c1)+90. }
-		else { set long1 to arctan(c2/c1)+270. }
-
-		// local lat2 is -lat1.
-		local long2 is long1 + 180.
-		// if long2 > 360 { set long2 to long2 - 360. UI["msg add"]("long modded"). set doublenegind to -1.}
-		if long2 > 360 { set long2 to long2 - 360. }
-		local negind is 1.
-		local nd_eta is 0.
-		local nd_eta1 is eta_true_anom(long1).
-		local nd_eta2 is eta_true_anom(long2).
-		if nd_eta1 < nd_eta2 {
-			set nd_eta to nd_eta1.
-		} else {
-			set nd_eta to nd_eta2.
-			set negind to -1.
-		}
-			
-		local nd_time is nd_eta + time:seconds.
+		local info to plane_change_info(inc_t,lan_t).
+		local theta to info[0].
+		local nd_time to info[1].
+		local negind to info[2].
 		local thisR to (positionAt(ship,nd_time)-body:position):mag.
 		local nextA to (thisR+BODY:RADIUS+alt_t)/2.
-		local vi is sqrt(body:mu/thisR).
+		local vi is velocityAt(ship,nd_time):orbit:mag.
 		local vf is sqrt(body:mu*((2/thisR)-(1/nextA))).
 		local norm to vf * sin(theta).
-		local pro to vf * cos(theta) - vi.
+		local pro to (vf * cos(theta)) - vi.
 		local nd is NODE(nd_time, 0,0,0).
 		set nd:normal to negind * norm.
 		set nd:prograde to pro.
-       
 		Add nd.
-        UI["msg add"]("Inc/LAN/Alt Node Added: "+inc_t+"/"+lan_t+"/"+alt_t).
-        return true.
-
+		UI["msg add"]("Inc/LAN/Alt Node Added: "+inc_t+"/"+lan_t+"/"+alt_t).
+		return true.
 	}
 
   function match_inc_lan {
       parameter tgtbody.
       RETURN change_inc_lan(tgtbody:obt:inclination, tgtbody:obt:lan).
   }
+  
+	function match_landing_lat {
+		parameter tgt, finalalt is 0.
+		local desiredinc to abs(tgt:lat). //inclinations are expressed with positive num
+		if ship:obt:inclination > 90 {set desiredinc to 180-desiredinc. }  //if already retrograde, stay that way
+		if finalalt <> 0 { 
+			local lan to find_landing_tgt_LAN(tgt,desiredinc,finalalt).
+			change_inc_lan_alt(desiredinc,lan,finalalt).
+		}else{
+			local lan to find_landing_tgt_LAN_lowalt(tgt, desiredinc).
+			change_inc_lan(desiredinc,lan).
+		}
+		return true.
+	}
 
 	function exec_node{
 		//Execute Node Maneuvers
@@ -486,23 +444,11 @@ function change_inc_lan {
 		local burntime to find_burntime(nd:deltaV:mag).
 		local lock max_acc to ship:maxthrust/ship:mass.
 		local dv0 to nd:DELTAV:vec.
-        LOCK STEERING to lookdirup(nd:deltav,SHIP:BODY:POSITION).
-        local waitstart to 0.
-        UI["msg add"]("Executing node: "+nd).
+    LOCK STEERING to lookdirup(nd:deltav,SHIP:BODY:POSITION).
+    local waitstart to 0.
+    UI["msg add"]("Executing node: "+nd).
 
-        return list(
-            // {
-            //     if warp <> 5 and nd:ETA > (burntime/2+1200) set warp to 5.
-            //     return nd:ETA < (burntime/2+1200).
-            // },
-            // {
-            //     if warp <> 4 and nd:ETA > (burntime/2+120) set warp to 4.
-            //     return nd:ETA < (burntime/2+120).
-            // },
-            // {
-            //     if warp <> 0 set warp to 0.
-            //     return nd:ETA < (burntime/2).
-            // },
+		return list(
 			{
 				warpto(nd:ETA-(burntime/2)-60+time:seconds).
 				return true.
@@ -510,36 +456,36 @@ function change_inc_lan {
 			{
 				return nd:ETA < burntime/2.
 			},
-            {
-            //recalculate current max_acceleration, as it changes while we burn through fuel
-                //throttle is 100% until there is less than 1 second of time left to burn
-                //when there is less than 1 second - decrease the throttle linearly
-                if max_acc <> 0 set th to min(nd:deltav:mag/max_acc, 1).
-                //here's the tricky part, we need to cut the throttle as soon as our nd:deltav and initial deltav start facing opposite directions
-                //this check is done via checking the dot product of those 2 vectors
-                man_check_stage(0). 
-                return nd:deltav:mag<0.1 and vdot(dv0, nd:deltav) < 0.1.
-            },
-            {
-                lock throttle to 0.
-                lock steering TO LOOKDIRUP(-SHIP:velocity:ORBIT,SHIP:BODY:POSITION).
-                set waitstart to time:seconds.
-                return true.
-            },
-            {
-                return waitstart+10 < time:seconds.
-            },
-            {
-                UNLOCK STEERING.
-                VES1["sas on"]().
-                SET SHIP:CONTROL:PILOTMAINTHROTTLE to 0.
-                UNLOCK THROTTLE.
-                WAIT 0.1.
-                REMOVE nd.
-                UI["msg add"]("Node Execution Complete.").
-                return true.
-            }
-        ).
+			{
+			//recalculate current max_acceleration, as it changes while we burn through fuel
+					//throttle is 100% until there is less than 1 second of time left to burn
+					//when there is less than 1 second - decrease the throttle linearly
+					if max_acc <> 0 set th to min(nd:deltav:mag/max_acc, 1).
+					//here's the tricky part, we need to cut the throttle as soon as our nd:deltav and initial deltav start facing opposite directions
+					//this check is done via checking the dot product of those 2 vectors
+					man_check_stage(0). 
+					return nd:deltav:mag<0.1 and vdot(dv0, nd:deltav) < 0.1.
+			},
+			{
+					lock throttle to 0.
+					VES1["ship to sun"]().
+					set waitstart to time:seconds.
+					return true.
+			},
+			{
+					return waitstart+10 < time:seconds.
+			},
+			{
+					UNLOCK STEERING.
+					VES1["sas on"]().
+					SET SHIP:CONTROL:PILOTMAINTHROTTLE to 0.
+					UNLOCK THROTTLE.
+					WAIT 0.1.
+					REMOVE nd.
+					UI["msg add"]("Node Execution Complete.").
+					return true.
+			}
+		).
 	}
 		
 	function change_apo{
@@ -594,7 +540,6 @@ function change_inc_lan {
 		local vinf to sqrt(-1*(bodyMU/SHIP:OBT:SEMIMAJORAXIS)).
 		local vesc to sqrt(2*bodyMU/(bodyr+SHIP:OBT:PERIAPSIS)).
 		local perV to sqrt(vesc^2+vinf^2).
-		local circV to vesc/sqrt(2).
 		local newSMA to (SHIP:OBT:PERIAPSIS + (bodyr*2) + capture_altitude)/2.
 		local transV to sqrt(bodymu*((2/(SHIP:OBT:PERIAPSIS+bodyr))-(1/newSMA))).
 		local thisDV to transV-perV.
@@ -628,15 +573,10 @@ function change_inc_lan {
 
 	function moon_trans{
 		parameter tgtmoon, moon_peri, moon_inc is 80.
-
-        UI["msg add"]("Finding Transfer to "+tgtmoon:name).
+		UI["msg add"]("Finding Transfer to "+tgtmoon:name).
 		local planetMU to SHIP:ORBIT:BODY:MU.
 		local oldSMA to SHIP:ORBIT:SEMIMAJORAXIS.
-		
-		local moonMU to tgtmoon:MU.
-
 		local moonPEdistfromplanet to tgtmoon:obt:semimajoraxis - (moon_peri+tgtmoon:RADIUS).
-
 		local newSMA to (moonPEdistfromplanet+oldSMA)/2.
 		//copied from reddit user 
 		
@@ -693,8 +633,7 @@ function change_inc_lan {
 	function moon_return {
 		parameter p_peri.
 		
-        UI["msg add"]("Finding Transfer to "+BODY:OBT:BODY:NAME).
-		local this_m to SHIP:BODY.
+    UI["msg add"]("Finding Transfer to "+BODY:OBT:BODY:NAME).
 		local m_mu to SHIP:BODY:MU.
 		local p_mu to SHIP:BODY:OBT:BODY:MU.
 		local m_peri to SHIP:OBT:SEMIMAJORAXIS.
@@ -741,6 +680,102 @@ function change_inc_lan {
         return true.
 		// exec_node().
 	}
+	
+	function aero_ldg {
+			parameter laststage to 0.
+			local steervec to lookDirUp(-1*ship:velocity:orbit,-1*body:position).
+			lock steering to steervec.
+			local waitstart to 0.
+			VES1["sas off"]().
+			UI["msg add"]("Commence Aero Land Program.").
+			
+			return list(
+				// { //moved to warp_to_alt in sys_lib
+				// 	warpto(etatoaltitude2(initalt)+time:seconds).
+				// 	return true.
+				// },
+				// {
+				// 	return ship:altitude < initalt.
+				// },
+				{
+					set steervec to lookDirUp(vcrs(body:position,ship:velocity:orbit),-1*body:position).
+					return abs(vdot(vcrs(body:position,ship:velocity:orbit):normalized,ship:facing:vector:normalized)) > 0.98.
+				},
+				{
+					if stage:ready and stage:number > laststage {
+						VES1["stage"]().
+						return false.
+					} else {
+						if stage:number > laststage {return false.} else {return true.} 
+					}
+				},
+				{ //this is same as "ship sep" in the vessel lib.  consider how to put this there.
+					VES1["rcs on"](). 
+					return true.
+				},
+				{
+					set ship:control:fore to 1.
+					set waitstart to time:seconds.
+					return true.
+				},
+				{
+					return waitstart+3 < time:seconds.
+				},
+				{
+					set ship:control:neutralize to true.
+					set waitstart to time:seconds.
+					return true.
+				},
+				{
+					return waitstart+10 < time:seconds.
+				},
+				{
+					VES1["rcs off"]().
+					return true.
+				},
+				{
+					set steervec to lookDirUp(-1*ship:velocity:surface,-1*body:position).
+					return true.
+				},
+				{
+					set steervec to lookDirUp(-1*ship:velocity:surface,-1*body:position).
+					return alt:radar < 10000.
+				},
+				{
+					unlock steering.
+					return true.
+				},
+				{
+					VES1["arm chutes"]().
+					if (not chutesSafe){
+						chutesSafe on.
+					}
+					return chutes.
+				},
+				{
+					return SHIP:STATUS = "SPLASHED" or SHIP:STATUS = "LANDED".
+				},
+				{
+					if addons:available("scansat"){
+						if ship:status = "SPLASHED" {
+							UI["msg add"](ship:name+" splashed down on "+ship:body+". L/L: "+ship:geoposition:lat+", "+ship:geoposition:lng+" Biome: "+addons:scansat:currentbiome).
+						}
+						if ship:status = "LANDED" {
+							UI["msg add"](ship:name+" landed on "+ship:body+". L/L: "+ship:geoposition:lat+", "+ship:geoposition:lng+" Biome: "+addons:scansat:currentbiome).
+						}
+					else {
+						if ship:status = "SPLASHED" {
+							UI["msg add"](ship:name+" splashed down on "+ship:body+". L/L: "+ship:geoposition:lat+", "+ship:geoposition:lng).
+						}
+						if ship:status = "LANDED" {
+							UI["msg add"](ship:name+" landed on "+ship:body+". L/L: "+ship:geoposition:lat+", "+ship:geoposition:lng).
+						}
+					}
+					}
+				}
+			).
+				
+		}
 
 	function find_burntime {
 		parameter thisDV.
@@ -756,46 +791,50 @@ function change_inc_lan {
 	function pwr_ldg { 
 		parameter radaroffset is 4.1, tgt is latlng(0,27), altoffset is 0.
 							// The value of alt:radar when landed (on gear)
-		local lock trueRadar to alt:radar - radarOffset-altoffset.			// Offset radar to get distance from gear to ground
-		local lock Fg to ship:mass * body:mu /((ship:altitude + body:radius)^2).
+		local offsets to radarOffset+altoffset.
+		
+		local lock trueRadar to alt:radar - offsets.			// Offset radar to get distance from gear to ground
+		local g to body:mu /((body:radius)^2).
+		//local lock Fg to ship:mass * g.
+		//local lock Fg to ship:mass * body:mu /((ship:altitude + body:radius)^2).
 		local lock am to vang(up:vector, ship:facing:vector).		// Gravity (m/s^2)
-		local lock maxDecel to (ship:availableThrust*cos(am) - Fg)/ship:mass.	// Maximum deceleration possible (m/s^2)
+		// local lock maxDecel to (ship:availablethrust*cos(am) - Fg)/ship:mass.	// Maximum deceleration possible (m/s^2)
+		local lock maxDecel to (ship:availablethrust/ship:mass)*cos(am) - g.	// Maximum deceleration possible (m/s^2)
 		local lock stopDist to ship:verticalspeed^2 / (2 * maxDecel).		// The distance the burn will require
-		local lock idealThrottle to stopDist / trueRadar.			// Throttle required for perfect hoverslam
-				// Time until impact, used for landing gear
-		// local VD TO VECDRAW(
-		// 		{ return tgt:ALTITUDEPOSITION(tgt:TERRAINHEIGHT+100). },
-		// 		{ return tgt:POSITION-tgt:ALTITUDEPOSITION(tgt:TERRAINHEIGHT+100). },
-		// 		red, "THIS IS THE SPOT", 1, true, 0.2, true, true).
+		local idealThrottle to 1.			// Throttle required for perfect hoverslam
+		
 		local alterr to (Body:position:mag - ship:altitude-body:radius).
 		local lock tgtvec to tgt:altitudeposition(ship:altitude+alterr).
 		local errorvec to V(0,0,0).
 		local lock nsvec to ship:north:vector.
 		local lock ewvec to -1 * vcrs(ship:north:vector,ship:up:vector).
-        local twn to 1. local tzeta to 0.9. local tKp to twn^2. local tKi to 0. local tKd to 2*tzeta*twn.
+    local twn to 1. local tzeta to 0.9. local tKp to twn^2. local tKi to 0. local tKd to 2*tzeta*twn.
 		local NSPID TO PIDLOOP (tKp, tKi, tKd, -1, 1).
 		SET NSPID:SETPOINT TO 0.
 		local dwn to 1.	local dzeta to 0.9. local dKp to dwn^2. local dKi to 0. local dKd to 2*dzeta*dwn.
 		local EWPID TO PIDLOOP (dKp, dKi, dKd, -1, 1).
 		SET EWPID:SETPOINT TO 0.
-        local mytime to 0.
-        local waitstart to 0.
-        UI["msg add"]("Commence Powered Landing.").
+       
+		local mytime to 0.
+    local waitstart to 0.
+    UI["msg add"]("Commence Powered Landing.").
         
-        return list (
-            {
-                return ship:verticalSpeed < -1.
-            },
-            {
-                VES1["sas off"]().
-                VES1["rcs on"]().
-                lock steering TO lookDirUp(-1*ship:velocity:surface,ewvec).
-                set mytime to TIME:seconds.
-                lock throttle to 0.	
-                return true.
-            },
+    return list (
+    	{
+				return ship:verticalSpeed < -1.
+			},
 			{
-                if addons:tr:hasimpact {set errorvec to tgtvec-addons:tr:impactpos:altitudeposition(ship:altitude+alterr).}
+				VES1["sas off"]().
+				VES1["rcs on"]().
+				lock steering TO lookDirUp(-1*ship:velocity:surface,ewvec).
+				set mytime to TIME:seconds.
+				lock throttle to 0.	
+				return true.
+			},
+			{
+				if addons:tr:hasimpact {
+					set errorvec to tgtvec-addons:tr:impactpos:altitudeposition(ship:altitude+alterr).
+				}
 				if errorvec:mag > 20 { //keeps aimpoint within 20 meters
 					set ship:control:starboard to -1 * NSPID:UPDATE(mytime,vdot(errorvec,nsvec:normalized)).
 					set ship:control:top to -1 * EWPID:UPDATE(mytime,vdot(errorvec,ewvec:normalized)).
@@ -803,46 +842,65 @@ function change_inc_lan {
 					set ship:control:neutralize to TRUE.
 				}
 				return trueRadar < stopDist + 1000. 
-            },
-            { //1000 meters before suicide burn start final alignments.
+			},
+			{ //1000 meters before suicide burn start final alignments.
+				if addons:tr:hasimpact {
+					set errorvec to tgtvec-addons:tr:impactpos:altitudeposition(ship:altitude+alterr).
+				}
+        set ship:control:starboard to -1 * NSPID:UPDATE(mytime,vdot(errorvec,nsvec:normalized)).
+        set ship:control:top to -1 * EWPID:UPDATE(mytime,vdot(errorvec,ewvec:normalized)).
+				// 				print "TrueRadar: "+trueRadar at(0,0).
+				return trueRadar < stopDist + 100.
+			},
+			{
+				set idealThrottle to stopDist / trueRadar.
+				set ship:control:neutralize to TRUE.
+				lock throttle to idealThrottle.
+				UI["msg add"]("Performing Final Burn.").
+				VES1["gear down"]().
+				//lock throttle to 1.
+				return true.
+			},
+			{
+				set idealThrottle to stopDist / trueRadar.
 				if addons:tr:hasimpact {set errorvec to tgtvec-addons:tr:impactpos:altitudeposition(ship:altitude+alterr).}
-                set ship:control:starboard to -1 * NSPID:UPDATE(mytime,vdot(errorvec,nsvec:normalized)).
-                set ship:control:top to -1 * EWPID:UPDATE(mytime,vdot(errorvec,ewvec:normalized)).
-                return trueRadar < stopDist + 100.
-            },
-            {
-                set ship:control:neutralize to TRUE.
-                UI["msg add"]("Performing Final Burn.").
-								lock throttle to idealThrottle.
-                VES1["gear down"]().
-                return true.
-            },
-            {
-                if addons:tr:hasimpact {set errorvec to tgtvec-addons:tr:impactpos:altitudeposition(ship:altitude+alterr).}
-                set ship:control:starboard to -1 * NSPID:UPDATE(mytime,vdot(errorvec,nsvec:normalized)).
-                set ship:control:top to -1 * EWPID:UPDATE(mytime,vdot(errorvec,ewvec:normalized)).
-                return ship:verticalSpeed > -0.5.
-            },
-            {
-                set ship:control:fore to -1.
+				set ship:control:starboard to -1 * NSPID:UPDATE(mytime,vdot(errorvec,nsvec:normalized)).
+				set ship:control:top to -1 * EWPID:UPDATE(mytime,vdot(errorvec,ewvec:normalized)).
+				return trueRadar <= 0.5 or ship:verticalSpeed > -1.
+			},				
+			// { 
+			// 	// if (softlanding){
+			// 		local result to THRPID:UPDATE(time:seconds, ship:verticalSpeed).
+			// 		set newth to idealThrottle+result.
+      //     SET idealThrottle to MIN(1,MAX(newth,0)).
+			// 		print "IdealThr: "+idealThrottle+" ship:verticalSpeed: "+ship:verticalspeed+" result: "+result.
+			// 		return SHIP:STATUS = "SPLASHED" or SHIP:STATUS = "LANDED".
+			// 	// } else {
+			// 	// 	set idealThrottle to stopDist / trueRadar.
+			// 	// 	return ship:verticalSpeed > -0.5.
+			// 	// }
+			// },
+			{
+				set ship:control:neutralize to TRUE.
+				set ship:control:fore to -1.
+				lock steering to up.
 				lock throttle to 0.
-                wait 1.
-                unlock steering.
-                VES1["sas on"]().
-                set ship:control:pilotmainthrottle to 0.
-                set ship:control:neutralize to TRUE.
-                unlock throttle.
-                set waitstart to time:seconds.
-                return true.
-            },
-            {
-                return waitstart+10 < time:seconds.
-            },
-            {
-                VES1["rcs off"]().
-                clearVecDraws().
-                return true.
-            },
+				wait 3.
+				unlock steering.
+				VES1["sas on"]().
+				set ship:control:pilotmainthrottle to 0.
+				set ship:control:neutralize to TRUE.
+				unlock throttle.
+				set waitstart to time:seconds.
+				return true.
+			},
+			{
+				return waitstart+10 < time:seconds.
+			},
+			{
+				VES1["rcs off"]().
+				return true.
+			},
 			{
 				return SHIP:STATUS = "SPLASHED" or SHIP:STATUS = "LANDED".
 			},
@@ -853,19 +911,18 @@ function change_inc_lan {
 					}
 					if ship:status = "LANDED" {
 						UI["msg add"](ship:name+" landed on "+ship:body+". L/L: "+ship:geoposition:lat+", "+ship:geoposition:lng+" Biome: "+addons:scansat:currentbiome).
+					} else {
+						if ship:status = "SPLASHED" {
+							UI["msg add"](ship:name+" splashed down on "+ship:body+". L/L: "+ship:geoposition:lat+", "+ship:geoposition:lng).
+						}
+						if ship:status = "LANDED" {
+							UI["msg add"](ship:name+" landed on "+ship:body+". L/L: "+ship:geoposition:lat+", "+ship:geoposition:lng).
+						}
 					}
-				else {
-					if ship:status = "SPLASHED" {
-						UI["msg add"](ship:name+" splashed down on "+ship:body+". L/L: "+ship:geoposition:lat+", "+ship:geoposition:lng).
-					}
-					if ship:status = "LANDED" {
-						UI["msg add"](ship:name+" landed on "+ship:body+". L/L: "+ship:geoposition:lat+", "+ship:geoposition:lng).
-					}
-				}
 				}
 				return true.
 			}
-        ).
+		).
 	}
 
 	function ldg_align_burn_init{
@@ -1077,10 +1134,11 @@ function change_inc_lan {
                 unlock throttle.
                 unlock steering.
                 wait 0.1.
-								clearVecDraws().
+								//clearVecDraws().
                 return true.
             }
         ).
 	}
 
+	
 }

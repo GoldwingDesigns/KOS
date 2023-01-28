@@ -348,4 +348,7 @@ function eta_true_anom {
         return lexicon("T", minT, "R", sma, "A", sma-targetBody:radius).
     }
 
+    function isPosigrade {
+    return vdot(vcrs(SHIP:VELOCITY:orbit:normalized,ship:Body:position),SHIP:BODY:ANGULARVEL:normalized)>0.
+    }
 //end copy from https://gist.github.com/benjft/05d9966300ea216167ee32b7dbb4d3cc

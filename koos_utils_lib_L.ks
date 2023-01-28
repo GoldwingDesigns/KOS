@@ -5,12 +5,12 @@
 		"slave init", 		    slaveInit@,
 		"slave reboot", 		slaveReboot@,
 		"has file",		    	hasFile@,
-        "has file contains",	hasFileContains@,
-        "list file contains",   listFileContains@,
+    "has file contains",	hasFileContains@,
+    "list file contains",   listFileContains@,
 		"delete file",		    deleteFile@,
 		"retrieve file",    	retrieveFile@,
-        "retrieve file list",   retrieveFileList@,
-        "refresh mission files",refreshMissionFiles@,
+    "retrieve file list",   retrieveFileList@,
+    "refresh mission files",refreshMissionFiles@,
 		"update libfiles",	    updateLibFiles@,
 		"update bootfiles",     updateBootFile@,
 		"write log",			writeToLog@,
@@ -143,7 +143,12 @@
         local pto is path(volume(to_volume_number)).
         if to_folder <> "" set pto to pto:combine(to_folder).
         for file_name in file_list {
-		    if hasFile(file_name,from_volume_number,from_folder) {copypath(pfrom:combine(file_name),pto:combine(file_name)).} else {print(file_name+" not found.").}
+		    if hasFile(file_name,from_volume_number,from_folder) {
+          //copypath(pfrom:combine(file_name),pto:combine(file_name)).
+          compile pfrom:combine(file_name) to pto:combine(file_name).
+        } else {
+          print(file_name+" not found.").
+        }
         }
 		return true.
     }
@@ -151,7 +156,7 @@
     function refreshMissionFiles {
         parameter from_volume_number to 0,
                 from_folder to "missions/"+ship:name,
-                to_volume_number to 1,
+                to_volume_number to BOOTVOLUME,
                 to_folder to "missions".
         local pfrom is path(volume(from_volume_number)):combine(from_folder).
         local pto is path(volume(to_volume_number)):combine(to_folder).
@@ -167,7 +172,7 @@
 	function updateLibFiles {
 		IF HOMECONNECTION:ISCONNECTED{
 			FOR f in LIBFILES {
-				copypath("0:/"+f,"1:").
+				copypath("0:/"+f,+DATAVOLUME+"1:").
 			}
 				UTL["msg add"]("Library Files Updated.").
 		} ELSE {
@@ -184,7 +189,7 @@
 	function updateBootFile {
 		IF HOMECONNECTION:ISCONNECTED{
 			FOR f in LIBFILES {
-				copypath("0:/"+f,"1:").
+				copypath("0:/"+f,BOOTVOLUME+":").
 			}
 			UTL["msg add"]("Boot Files Updated.").
 		} ELSE {

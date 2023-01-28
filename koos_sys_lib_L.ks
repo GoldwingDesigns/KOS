@@ -5,7 +5,8 @@
         "wait soi chng", wait_soi_chng@,
         "warp next patch", warp_to_nextpatch@,
         "wait time", wait_time@,
-        "warp to alt", warp_to_alt@
+        "warp to alt", warp_to_alt@,
+        "pause", pause@
     ).
 
     function wait_soi_chng {
@@ -20,6 +21,11 @@
                 }
             }
         ).
+    }
+
+    function pause{
+        KUniverse:pause().
+        return true.
     }
 
     function warp_to_nextpatch{

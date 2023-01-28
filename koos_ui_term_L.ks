@@ -19,7 +19,7 @@ local currmenulist to list(). // have to store this here just in case of resize 
             clearScreen.
             set missionfile to menu_run().
             clearscreen.
-            if missionfile = "None" { msg_add("None Selected"). } else { runpath("1:/missions/"+missionfile). }
+            if missionfile = "None" { msg_add("None Selected"). } else { runpath(BOOTVOLUME+":/missions/"+missionfile). }
         }
     }
 
@@ -72,7 +72,7 @@ local currmenulist to list(). // have to store this here just in case of resize 
 
     function menu_run {
         local fnamelist is list().
-        set fnamelist to UTL["list file contains"]("mission",1,"missions").
+        set fnamelist to UTL["list file contains"]("mission",BOOTVOLUME,"missions").
         fnamelist:add("None").
         return menu_list("Select a "+VES1["&name"]()+" mission file:",fnamelist).
     }

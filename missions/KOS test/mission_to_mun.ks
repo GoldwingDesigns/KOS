@@ -1,17 +1,17 @@
 parameter reboot_persist to true.// set to true to persist mission through reboot.
 local tgtmoonname to "Mun".
 local tgtmoon to body(tgtmoonname).
-local tgt to tgtmoon:geopositionLATLNG(0.5,0.5).
+local tgt to tgtmoon:geopositionLATLNG(0.495,0.495).
 local launch_alt to 85000.
-local turn_exponent to 0.6. //Turn exponent for curvature. Higher is more vertical.
+local pitchover to 3. //Turn exponent for curvature. Higher is more vertical.
 local launch_inc to ship:geoposition:lat.
 local init_moon_obt_alt to (tgtmoon:soiradius - tgtmoon:radius)*0.6.
 local final_ldg_obt_alt to 10000.
-local rdroffset to 4.6.
+local rdroffset to 4.7.
 
 
 local event_list to list(
-    MNV["launch atmo"]@:bind(launch_alt,launch_inc,true,45,0.65,turn_exponent),
+    MNV["launch atmo"]@:bind(launch_alt,launch_inc,true,45,pitchover),
     //VES1["stage"]@,
     //VES1["extract stage"]@,
     // VES1["fairing deploy"]@,
@@ -31,10 +31,9 @@ local event_list to list(
 	MNV["exec node"]@,
     MNV["change apo"]@:bind(final_ldg_obt_alt),
 	MNV["exec node"]@,
-	VES1["stage"]@,
     MNV["land align init"]@:bind(tgt),
     MNV["land align final"]@:bind(tgt),
-    MNV["pwr land"]@:bind(rdroffset, tgt, 0.5)
+    MNV["pwr land"]@:bind(rdroffset, tgt, 1)
     //VES1["ladders on"]@
 ).
 

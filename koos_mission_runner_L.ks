@@ -1,11 +1,11 @@
 @lazyGlobal OFF.
 
 {
-    function create {
+    function create_mission {
         parameter event_list to list(), interrupt_list to list(), reboot_persist to true.// set to true to persist mission through reboot.
         
         local L TO LEXICON().
-        local jsonname to ship:name+".json".
+        local jsonname to BOOTVOLUME+":/"+ship:name+".json".
         if exists(jsonname) and reboot_persist {
             set L to readJson(jsonname).
         } else {
@@ -64,6 +64,6 @@
     }
 
     GLOBAL MIS is lexicon(
-        "new", create@
+        "new", create_mission@
     ).
 }
