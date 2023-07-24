@@ -1,9 +1,7 @@
 local INFINITY is 2^64.
 local BQ is QUEUE().
-local LASTMEAN is 0.
 local STEPSIZE is 0.
 local LASTSCORE is INFINITY.
-local MEANQ is QUEUE().
 local answer is NODE(0,0,0,0).
 
 function hillclimb {
