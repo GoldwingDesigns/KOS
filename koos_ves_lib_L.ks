@@ -15,6 +15,7 @@
         local failablelist is list().
         local failedlist is list().
         local actionsavail to Career():CANDOACTIONS.
+        local solardir to solardirection.
 
         refreshparts().
 
@@ -40,7 +41,7 @@
 		        if p:modules:contains("ModuleUPFMEvents"){ failablelist:add(p:getmodule("ModuleUPFMEvents")). }
                 if p:modules:contains("Reliability"){failablelist:add(p:getmodule("Reliability")).}
                 if p:modules:contains("ModuleDataTransmitter"){ commslist:add(p). } 
-                if p:name:contains("LaunchClamp"){ launchclamplist:add(p). }
+                if (p:name:contains("LaunchClamp") OR p:modules:contains("LaunchClamp")){ launchclamplist:add(p). }
             }
 
         }
@@ -53,6 +54,7 @@
             // "&IRlist",          var_roboticslist@,
             "&commslist",       var_commslist@,
             "&failablelist",    var_failablelist@,
+            "&solardir",        var_solardir@,
             "&name",            var_name@,
             "comms ext",        meth_comms_ext@,
             "comms ret",        meth_comms_ret@,
@@ -71,7 +73,7 @@
             "arm chutes",       meth_arm_chutes@,
             "check fail",       meth_check_fail@,
             "fairing deploy",   meth_deploy_fairing@,
-            "ship to sun",      meth_ship_to_sun@,
+            // "ship to sun",      meth_ship_to_sun@,
             "prelaunch checks", meth_prelaunch_checks@,
             "blank",            meth_blank@
             ).
@@ -99,6 +101,9 @@
         }
         function var_name {
             return name.
+        }
+        function var_solardir {
+            return solardir.
         }
         function meth_deploy_fairing {
             if actionsavail {
@@ -168,7 +173,10 @@
             //engines must be set to stage first and then launchclamps
             return list(
                 {if launchclamplist:length > 0 { 
-                    set SHIP:CONTROL:MAINTHROTTLE to 1. 
+                    LOCK THROTTLE to 1. 
+                    UI["msg add"]("Throttle Up."). 
+                    WAIT 2. 
+                    UI["msg add"]("Engine Ignition.").
                     stage. 
                     }. 
                 WAIT 1. 
@@ -176,23 +184,36 @@
                 },
                 {
                     if failedlist:length > 0 {
-                    set SHIP:CONTROL:MAINTHROTTLE to 0. 
-                    //UI["msg add"]("Launch Checks Failed. Discontinuing Launch."). 
+                    LOCK THROTTLE to 0. 
+                    UI["msg add"]("Launch Checks Failed. Discontinuing Launch."). 
                     print 1/0.} 
-                    //UI["msg add"]("Launch Checks Successful.").
+                    UI["msg add"]("Launch Checks Successful.").
+                    UNLOCK THROTTLE.
                     return true.}
                 ).
         }
-        function meth_ship_to_sun { 
-            VES1["sas off"]().
-            if solardirection:contains("fore"){
-                lock STEERING to Body("sun"):position.
-            } else if solardirection:contains("aft"){
-                lock STEERING to 1 * Body("sun"):position.
-            } else if solardirection:contains("side"){
-                lock STEERING to VCRS(body("sun"):position,ship:velocity:orbit).
-            }.
-	    }
+        // function var_ship_to_sun { //dont want to make this a variable because it is always changing
+        //     if solardirection:contains("fore"){
+        //         return Body("sun"):position.
+        //     } else if solardirection:contains("aft"){
+        //         return 1 * Body("sun"):position.
+        //     } else if solardirection:contains("side"){
+        //         return VCRS(body("sun"):position,ship:velocity:orbit).
+        //     } else { return Body("sun"):position. }.
+        // }
+        // function meth_ship_to_sun { 
+        //     meth_sas_off().
+        //     WAIT 0.1.
+        //     if solardirection:contains("fore") {
+        //         lock STEERING to Body("sun"):position.
+        //     } else if solardirection:contains("aft") {
+        //         lock STEERING to 1 * Body("sun"):position.
+        //     } else if solardirection:contains("side") {
+        //         lock STEERING to VCRS(Body("sun"):position,ship:velocity:orbit).
+        //     } else { 
+        //         lock STEERING to Body("sun"):position. 
+        //     }.
+	    // }
         function meth_sas_on {
             SAS ON.
             UI["msg add"]("SAS On.").

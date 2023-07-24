@@ -9,7 +9,8 @@ local currmenulist to list(). // have to store this here just in case of resize 
         "run",          term_run@,
         "msg add",      msg_add@,
         "scr update",   scr_update@,
-        "menu run",     menu_run@
+        "menu run",     menu_run@,
+        "AG6 stop",     ag6_stop@
     ).
 
     function term_run {
@@ -22,7 +23,11 @@ local currmenulist to list(). // have to store this here just in case of resize 
             if missionfile = "None" { msg_add("None Selected"). } else { runpath(BOOTVOLUME+":/missions/"+missionfile). }
         }
     }
-
+    function ag6_stop{
+        if AG6 {
+            UTL["kill program"]().
+        }
+    }
     // function msg_update{
     //     local tmpstring to "".
     //     local line0 to 0.
@@ -158,7 +163,7 @@ local currmenulist to list(). // have to store this here just in case of resize 
 	return charstring:TOSCALAR.
     }	
 
-    function data_clr_node {
-        return.
-    }
+    // function data_clr_node {
+    //     return.
+    // }
 }

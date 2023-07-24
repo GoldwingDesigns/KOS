@@ -58,97 +58,12 @@ run koos_hillclimb_lib.
 		else return 1.
 	}
 
-	// function launch_atmo{
-	// 	parameter launchalt, launchinc, thrByEta, setpoint is 2, minThrtl is 0, TurnExponent is 0.3.
-  //       local waitstart to 0.
-	// 	local th to 1. //Variable for locked throttle.  1.0 is the max, 0.0 is idle.
-	// 	local Steering_Lock TO HEADING(90,90,-90). //Variable for locked steering.
-	// 	local TurnEnd TO launchalt. //The ending altitude for the ascent turn.
-	// 	//local TurnExponent TO 0.3. //Turn exponent for curvature. Higher is more vertical.
-	// 	local TurnStart TO 0.  //Used to mark the altitude that the ascent turn begins.
-	// 	local MyPitch TO 90. //Initial setting for pitch on launch (straight up).
-	// 	local newth to 0.
-	// 	local stopatstage to VES1["&launchstage"]().
-	// 	local launchaz to LAZcalc(LAZcalc_init(launchalt,launchinc)).
-	// 	//local DesiredTWR TO 2. //DesiredTWR throughout launch
-	// 	local THRPID to CHOOSE PIDLOOP(0.1,0.0,0.1,-0.5,0.5) if thrByEta else PIDLOOP(0.1,0,0.01,-0.5,0.5). //PID loop to set throttle to DesiredTWR.
-	// 	SET THRPID:SETPOINT to setpoint.
-	// 	VES1["sas off"]().
-
-	// 	//**Setup Throttle and Steering Locks.
-	// 	LOCK THROTTLE TO th.   
-	// 	LOCK STEERING TO Steering_Lock. // from now on we'll be able to change steering by just assigning a new value to Steering_Lock
-		
-	// 	//**Declare Triggers.
-
-	// 	//**Trigger to open the Solar Panels and turn on Lights when above atmosphere.
-	// 	WHEN SHIP:ALTITUDE > SHIP:ORBIT:BODY:ATM:HEIGHT THEN {
-	// 	// 	PANELS ON.
-	// 	// 	LIGHTS ON.
-	// 		UI["msg add"]("Panels Extended.").
-	//  }
-	// 	// //**Trigger to mark the altitue the ascent turn begins
-
-	// 	if STARTTIME = 0 {set STARTTIME to TIME. local mtime to time. UI["msg add"]("Commence Launch Program at "+mTime:year+"y "+mtime:day+"d "+mtime:hour+"h "+mtime:minute+"m "+mtime:second+"s.").}
-		
-  //       return list(
-  //           {
-  //               SET Steering_Lock TO HEADING(90,90,-90).
-  //               man_check_stage(stopatstage).
-  //               return SHIP:VELOCITY:SURFACE:MAG > 50. //Initial launch will be straight up 
-  //           },
-  //           {
-  //               VES1["gear up"]().
-	// 		    SET TurnStart TO SHIP:ALTITUDE - 10.
-	// 		    UI["msg add"]("Commence Pitchover.").
-  //               return true.
-  //           },
-  //           {
-  //               set MyPitch TO 90 * (1 - ((SHIP:ALTITUDE-TurnStart) / TurnEnd) ^ TurnExponent).
-  //               local CurPoint to CHOOSE ETA:APOAPSIS if thrByEta else ShipTWR.
-  //               SET Steering_Lock TO HEADING(launchaz,MyPitch,-90).
-  //               set newth to th+THRPID:UPDATE(time:seconds, CurPoint)*min(1,(launchalt-ship:apoapsis)/1000).
-  //               SET th to MIN(1,MAX(newth,minThrtl)).
-  //               man_check_stage(stopatstage).
-  //               return SHIP:ALTITUDE > TurnEnd or SHIP:APOAPSIS > launchalt. //If still following the launch curve and desired apoapsis not reached
-  //           },
-  //           {
-  //               SET Steering_Lock TO HEADING(launchaz,0,-90).
-  //               IF SHIP:APOAPSIS < launchalt AND SHIP:ALTITUDE >=SHIP:ORBIT:BODY:ATM:HEIGHT{ //Apoapsis value has dropped due to drag.
-  //                   set newth to 1*min(1,(launchalt-ship:apoapsis)/1000).
-  //               } ELSE { //Coasting to Apoapsis.
-  //                   set newth to 0.
-  //               }
-  //               SET th to MIN(1,MAX(newth,0.1)).
-  //               man_check_stage(stopatstage).
-  //               return SHIP:APOAPSIS >= launchalt AND SHIP:ALTITUDE >=SHIP:ORBIT:BODY:ATM:HEIGHT.
-  //           },
-  //           {
-  //               //**At this point, our apoapsis is above the desired value and our main loop has ended. Next
-  //               //**we'll make sure our throttle is zero and that we're pointed prograde.
-  //               LOCK THROTTLE TO 0.
-  //               WAIT 1.
-  //               UNLOCK THROTTLE.
-  //               SET Steering_Lock TO LOOKDIRUP(ship:prograde:forevector, SHIP:BODY:POSITION).
-  //               set waitstart to time:seconds.
-  //               return true.
-  //           },
-  //           {
-  //               return waitstart+10 < time:seconds.
-  //           },
-  //           {
-  //               UNLOCK STEERING.
-  //               UI["msg add"]("Launch Complete.").
-  //               return true.
-  //           }
-  //       ).
-	// }
-
 	function launch_atmo_gravity_turn{
-		parameter launchalt, launchinc, thrByEta is true, setpoint is 45, pitchoverDeg is 4.
+		parameter launchalt, launchinc, thrByEta is true, setpoint is 45, pitchoverDeg is 4, roll is -90.
     local waitstart to 0.
+		//roll to -180 for shuttle.
 		local th to 1. //Variable for locked throttle.  1.0 is the max, 0.0 is idle.
-		local Steering_Lock TO HEADING(90,90,-90). //Variable for locked steering.
+		local Steering_Lock TO HEADING(90,90,roll). //Variable for locked steering. shuttle is 0? probe is -90?
 		local TurnEnd TO launchalt. //The ending altitude for the ascent turn.
 		local MyPitch TO 90. //Initial setting for pitch on launch (straight up).
 		local newth to 0.
@@ -168,13 +83,14 @@ run koos_hillclimb_lib.
 		WHEN SHIP:altitude > 50000 THEN {
 			VES1["fairing deploy"]().
     	VES1["panels on"]().
+			VES1["comms ext"]().
 	 	}
 
 		if STARTTIME = 0 {set STARTTIME to TIME. local mtime to time. UI["msg add"]("Commence Launch Program at "+mTime:year+"y "+mtime:day+"d "+mtime:hour+"h "+mtime:minute+"m "+mtime:second+"s.").}
 		
 		return list(
 			{
-				SET Steering_Lock TO HEADING(90,90,-90).
+				SET Steering_Lock TO HEADING(90,90,roll).
 				stage.
 				return true.
 			},
@@ -191,7 +107,7 @@ run koos_hillclimb_lib.
 				set MyPitch to 90-pitchoverDeg.
 				local CurPoint to  ETA:APOAPSIS .
 				// local CurPoint to CHOOSE ETA:APOAPSIS if thrByEta else ShipTWR.
-				SET Steering_Lock TO HEADING(launchaz,MyPitch,-90).
+				SET Steering_Lock TO HEADING(launchaz,MyPitch,roll).
 				set newth to th+THRPID:UPDATE(time:seconds, CurPoint)*min(1,(launchalt-ship:apoapsis)/1000).
 				SET th to MIN(1,MAX(newth,MinThrottle)).
 				man_check_stage(stopatstage).
@@ -212,7 +128,7 @@ run koos_hillclimb_lib.
 				return SHIP:ALTITUDE > TurnEnd or SHIP:APOAPSIS > launchalt. //If still following the launch curve and desired apoapsis not reached
 			},
 			{
-				SET Steering_Lock TO HEADING(launchaz,0,-90).
+				SET Steering_Lock TO HEADING(launchaz,0,roll).
 				IF SHIP:APOAPSIS < launchalt AND SHIP:ALTITUDE >=SHIP:ORBIT:BODY:ATM:HEIGHT{ //Apoapsis value has dropped due to drag.
 						set newth to 1*min(1,(launchalt-ship:apoapsis)/1000).
 				} ELSE { //Coasting to Apoapsis.
@@ -230,7 +146,7 @@ run koos_hillclimb_lib.
 				UNLOCK THROTTLE.
 				SET Steering_Lock TO LOOKDIRUP(ship:prograde:forevector, SHIP:BODY:POSITION).
 				set waitstart to time:seconds.
-				VES1["comms ext"]().
+				
 				return true.
 			},
 			{
@@ -245,7 +161,7 @@ run koos_hillclimb_lib.
 	}
 
   function launch_no_atmo{
-		parameter launchalt, launchinc, launchcirc.
+		parameter launchalt, launchinc.
         local waitstart to 0.
 		local th to 1. //Variable for locked throttle.  1.0 is the max, 0.0 is idle.
 		local Steering_Lock TO HEADING(90,90). //Variable for locked steering.
@@ -325,6 +241,7 @@ run koos_hillclimb_lib.
 		parameter laststage.
 		if stage:number >= laststage {
 			if ship:availablethrust = 0 {
+				UI["msg add"]("Stage: "+stage:number+" no thrust.").
 				VES1["stage"]().
 				return.
 			}
@@ -333,6 +250,7 @@ run koos_hillclimb_lib.
 			LIST ENGINES IN myengines. 
 			FOR eng IN myengines {
 				IF eng:FLAMEOUT {
+					UI["msg add"]("Stage: "+stage:number+" eng: "+eng:title+" flameout.").
 					SET numOut TO numOut + 1.
 				}
 			}
@@ -468,12 +386,22 @@ run koos_hillclimb_lib.
 			},
 			{
 					lock throttle to 0.
-					VES1["ship to sun"]().
+					local sd to VES1["&solardir"]().
+					print sd.
+					if sd:contains("fore") {
+							lock STEERING to Body("sun"):position.
+					} else if sd:contains("aft") {
+							lock STEERING to 1 * Body("sun"):position.
+					} else if sd:contains("side") {
+							lock STEERING to VCRS(Body("sun"):position,ship:velocity:orbit).
+					} else { 
+							lock STEERING to Body("sun"):position. 
+					}.
 					set waitstart to time:seconds.
 					return true.
 			},
 			{
-					return waitstart+10 < time:seconds.
+					return waitstart+15 < time:seconds.
 			},
 			{
 					UNLOCK STEERING.
@@ -572,7 +500,7 @@ run koos_hillclimb_lib.
 	}
 
 	function moon_trans{
-		parameter tgtmoon, moon_peri, moon_inc is 80.
+		parameter tgtmoon, moon_peri.
 		UI["msg add"]("Finding Transfer to "+tgtmoon:name).
 		local planetMU to SHIP:ORBIT:BODY:MU.
 		local oldSMA to SHIP:ORBIT:SEMIMAJORAXIS.
@@ -737,6 +665,12 @@ run koos_hillclimb_lib.
 					set steervec to lookDirUp(-1*ship:velocity:surface,-1*body:position).
 					return true.
 				},
+				{ return ship:alt < 200000.
+				},
+				{ 
+					VES1["comms ret"]().
+					return true.
+				},
 				{
 					set steervec to lookDirUp(-1*ship:velocity:surface,-1*body:position).
 					return alt:radar < 10000.
@@ -778,15 +712,27 @@ run koos_hillclimb_lib.
 		}
 
 	function find_burntime {
-		parameter thisDV.
+		parameter inputDV, stagenum to STAGE:NUMBER.
 		local Mi to SHIP:MASS.
+		local stageDV to ship:STAGEDELTAV(stagenum):CURRENT.
 		local Go to 9.80665.
 		local englist is list().
 		list engines in englist.
-		local engISP to englist[englist:LENGTH - 1]:VISP.
-		local engT to englist[englist:LENGTH - 1]:AVAILABLETHRUST.
-		return thisDV/(engT * (((Mi + (Mi * (constant:e ^ (-1 * (thisDV / (engISP * Go) )))))/2) ^ (-1))).
+		local engISP to 0.1.
+		local engT to 0.1.
+		for e in englist {
+			if e:stage = stagenum {
+				set engISP to engISP + e:VISP.
+				set engT to engT + e:availableThrust.
+			}
+		}
+		if stageDV > inputDV {
+			return inputDV/(engT * (((Mi + (Mi * (constant:e ^ (-1 * (inputDV / (engISP * Go) )))))/2) ^ (-1))).
+		} else {
+			return stageDV/(engT * (((Mi + (Mi * (constant:e ^ (-1 * (stageDV / (engISP * Go) )))))/2) ^ (-1))) + find_burntime(inputDV-stageDV, max(stagenum-1,0)).
+		}
 	}
+
 
 	function pwr_ldg { 
 		parameter radaroffset is 4.1, tgt is latlng(0,27), altoffset is 0.
@@ -809,10 +755,10 @@ run koos_hillclimb_lib.
 		local lock nsvec to ship:north:vector.
 		local lock ewvec to -1 * vcrs(ship:north:vector,ship:up:vector).
     local twn to 1. local tzeta to 0.9. local tKp to twn^2. local tKi to 0. local tKd to 2*tzeta*twn.
-		local NSPID TO PIDLOOP (tKp, tKi, tKd, -1, 1).
+		local NSPID TO PIDLOOP (tKp, tKi, tKd, -0.5, 0.5).
 		SET NSPID:SETPOINT TO 0.
 		local dwn to 1.	local dzeta to 0.9. local dKp to dwn^2. local dKi to 0. local dKd to 2*dzeta*dwn.
-		local EWPID TO PIDLOOP (dKp, dKi, dKd, -1, 1).
+		local EWPID TO PIDLOOP (dKp, dKi, dKd, -0.5, 0.5).
 		SET EWPID:SETPOINT TO 0.
        
 		local mytime to 0.
@@ -858,7 +804,6 @@ run koos_hillclimb_lib.
 				lock throttle to idealThrottle.
 				UI["msg add"]("Performing Final Burn.").
 				VES1["gear down"]().
-				//lock throttle to 1.
 				return true.
 			},
 			{
@@ -929,7 +874,6 @@ run koos_hillclimb_lib.
 		parameter tgt.
 		local circ is orbit_circumference().
 		local qcirc is circ/4.
-		local fcirc is circ/5.
 		local lock totvec to ship:velocity:surface.
 		local lock survec to vxcl(cos(VANG(totvec,BODY:POSITION))*Body:position:normalized,totvec).
 		local lock tgtvec to vxcl((tgt:position:mag*cos(VANG(tgt:position,BODY:POSITION)))*body:position:normalized,tgt:position).
@@ -939,8 +883,7 @@ run koos_hillclimb_lib.
 		local negind to 0.
 		local angdiff to 0.
 		local steervec to lookDirUp(-1*ship:velocity:orbit,-1*body:position).
-		
-        local waitstart to 0.
+		local waitstart to 0.
 		UI["msg add"]("Commence Initial Landing Angular Correction.").
 		return list(
 			{
@@ -953,42 +896,45 @@ run koos_hillclimb_lib.
 				return vdot(tgtvec,survec) > 0 and dist < qcirc .
 			},
 			{
-                SET WARP to 0.
-                set waitstart to time:seconds.
-                return true.
-            },
-            {
-                return waitstart+3 < time:seconds.
-            },
-            {
-                VES1["sas off"]().
-								lock steering to steervec.
+				SET WARP to 0.
+				set waitstart to time:seconds.
 				return true.
-            },
-            {
-                set negind to vdot(vcrs(tgtvec:normalized,survec:normalized),body:position:normalized).
-                set angdiff to vang(tgtvec,survec).
-                if angdiff > 2 {
-                    set ship:control:neutralize to TRUE.
-                    set steervec to lookDirUp(-1 * negind*vcrs(body:position,survec),-1*body:position).
-                    if abs(vdot(vcrs(body:position,survec):normalized,ship:facing:vector:normalized)) > 0.98 { set thrt to angdiff. }
+			},
+			{
+				return waitstart+3 < time:seconds.
+			},
+			{
+				VES1["sas off"]().
+				lock steering to steervec.
+				return true.
+			},
+			{
+				set negind to vdot(vcrs(tgtvec:normalized,survec:normalized),body:position:normalized).
+				set angdiff to vang(tgtvec,survec).
+				if angdiff > 2 {
+					set ship:control:neutralize to TRUE.
+					set steervec to lookDirUp(-1 * negind*vcrs(body:position,survec),-1*body:position).
+					if abs(vdot(vcrs(body:position,survec):normalized,ship:facing:vector:normalized)) > 0.98 
+					{ 
+						set thrt to angdiff. 
+					}
 					return false.
-                }else{
+				} else {
 					set thrt to 0.
-                    set steervec to lookDirUp(-1*survec,-1*body:position).
-					if abs(vdot(-1*survec,ship:facing:vector:normalized)) > 0.98 {return true.}else{return false.} //done once angle < 0.5 and facing retrograde.
-                }
-		    },
-            {
-                set thrt to 0.
-                SET SHIP:CONTROL:PILOTMAINTHROTTLE to 0.
-                unlock throttle.
-                unlock steering.
-                wait 0.1.
-                return true.
-            }
+					set steervec to lookDirUp(-1*survec,-1*body:position).
+					if abs(vdot(-1*survec,ship:facing:vector:normalized)) > 0.98 
+					{return true.}else{return false.} //done once angle < 0.02 and facing retrograde.
+					}
+			},
+			{
+				set thrt to 0.
+				SET SHIP:CONTROL:PILOTMAINTHROTTLE to 0.
+				unlock throttle.
+				unlock steering.
+				wait 0.1.
+				return true.
+			}
 		).
-
 	}
 
 	function ldg_align_burn {
@@ -1002,113 +948,116 @@ run koos_hillclimb_lib.
 		local lock totvec to ship:velocity:surface.
 		local lock survec to vxcl(cos(VANG(totvec,BODY:POSITION))*Body:position:normalized,totvec).
 		local lock tgtvec to vxcl((tgt:position:mag*cos(VANG(tgt:position,BODY:POSITION)))*body:position:normalized,tgt:position).
-        local errorvec to V(0,0,0).
+    local errorvec to V(0,0,0).
 		local errorvechoriz to V(0,0,0).
-        local waitstart to 0.
+    local waitstart to 0.
 		local dwn to 1. local dzeta to 0. local dKp to dwn^2. local dKi to 0. local dKd to 2*dzeta*dwn.
 		local hdgPID TO PIDLOOP (dKp, dKi, dKd, -0.5, 0.5). //helps with .05 deadzone in RCS
 		SET hdgPID:SETPOINT TO 0.
 		local hdgpitch to 0.
 		local negind to 0.
 		local angdiff to 0.
+		local deadband to 0.2.
 		local mindist to 2147483647.
 		local steervec to lookDirUp(-1*ship:velocity:orbit,-1*body:position).
 		lock steering to steervec.
 		local hystate to 0.
-		// local survecdraw TO VECDRAW(
-		// 		V(0,0,0),
-		// 		{ return survec. },
-		// 		yellow, "survec", 1, true, 0.2, true, true).
-		// local tgtvecdraw TO VECDRAW(
-		// 		V(0,0,0),
-		// 		{ return tgtvec. },
-		// 		blue, "tgtvec", 1, true, 0.2, true, true).
-    //     UI["msg add"]("Commence Landing Angular Alignment.").
-
-        return list(
-            {
-							if not(vdot(tgtvec,survec) > 0 and tgtvec:mag < (hburnd*5) and tgtvec:mag > (hburnd*4) and tgt:position:mag < body:radius*2){
-								SET WARP to 2.
-								WAIT 0.1.
-							}
-			
+		UI["msg add"]("Commence Landing Angular Alignment.").
+		return list(
+			{
+				if not(vdot(tgtvec,survec) > 0 and tgtvec:mag < (hburnd*5) and tgtvec:mag > (hburnd*4) and tgt:position:mag < body:radius*2) 
+				{
+					SET WARP to 2.
+					WAIT 0.1.
+				}
 				return true.
 			},
 			{
-                return vdot(tgtvec,survec) > 0 and tgtvec:mag < (hburnd*5) and tgtvec:mag > (hburnd*4) and tgt:position:mag < body:radius*2.
-            },
-            {
-                SET WARP to 0.
-                set waitstart to time:seconds.
-                return true.
-            },
-            {
-                return waitstart+3 < time:seconds.
-            },
-            {
-                VES1["rcs on"]().
-                VES1["sas off"]().
+				return vdot(tgtvec,survec) > 0 and tgtvec:mag < (hburnd*5) and tgtvec:mag > (hburnd*4) and tgt:position:mag < body:radius*2.
+			},
+			{
+				SET WARP to 0.
+				set waitstart to time:seconds.
 				return true.
-            },
-            {
-                set negind to vdot(vcrs(tgtvec:normalized,survec:normalized),body:position:normalized).
-                set angdiff to vang(tgtvec,survec).
-				if angdiff > 0.1 set hystate to 1. //use hysteresis to keep it from flipflopping at high inclinations
-				if angdiff < 0.05 set hystate to 0.
-                if hystate = 1 {
-                    set ship:control:neutralize to TRUE.
-                    set steervec to lookDirUp(-1 * negind*vcrs(body:position,survec),-1*body:position).
-                    if abs(vdot(vcrs(body:position,survec):normalized,ship:facing:vector:normalized)) > 0.98 { set thrt to angdiff. }
-                    set hburnt to find_burntime(hvel).
-                    set hburnd to (hburnt*hvel/2)+1000.
-                }
-				if hystate = 0 {
-                    set thrt to 0.
-                    set steervec to lookDirUp(-1*survec,-1*body:position).
-                    if  negind < 0  {
-                        set hdgpitch to hdgPID:update(TIME:SECONDS, angdiff).
-                    } else {
-                        set hdgpitch to hdgPID:update(TIME:SECONDS, angdiff*-1).
-                    }
-                    if abs(vdot(-1*survec,ship:facing:vector:normalized)) > 0.98 {set ship:control:starboard to -2 * hdgpitch.}
-                }
-                return tgtvec:mag < (hburnd).	
-		    },
-            {
-				set steervec to lookDirUp(-1*survec,-1*body:position).
-                set ship:control:neutralize to TRUE.
-                return true.
-            },
-            {
-                if ADDONS:TR:AVAILABLE {
-                    ADDONS:TR:SETTARGET(tgt).
-                    set ADDONS:TR:RETROGRADE to TRUE.
-                }
-				UI["msg add"]("Cancelling Horiz Velocity.").
-                return true.
-            },
-            {
-                set steervec to lookDirUp(-1*survec,-1*body:position).
-				if ADDONS:TR:AVAILABLE {
-                    set thrt to min(1,(hvel)/10).
-                    set negind to vdot(vcrs(tgtvec:normalized,survec:normalized),body:position:normalized).
+			},
+			{
+				return waitstart+3 < time:seconds.
+			},
+			{
+				VES1["rcs on"]().
+				wait 1.
+				VES1["sas off"]().
+				return true.
+			},
+			{
+				set negind to vdot(vcrs(tgtvec:normalized,survec:normalized),body:position:normalized).
+				set angdiff to vang(tgtvec,survec).
+				if angdiff > 1 set hystate to 1. //use hysteresis to keep it from flipflopping at high inclinations
+				if angdiff < 0.5 set hystate to 0.
+				// if angdiff > deadband {
 					if  negind < 0  {
-						set hdgpitch to hdgPID:update(TIME:SECONDS, vang(tgtvec,survec)).
+								set hdgpitch to hdgPID:update(TIME:SECONDS, angdiff).
 					} else {
-						set hdgpitch to hdgPID:update(TIME:SECONDS, vang(tgtvec,survec)*-1).
+							set hdgpitch to hdgPID:update(TIME:SECONDS, angdiff*-1).
 					}
-					set ship:control:starboard to -4*hdgpitch.
-                    return ADDONS:TR:HASIMPACT.
-                } else {
-                    return true.
-                }
-            },
-            {
-                set steervec to lookDirUp(-1*survec,-1*body:position).
+				// } else {
+				// 	set ship:control:neutralize to TRUE.
+
+				// }
+				if hystate = 1 {
+					set ship:control:neutralize to TRUE.
+					set steervec to lookDirUp(-1 * negind*vcrs(body:position,survec),-1*body:position).
+					if abs(vdot(vcrs(body:position,survec):normalized,ship:facing:vector:normalized)) > 0.98 { set thrt to angdiff. }
+					set hburnt to find_burntime(hvel).
+					set hburnd to (hburnt*hvel/2)+1000.
+				}
+				if hystate = 0 {
+					set thrt to 0.
+					set steervec to lookDirUp(-1*survec,-1*body:position).
+					if abs(vdot(-1*survec,ship:facing:vector:normalized)) > 0.98 {
+						set ship:control:starboard to -2 * hdgpitch. // put the negative sign back if this is messed up
+					}
+				}
+				return tgtvec:mag < (hburnd).	
+			},
+			{
+	set steervec to lookDirUp(-1*survec,-1*body:position).
+					set ship:control:neutralize to TRUE.
+					return true.
+			},
+			{
 				if ADDONS:TR:AVAILABLE {
-                    set errorvec to addons:tr:impactpos:altitudeposition(ship:altitude+alterr)-tgt:altitudeposition(ship:altitude+alterr).
+					ADDONS:TR:SETTARGET(tgt).
+					set ADDONS:TR:RETROGRADE to TRUE.
+				}
+				UI["msg add"]("Cancelling Horiz Velocity.").
+				return true.
+			},
+			{
+				set steervec to lookDirUp(-1*survec,-1*body:position).
+				if ADDONS:TR:AVAILABLE {
+					set angdiff to vang(tgtvec,survec).
+					if angdiff > deadband {
+					if  negind < 0  {
+								set hdgpitch to hdgPID:update(TIME:SECONDS, angdiff).
+						} else {
+								set hdgpitch to hdgPID:update(TIME:SECONDS, angdiff*-1).
+						}
+					}
+					set thrt to min(1,(hvel)/10).
+					set negind to vdot(vcrs(tgtvec:normalized,survec:normalized),body:position:normalized).
+					set ship:control:starboard to -2*hdgpitch.
+					return ADDONS:TR:HASIMPACT.
+				} else {
+					return true.
+				}
+			},
+			{
+				set steervec to lookDirUp(-1*survec,-1*body:position).
+				if ADDONS:TR:AVAILABLE {
+					set errorvec to addons:tr:impactpos:altitudeposition(ship:altitude+alterr)-tgt:altitudeposition(ship:altitude+alterr).
 					set errorvechoriz to vxcl(cos(VANG(errorvec,BODY:POSITION))*Body:position:normalized,errorvec).
-                    set thrt to min(1,errorvec:mag/2000).
+					set thrt to min(1,errorvec:mag/2000).
 					set negind to vdot(vcrs(tgtvec:normalized,survec:normalized),body:position:normalized).
 					if  negind < 0  {
 						set angdiff to vang(tgtvec,survec).
@@ -1117,27 +1066,27 @@ run koos_hillclimb_lib.
 						set angdiff to vang(tgtvec,survec)*-1.
 						set hdgpitch to hdgPID:update(TIME:SECONDS, angdiff).
 					}
-					set ship:control:starboard to -4*hdgpitch.
+					set ship:control:starboard to -1*hdgpitch.
 					if errorvechoriz:mag < mindist set mindist to errorvechoriz:mag.
 					return errorvechoriz:mag<200 and mindist<errorvechoriz:mag.
 				} else {
 					set thrt to min(1,(hvel-10)/10).
-                    return hvel<20.
-                }
-            },
-            {
+					return hvel<20.
+				}
+			},
+			{
 				UI["msg add"]("Landing alignment CPA: "+mindist).
-                set steervec to lookDirUp(-1*ship:velocity:orbit,-1*body:position).
+				set steervec to lookDirUp(-1*ship:velocity:orbit,-1*body:position).
 				set thrt to 0.
-                SET SHIP:CONTROL:PILOTMAINTHROTTLE to 0.
-                set ship:control:neutralize to TRUE.
-                unlock throttle.
-                unlock steering.
-                wait 0.1.
-								//clearVecDraws().
-                return true.
-            }
-        ).
+				SET SHIP:CONTROL:PILOTMAINTHROTTLE to 0.
+				set ship:control:neutralize to TRUE.
+				unlock throttle.
+				unlock steering.
+				wait 0.1.
+				return true.
+			}
+		).
+
 	}
 
 	

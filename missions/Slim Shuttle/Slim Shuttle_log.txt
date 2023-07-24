@@ -1,0 +1,16 @@
+T+00-000 00:00:00 Throttle Up.
+T+00-000 00:00:00 Engine Ignition.
+T+00-000 00:00:00 Launch Checks Successful.
+T+00-000 00:00:00 SAS Off.
+T+00-000 00:00:00 Commence Launch Program at 1y 2d 1h 19m 12s.
+T+00-000 00:00:04 Landing Gear Retracted.
+T+00-000 00:00:04 Commence Pitchover.
+T+00-000 00:00:12 Steering Unlocked. Gravity Turn Initiated.
+T+00-000 00:01:35 Stage. Current stage: 3.
+T+00-000 00:02:07 Fairings deployed.
+T+00-000 00:02:07 Solar Panels Extended.
+T+00-000 00:02:49 Radio Antennas Extended.
+T+00-000 00:02:59 Launch Complete.
+T+00-000 00:02:59 Circularize Node Added At Apoapsis.
+T+00-000 00:03:00 SAS Off.
+T+00-000 00:03:00 Executing node: NODE(117.820214404968,0,0,646.399114632079)

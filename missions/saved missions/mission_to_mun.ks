@@ -11,6 +11,7 @@ local rdroffset to 4.7.
 
 
 local event_list to list(
+    VES1["prelaunch checks"]@,
     MNV["launch atmo"]@:bind(launch_alt,launch_inc,true,45,pitchover),
     MNV["circ"]@,
     MNV["exec node"]@,

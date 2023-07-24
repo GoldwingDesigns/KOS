@@ -13,8 +13,9 @@
     "refresh mission files",refreshMissionFiles@,
 		//"update libfiles",	    updateLibFiles@,
 		//"update bootfiles",     updateBootFile@,
-		"write log",			writeToLog@
-		//"reboot",			    rebootcpu@
+		"write log",			writeToLog@,
+		//"reboot",			    rebootcpu@,
+		"kill program",		killprogram@
 	).
 
 	// function slaveInit {
@@ -156,7 +157,7 @@
     function refreshMissionFiles {
         parameter from_volume_number to 0,
                 from_folder to "missions/"+ship:name,
-                to_volume_number to 1,
+                to_volume_number to BOOTVOLUME,
                 to_folder to "missions".
         local pfrom is path(volume(from_volume_number)):combine(from_folder).
         local pto is path(volume(to_volume_number)):combine(to_folder).
@@ -202,9 +203,10 @@
 		parameter txt.
 		local fname to ship:name+"_log.txt".
 		local foldername to "0:/missions/"+ship:name+"/".
-		log txt to fname. //stores locally
+		log txt to BOOTVOLUME+fname. //stores locally
 		if homeConnection:isconnected {
 			if not exists(foldername) createdir(foldername).
+			if exists(foldername+fname) deletePath(foldername+fname).
 			copyPath(fname,foldername).
 		}
 	}
@@ -212,4 +214,9 @@
 	// function rebootcpu {
 	// 	reboot.
 	// }
+	
+	function killprogram {
+		UI["msg add"]("Program Stopped at User Request.").
+		print 1/0.
+	}
 }

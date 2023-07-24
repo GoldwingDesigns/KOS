@@ -25,7 +25,6 @@ function cpa { //largely stolen from CheersKevin - largely
         local et is st + nd:ORBIT:PERIOD.
 		local mt is (st+et)/2.
 		local sslope is findslope(tgt,st).
-		local eslope is findslope(tgt,et).
 		local mslope is findslope(tgt,mt).
 		until (et-st<0.1) or mslope < 0.1 {
 			if (mslope * sslope) > 0
@@ -40,7 +39,7 @@ function cpa { //largely stolen from CheersKevin - largely
 	}
 }
 
-FUNCTION LAZcalc_init {
+function LAZcalc_init {
     PARAMETER
         desiredAlt, //Altitude of desired target orbit (in *meters*)
         desiredInc. //Inclination of desired target orbit
@@ -87,7 +86,7 @@ FUNCTION LAZcalc_init {
     RETURN data.
 }
 
-FUNCTION LAZcalc {
+function LAZcalc {
     PARAMETER
         data. //pointer to the list created by LAZcalc_init
     LOCAL inertialAzimuth IS ARCSIN(MAX(MIN(COS(data[0]) / COS(SHIP:LATITUDE), 1), -1)).
@@ -152,7 +151,7 @@ function find_landing_tgt_LAN{
     local transorbitperiod is orbit_period(tgt:body,init_alt,final_alt).
     local finalorbitperiod is orbit_period(tgt:body,final_alt,final_alt).
     local bodyrotationperiod is tgt:body:rotationperiod.
-    local answer is calc_lng_from_tgt(tgt, inc, posigrade)+tgt:body:rotationangle+(((initorbitperiod/bodyrotationperiod)*360)*0.5)+(((transorbitperiod/bodyrotationperiod)*360)*0.5)+(((finalorbitperiod/bodyrotationperiod)*360)*0.5).
+    local answer is calc_lng_from_tgt(tgt, inc)+tgt:body:rotationangle+(((initorbitperiod/bodyrotationperiod)*360)*0.5)+(((transorbitperiod/bodyrotationperiod)*360)*0.5)+(((finalorbitperiod/bodyrotationperiod)*360)*0.5).
     //above is longitudinal dist from tgt minus current rotation angle from nodal line minus long dist covered by half transfer orbit minus dist covered during half final orbit and one quarter final orbit
     until answer >= 0 {set answer to answer + 360.}
     until answer <=360 {set answer to answer - 360.}
@@ -163,7 +162,6 @@ function find_landing_tgt_LAN_lowalt{
     parameter tgt, inc.
     local finalorbitperiod is orbit_period(tgt:body).
     local bodyrotationperiod is tgt:body:rotationperiod.
-    local mult is 1.
     if ship:obt:inclination > 90 { set mult to -1.}
     local answer is calc_lng_from_tgt(tgt, inc)+tgt:body:rotationangle+(((finalorbitperiod/bodyrotationperiod)*360)*0.25).
     set answer to mod(answer + 720,360).
@@ -206,7 +204,7 @@ function eta_true_anom {
 
 	local node_true_anom to (mod (720+ tgt_lng - (obt:lan + obt:argumentofperiapsis),360)).
 
-	print "Node anomaly   : " + round(node_true_anom,2).	
+	// print "Node anomaly   : " + round(node_true_anom,2).	
 	local node_eta to 0.
 	local ecc to OBT:ECCENTRICITY.
 	if ecc < 0.001 {

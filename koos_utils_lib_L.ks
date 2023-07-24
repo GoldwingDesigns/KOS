@@ -14,7 +14,8 @@
 		"update libfiles",	    updateLibFiles@,
 		"update bootfiles",     updateBootFile@,
 		"write log",			writeToLog@,
-		"reboot",			    rebootcpu@
+		"reboot",			    rebootcpu@,
+		"kill program",		killprogram@
 	).
 
 	function slaveInit {
@@ -174,26 +175,26 @@
 			FOR f in LIBFILES {
 				copypath("0:/"+f,+DATAVOLUME+"1:").
 			}
-				UTL["msg add"]("Library Files Updated.").
+				UI["msg add"]("Library Files Updated.").
 		} ELSE {
-			UTL["msg add"]("Ship not connected to Kerbin.").
+			UI["msg add"]("Ship not connected to Kerbin.").
 		}
 		return true.
 	}
 
-	function reloadLibFiles {
-		UTL["msg add"]("Lib Files Reloaded.").
-		return true.
-	}
+	// function reloadLibFiles {
+	// 	UI["msg add"]("Lib Files Reloaded.").
+	// 	return true.
+	// }
 
 	function updateBootFile {
 		IF HOMECONNECTION:ISCONNECTED{
 			FOR f in LIBFILES {
 				copypath("0:/"+f,BOOTVOLUME+":").
 			}
-			UTL["msg add"]("Boot Files Updated.").
+			UI["msg add"]("Boot Files Updated.").
 		} ELSE {
-		UTL["msg add"]("Ship not connected to Kerbin.").
+		UI["msg add"]("Ship not connected to Kerbin.").
 		}
 		return true.
 	}
@@ -202,14 +203,19 @@
 		parameter txt.
 		local fname to ship:name+"_log.txt".
 		local foldername to "0:/missions/"+ship:name+"/".
-		log txt to fname. //stores locally
+		log txt to BOOTVOLUME+fname. //stores locally
 		if homeConnection:isconnected {
 			if not exists(foldername) createdir(foldername).
+			if exists(foldername+fname) deletePath(foldername+fname).
 			copyPath(fname,foldername).
 		}
 	}
 
 	function rebootcpu {
 		reboot.
+	}
+	function killprogram {
+		UI["msg add"]("Program Stopped at User Request.").
+		print 1/0.
 	}
 }

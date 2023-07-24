@@ -1,0 +1,78 @@
+T+00-000 00:00:00 Throttle Up.
+T+00-000 00:00:00 Engine Ignition.
+T+00-000 00:00:00 Launch Checks Successful.
+T+00-000 00:00:00 SAS Off.
+T+00-000 00:00:00 Commence Launch Program at 1y 2d 1h 6m 10s.
+T+00-000 00:00:03 Landing Gear Retracted.
+T+00-000 00:00:03 Commence Pitchover.
+T+00-000 00:00:10 Steering Unlocked. Gravity Turn Initiated.
+T+00-000 00:00:45 Stage. Current stage: 3.
+T+00-000 00:01:06 Fairings deployed.
+T+00-000 00:01:06 Solar Panels Extended.
+T+00-000 00:02:14 Radio Antennas Extended.
+T+00-000 00:02:24 Launch Complete.
+T+00-000 00:02:25 Circularize Node Added At Apoapsis.
+T+00-000 00:02:25 SAS Off.
+T+00-000 00:02:58 SAS Off.
+T+00-000 00:02:58 Executing node: NODE(31.8452917750656,0,0,1777.73855526387)
+T+00-000 00:06:10 Stage. Current stage: 2.
+T+00-000 00:06:11 Stage. Current stage: 1.
+T+00-000 00:06:12 Stage. Current stage: 0.
+T+00-000 00:06:13 Stage. Current stage: 0.
+T+00-000 00:06:13 Stage. Current stage: 0.
+T+00-000 00:06:14 Stage. Current stage: 0.
+T+00-000 00:06:15 Stage. Current stage: 0.
+T+00-000 00:06:15 Stage. Current stage: 0.
+T+00-000 00:06:16 Stage. Current stage: 0.
+T+00-000 00:06:16 Stage. Current stage: 0.
+T+00-000 00:06:17 Stage. Current stage: 0.
+T+00-000 00:06:17 Stage. Current stage: 0.
+T+00-000 00:06:18 Stage. Current stage: 0.
+T+00-000 00:06:19 Stage. Current stage: 0.
+T+00-000 00:06:19 Stage. Current stage: 0.
+T+00-000 00:06:20 Stage. Current stage: 0.
+T+00-000 00:06:20 Stage. Current stage: 0.
+T+00-000 00:06:21 Stage. Current stage: 0.
+T+00-000 00:06:21 Stage. Current stage: 0.
+T+00-000 00:06:22 Stage. Current stage: 0.
+T+00-000 00:06:22 Stage. Current stage: 0.
+T+00-000 00:06:23 Stage. Current stage: 0.
+T+00-000 00:06:24 Stage. Current stage: 0.
+T+00-000 00:06:24 Stage. Current stage: 0.
+T+00-000 00:06:25 Stage. Current stage: 0.
+T+00-000 00:06:25 Stage. Current stage: 0.
+T+00-000 00:06:26 Stage. Current stage: 0.
+T+00-000 00:06:26 Stage. Current stage: 0.
+T+00-000 00:06:27 Stage. Current stage: 0.
+T+00-000 00:06:27 Stage. Current stage: 0.
+T+00-000 00:06:28 Stage. Current stage: 0.
+T+00-000 00:06:29 Stage. Current stage: 0.
+T+00-000 00:06:29 Stage. Current stage: 0.
+T+00-000 00:06:30 Stage. Current stage: 0.
+T+00-000 00:06:30 Stage. Current stage: 0.
+T+00-000 00:06:31 Stage. Current stage: 0.
+T+00-000 00:06:31 Stage. Current stage: 0.
+T+00-000 00:06:32 Stage. Current stage: 0.
+T+00-000 00:06:33 Stage. Current stage: 0.
+T+00-000 00:06:33 Stage. Current stage: 0.
+T+00-000 00:06:34 Stage. Current stage: 0.
+T+00-000 00:06:34 Stage. Current stage: 0.
+T+00-000 00:06:35 Stage. Current stage: 0.
+T+00-000 00:06:35 Stage. Current stage: 0.
+T+00-000 00:06:36 Stage. Current stage: 0.
+T+00-000 00:06:36 Stage. Current stage: 0.
+T+00-000 00:06:37 Stage. Current stage: 0.
+T+00-000 00:06:38 Stage. Current stage: 0.
+T+00-000 00:06:38 Stage. Current stage: 0.
+T+00-000 00:06:39 Stage. Current stage: 0.
+T+00-000 00:06:39 Stage. Current stage: 0.
+T+00-000 00:06:40 Stage. Current stage: 0.
+T+00-000 00:06:40 Stage. Current stage: 0.
+T+00-000 00:06:41 Stage. Current stage: 0.
+T+00-000 00:06:41 Stage. Current stage: 0.
+T+00-000 00:06:42 Stage. Current stage: 0.
+T+00-000 00:06:43 Stage. Current stage: 0.
+T+00-000 00:06:43 Stage. Current stage: 0.
+T+00-000 00:06:44 Stage. Current stage: 0.
+T+00-000 00:06:44 Stage. Current stage: 0.
+T+00-000 00:06:45 Stage. Current stage: 0.

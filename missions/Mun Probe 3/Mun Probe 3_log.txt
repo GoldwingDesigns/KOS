@@ -1,0 +1,43 @@
+T+00-000 00:00:00 SAS Off.
+T+00-000 00:00:00 Commence Launch Program at 2y 85d 1h 21m 50s.
+T+00-000 00:00:06 Landing Gear Retracted.
+T+00-000 00:00:06 Commence Pitchover.
+T+00-000 00:00:10 Steering Unlocked. Gravity Turn Initiated.
+T+00-000 00:02:25 Stage. Current stage: 3.
+T+00-000 00:03:26 Fairings deployed.
+T+00-000 00:03:26 Solar Panels Extended.
+T+00-000 00:07:45 Radio Antennas Extended.
+T+00-000 00:07:55 Launch Complete.
+T+00-000 00:07:56 Circularize Node Added At Apoapsis.
+T+00-000 00:07:56 SAS Off.
+T+00-000 00:07:56 Executing node: NODE(353.251927349716,0,0,39.6849832298735)
+T+00-000 00:14:11 SAS On.
+T+00-000 00:14:12 Node Execution Complete.
+T+00-000 00:14:33 Finding Transfer to Mun
+T+00-000 00:14:45 Moon Transfer Node To Mun Added
+T+00-000 00:14:46 SAS Off.
+T+00-000 00:14:46 Executing node: NODE(653.799313995987,-10,-3,836.873684123204)
+T+00-000 00:25:37 Stage. Current stage: 2.
+T+00-000 00:27:44 SAS On.
+T+00-000 00:27:44 Node Execution Complete.
+T+00-000 05:06:02 SOI Change To Mun
+T+00-000 05:06:03 Orbit Capture Node Added
+T+00-000 05:06:03 SAS Off.
+T+00-000 05:06:03 Executing node: NODE(6261.48732235469,0,0,-170.830834694343)
+T+00-001 00:51:02 SAS On.
+T+00-001 00:51:02 Node Execution Complete.
+T+00-001 00:51:03 Inc/LAN/Alt Node Added: 10.5436227879925/244.922659689069/10000
+T+00-001 00:51:03 SAS Off.
+T+00-001 00:51:03 Executing node: NODE(14824.8702778872,0,22.6060538318363,-107.753558987187)
+T+00-001 04:58:40 SAS On.
+T+00-001 04:58:40 Node Execution Complete.
+T+00-001 04:58:40 Change Apo Node Added.
+T+00-001 04:58:41 SAS Off.
+T+00-001 04:58:41 Executing node: NODE(9282.3813651856,0,0,-179.215108288401)
+T+00-002 01:34:00 SAS On.
+T+00-002 01:34:00 Node Execution Complete.
+T+00-002 01:34:00 Commence Initial Landing Angular Correction.
+T+00-002 01:53:30 SAS Off.
+T+00-002 01:53:55 Commence Landing Angular Alignment.
+T+00-002 01:58:53 RCS On.
+T+00-002 01:58:54 SAS Off.

@@ -1,0 +1,47 @@
+T+00-000 00:00:00 SAS Off.
+T+00-000 00:00:00 Commence Launch Program at 2y 37d 3h 14m 3s.
+T+00-000 00:00:05 Landing Gear Retracted.
+T+00-000 00:00:05 Commence Pitchover.
+T+00-000 00:00:10 Steering Unlocked. Gravity Turn Initiated.
+T+00-000 00:02:33 Stage. Current stage: 3.
+T+00-000 00:03:02 Fairings deployed.
+T+00-000 00:03:02 Solar Panels Extended.
+T+00-000 00:06:58 Radio Antennas Extended.
+T+00-000 00:07:09 Launch Complete.
+T+00-000 00:07:09 Circularize Node Added At Apoapsis.
+T+00-000 00:07:10 SAS Off.
+T+00-000 00:07:10 Executing node: NODE(1119.83661372028,0,0,167.112707939031)
+T+00-000 00:26:09 SAS On.
+T+00-000 00:26:09 Node Execution Complete.
+T+00-000 00:26:10 Inc/LAN Node Added: 0/0
+T+00-000 00:26:10 SAS Off.
+T+00-000 00:26:10 Executing node: NODE(1197.43491982296,0,-25.8009835090647,-0.17239229374286)
+T+00-000 00:46:24 SAS On.
+T+00-000 00:46:24 Node Execution Complete.
+T+00-000 00:46:50 Finding Transfer to Mun
+T+00-000 00:47:16 Moon Transfer Node To Mun Added
+T+00-000 00:47:16 SAS Off.
+T+00-000 00:47:16 Executing node: NODE(413.861447867006,10.9,0.8,686.858018481476)
+T+00-000 00:55:27 SAS On.
+T+00-000 00:55:27 Node Execution Complete.
+T+00-000 05:54:37 SOI Change To Mun
+T+00-000 05:54:37 Orbit Capture Node Added
+T+00-000 05:54:38 SAS Off.
+T+00-000 05:54:38 Executing node: NODE(7122.99393255264,0,0,-133.581516503545)
+T+00-001 01:53:48 SAS On.
+T+00-001 01:53:48 Node Execution Complete.
+T+00-001 01:53:48 Inc/LAN/Alt Node Added: 0.495/263.761835398976/10000
+T+00-001 01:53:49 SAS Off.
+T+00-001 01:53:49 Executing node: NODE(15250.5433315542,0,-0.884235268488366,-104.840122580485)
+T+00-002 00:08:24 SAS On.
+T+00-002 00:08:24 Node Execution Complete.
+T+00-002 00:08:25 Change Apo Node Added.
+T+00-002 00:08:25 SAS Off.
+T+00-002 00:08:25 Executing node: NODE(10161.6055923086,0,0,-182.294883001604)
+T+00-002 02:58:17 SAS On.
+T+00-002 02:58:17 Node Execution Complete.
+T+00-002 02:58:17 Commence Initial Landing Angular Correction.
+T+00-002 02:58:22 SAS Off.
+T+00-002 02:58:23 Commence Landing Angular Alignment.
+T+00-002 03:01:53 RCS On.
+T+00-002 03:01:54 SAS Off.

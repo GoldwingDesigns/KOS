@@ -29,7 +29,7 @@
     }
 
     function warp_to_nextpatch{
-        warpto(TIME:SECONDS+ORBIT:NEXTPATCHETA).
+        warpto(TIME:SECONDS+ORBIT:NEXTPATCHETA-5).
         return true.
     }
 

@@ -4,8 +4,6 @@ local return_tgt_alt to 35000.
 local reboot_persist to true.// set to true to persist mission through reboot.
 
 local event_list to list(
-    VES1["ladders off"]@,
-    SYS["wait time"]@:bind(10),
     MNV["launch no atmo"]@:bind(moon_launch_alt,moon_launch_inc,true),
     MNV["circ"]@,
     MNV["exec node"]@,

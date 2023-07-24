@@ -5,7 +5,7 @@ GLOBAL COMPMODE to 0.       // |
 GLOBAL CPUINITIALIZED to 0. // |
 GLOBAL WARNSTATE to 0.      // |
 GLOBAL INMENU to FALSE.     // |
-GLOBAL LOGMSGS to FALSE.
+GLOBAL LOGMSGS to TRUE.
 GLOBAL BOOTVOLUME to "MASTER_DISK".
 GLOBAL DATAVOLUME to "SLAVE_1_DISK".
 GLOBAL BOOTFILES is LIST("koos_term_small_boot").
@@ -38,7 +38,7 @@ for p in ALL_PROCESSORS{
 		set i to i+1.
 	}
 }
-if ALL_PROCESSORS:LENGTH < 1 {set DATAVOLUME to BOOTVOLUME.}
+if ALL_PROCESSORS:LENGTH < 2 {set DATAVOLUME to BOOTVOLUME.}
 IF SHIP:STATUS = "PRELAUNCH" or homeConnection:isconnected { //create a check here to see if there is an update
 	for b in BOOTFILES {
         compile "0:/boot/"+b to BOOTVOLUME+":/boot/"+b.
