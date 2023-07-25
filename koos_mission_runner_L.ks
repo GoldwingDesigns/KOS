@@ -2,7 +2,7 @@
 
 {
     function create_mission {
-        parameter event_list to list(), interrupt_list to list(), reboot_persist to true.// set to true to persist mission through reboot.
+        parameter event_list to list(), interrupt_list to list(), reboot_persist to true, missionname is "Unknown Mission".// set to true to persist mission through reboot.
         
         local L TO LEXICON().
         local jsonname to BOOTVOLUME+":/"+ship:name+".json".
@@ -14,15 +14,17 @@
         }
         local init_i is L["istep"].
         local init_j is L["jstep"].
-    
+        local stopFlag to FALSE.
 
         function runmission {
             local i is init_i.
             local j is init_j.
-            until i = event_list:length {
+            set stopFlag to FALSE.
+            UI["msg add"]("Running Mission: "+missionname).
+            until i = event_list:length or stopFlag = TRUE {
                 local result is event_list[i]:call.
                 if result:istype("list") {
-                    until j = result:length {
+                    until j = result:length or stopFlag = TRUE {
                         if result[j]:call {
                             set j to j+1.
                             set L["jstep"] to j.
@@ -49,7 +51,11 @@
             if exists(jsonname) {
                 deletePath(jsonname).
             }
+            if not stopFlag {
+                UI["msg add"]("Mission Complete.").
+            }
         }
+
         function check_triggers{
             local trignum is 0.
             until trignum = interrupt_list:length {
@@ -57,9 +63,21 @@
                 set trignum to trignum+1.
             }
             return true.
-        }      
+        }  
+
+        function stopmission{
+            
+            MNV["unlock all"]().
+            // set SHIP:CONTROL:MAINTHROTTLE TO 0.
+            // SET SHIP:CONTROL:NEUTRALIZE TO TRUE.
+            UI["msg add"]("Mission Stopped at User Request.").
+            WAIT 0.
+            SET stopFlag to TRUE.
+            
+        }    
         return lexicon (
-            "run", runmission@
+            "run", runmission@,
+            "stop", stopmission@
         ).
     }
 

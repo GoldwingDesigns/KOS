@@ -11,7 +11,7 @@ local rdroffset to 4.7.
 
 local event_list to list(
     
-    MNV["change apo"]@:bind(apo1),
+    MNV["change apo"]@:bind(per1),
     MNV["exec node"]@
     
     //VES1["ladders on"]@
@@ -25,5 +25,5 @@ local interrupt_list to list(
 
 
 //create and run mission
-local MIS1 is MIS["new"](event_list,interrupt_list,reboot_persist).
+local MIS1 is MIS["new"](event_list,interrupt_list,reboot_persist,scriptPath():name).
 MIS1["run"]().

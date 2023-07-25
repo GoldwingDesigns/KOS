@@ -203,7 +203,7 @@
 		parameter txt.
 		local fname to ship:name+"_log.txt".
 		local foldername to "0:/missions/"+ship:name+"/".
-		log txt to BOOTVOLUME+fname. //stores locally
+		log txt to fname. //stores locally
 		if homeConnection:isconnected {
 			if not exists(foldername) createdir(foldername).
 			if exists(foldername+fname) deletePath(foldername+fname).
@@ -215,7 +215,7 @@
 		reboot.
 	}
 	function killprogram {
-		UI["msg add"]("Program Stopped at User Request.").
+		UI["msg add"]("Program Killed at User Request.").
 		print 1/0.
 	}
 }

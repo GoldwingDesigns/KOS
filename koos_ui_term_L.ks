@@ -25,7 +25,7 @@ local currmenulist to list(). // have to store this here just in case of resize 
     }
     function ag6_stop{
         if AG6 {
-            UTL["kill program"]().
+            MIS1["stop"]().
         }
     }
     // function msg_update{

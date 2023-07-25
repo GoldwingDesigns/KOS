@@ -203,7 +203,7 @@
 		parameter txt.
 		local fname to ship:name+"_log.txt".
 		local foldername to "0:/missions/"+ship:name+"/".
-		log txt to BOOTVOLUME+fname. //stores locally
+		log txt to fname. //stores locally
 		if homeConnection:isconnected {
 			if not exists(foldername) createdir(foldername).
 			if exists(foldername+fname) deletePath(foldername+fname).

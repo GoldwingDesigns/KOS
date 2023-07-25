@@ -23,7 +23,8 @@ run koos_hillclimb_lib.
 		// "pwr land",				pwr_ldg@,
 		// "land align init",		ldg_align_burn_init@,
 		// "land align final", 	ldg_align_burn@,
-		"aero land",			aero_ldg@
+		"aero land",			aero_ldg@,
+		"unlock all",			unlock_all@
 	).
 
 	function MinThrottle {
@@ -626,4 +627,7 @@ run koos_hillclimb_lib.
 			return stageDV/(engT * (((Mi + (Mi * (constant:e ^ (-1 * (stageDV / (engISP * Go) )))))/2) ^ (-1))) + find_burntime(inputDV-stageDV, max(stagenum-1,0)).
 		}
 	}
+	function unlock_all{UNLOCK STEERING.
+            UNLOCK THROTTLE.}
+	
 }

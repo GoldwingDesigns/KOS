@@ -1,6 +1,0 @@
-T+00-000 00:00:00 Throttle Up.
-T+00-000 00:00:00 Engine Ignition.
-T+00-000 00:00:00 Launch Checks Successful.
-T+00-000 00:00:00 SAS Off.
-T+00-000 00:00:00 Commence Launch Program at 1y 2d 2h 20m 34s.
-T+00-000 00:00:01 Program Stopped at User Request.

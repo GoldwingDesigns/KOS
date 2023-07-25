@@ -32,5 +32,5 @@ local interrupt_list to list(
 
 
 //create and run mission
-local MIS1 is MIS["new"](event_list,interrupt_list,reboot_persist).
+global MIS1 is MIS["new"](event_list,interrupt_list,reboot_persist).
 MIS1["run"]().
