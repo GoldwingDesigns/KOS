@@ -66,11 +66,16 @@ run koos_hillclimb_lib.
 		
 		//**Declare Triggers.
 
-		//**Trigger to open the Solar Panels and turn on Lights when above atmosphere.
+		//**Trigger to open the Solar Panels and turn on Lights when above atmosphere. Had to split up because log file sharing conflict.
 		WHEN SHIP:altitude > 50000 THEN {
 			VES1["fairing deploy"]().
-    	VES1["panels on"]().
 	 	}
+		WHEN SHIP:altitude > 52000 THEN {
+    	VES1["panels on"]().
+		}
+		WHEN SHIP:altitude > 55000 THEN {
+    	VES1["comms ext"]().
+		}
 
 		if STARTTIME = 0 {set STARTTIME to TIME. local mtime to time. UI["msg add"]("Commence Launch Program at "+mTime:year+"y "+mtime:day+"d "+mtime:hour+"h "+mtime:minute+"m "+mtime:second+"s.").}
 		
