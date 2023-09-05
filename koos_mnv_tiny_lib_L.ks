@@ -30,11 +30,12 @@ run koos_hillclimb_lib.
 	function MinThrottle {
 		local thst is 0.
 		local englist to list().
+		local press to MAX(0,MIN(1,ship:body:atm:altitudepressure(ship:altitude))).
 		list engines in englist.
 		// local mth to englist[englist:LENGTH - 1]:THRUST.
 		//set mth to SHIP:MAXTHRUST. // (depends on fixed kOS issue 940)
 		for e in englist {
-			set thst to e:availablethrust + thst.
+			set thst to e:availablethrustat(press) + thst.
 		}
 		if thst >0{
 			local rd to SHIP:ALTITUDE+SHIP:BODY:RADIUS.
@@ -132,8 +133,8 @@ run koos_hillclimb_lib.
 			{
 				//**At this point, our apoapsis is above the desired value and our main loop has ended. Next
 				//**we'll make sure our throttle is zero and that we're pointed prograde.
-				LOCK THROTTLE TO 0.
-				WAIT 1.
+				// LOCK THROTTLE TO 0.
+				// WAIT 1.
 				UNLOCK THROTTLE.
 				SET Steering_Lock TO LOOKDIRUP(ship:prograde:forevector, SHIP:BODY:POSITION).
 				set waitstart to time:seconds.
@@ -153,8 +154,9 @@ run koos_hillclimb_lib.
 
 	function man_check_stage{
 		parameter laststage.
+		local press to MAX(0,MIN(1,ship:body:atm:altitudepressure(ship:altitude))).
 		if stage:number >= laststage {
-			if ship:availablethrust = 0 {
+			if ship:availablethrustat(press) = 0 {
 				UI["msg add"]("Stage: "+stage:number+" no thrust.").
 				VES1["stage"]().
 				return.
@@ -252,6 +254,7 @@ run koos_hillclimb_lib.
   }
   
 	function exec_node{
+		parameter laststage to 0.
 		//Execute Node Maneuvers
         //Adapted from pgoddkos Advanced Tutorial
 		//warp taken from TheDapperScot on https://www.reddit.com/r/Kos/comments/5t1qx9/node_execution_script_is_causing_wild_spinning/
@@ -281,8 +284,9 @@ run koos_hillclimb_lib.
 					if max_acc <> 0 set th to min(nd:deltav:mag/max_acc, 1).
 					//here's the tricky part, we need to cut the throttle as soon as our nd:deltav and initial deltav start facing opposite directions
 					//this check is done via checking the dot product of those 2 vectors
-					man_check_stage(0). 
-					return nd:deltav:mag<0.1 and vdot(dv0, nd:deltav) < 0.1.
+					man_check_stage(laststage). 
+					// return nd:deltav:mag<0.1 and vdot(dv0, nd:deltav) < 0.1.
+					return nd:deltav:mag<0.1 or vdot(dv0, nd:deltav) < 0.1.
 			},
 			{
 					lock throttle to 0.
@@ -615,21 +619,30 @@ run koos_hillclimb_lib.
 		parameter inputDV, stagenum to STAGE:NUMBER.
 		local Mi to SHIP:MASS.
 		local stageDV to ship:STAGEDELTAV(stagenum):CURRENT.
+		UI["msg add"]("Calculated STAGEDV for stage "+stagenum+" is: "+stageDV).
 		local Go to 9.80665.
 		local englist is list().
 		list engines in englist.
 		local engISP to 0.1.
 		local engT to 0.1.
+		local press to MAX(0,MIN(1,ship:body:atm:altitudepressure(ship:altitude))).
 		for e in englist {
 			if e:stage = stagenum {
 				set engISP to engISP + e:VISP.
-				set engT to engT + e:availableThrust.
+				set engT to engT + e:availableThrustat(press).
 			}
 		}
 		if stageDV > inputDV {
 			return inputDV/(engT * (((Mi + (Mi * (constant:e ^ (-1 * (inputDV / (engISP * Go) )))))/2) ^ (-1))).
 		} else {
-			return stageDV/(engT * (((Mi + (Mi * (constant:e ^ (-1 * (stageDV / (engISP * Go) )))))/2) ^ (-1))) + find_burntime(inputDV-stageDV, max(stagenum-1,0)).
+			if (stagenum = 0) {
+				UI["msg add"]("Not enough DV. "+inputDV-stageDV+" remains.").
+				print 0/1.
+			}
+			else {
+				return stageDV/(engT * (((Mi + (Mi * (constant:e ^ (-1 * (stageDV / (engISP * Go) )))))/2) ^ (-1))) + find_burntime(inputDV-stageDV, max(stagenum-1,0)).
+			}
+			
 		}
 	}
 	function unlock_all{UNLOCK STEERING.

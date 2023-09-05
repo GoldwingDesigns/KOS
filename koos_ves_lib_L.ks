@@ -2,11 +2,10 @@
 
 {
     function create_ship {
-        parameter s is SHIP, solardirection is "side".
+        parameter s is SHIP, solardirection is "side",launchstage is 0.
         local name is s:name.
         local lastchutestage is 2147483647.
         local firstchutestage is 0.
-        local launchstage is 0.
         // local roboticslist is list().
         local fairinglist is list().
         local parachuteslist is list().

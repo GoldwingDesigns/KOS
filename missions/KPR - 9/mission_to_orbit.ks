@@ -7,12 +7,9 @@ local per1 to 3885017.
 
 
 local event_list to list(
-    
-    
-    MNV["change apo"]@:bind(apo1),
-    MNV["exec node"]@,
-    MNV["change per"]@:bind(per1),
-    MNV["exec node"]@,
+
+    // MNV["change per"]@:bind(per1),
+    // MNV["exec node"]@,
     MNV["change inc lan"]@:bind(inc1,lan1),
     MNV["exec node"]@
     //VES1["ladders on"]@

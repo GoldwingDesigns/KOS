@@ -1,0 +1,86 @@
+T+00-000 00:00:00 Running Mission: Unknown Mission
+T+00-000 00:00:00 Throttle Up.
+T+00-000 00:00:00 Engine Ignition.
+T+00-000 00:00:00 Launch Checks Successful.
+T+00-000 00:00:00 SAS Off.
+T+00-000 00:00:00 Commence Launch Program at 2y 425d 0h 1m 8s.
+T+00-000 00:00:05 Landing Gear Retracted.
+T+00-000 00:00:05 Commence Pitchover.
+T+00-000 00:00:10 Steering Unlocked. Gravity Turn Initiated.
+T+00-000 00:00:37 Stage: 7 eng: LV-T30 "Reliant" Liquid Fuel Engine flameout.
+T+00-000 00:00:37 Stage: 7 eng: LV-T30 "Reliant" Liquid Fuel Engine flameout.
+T+00-000 00:00:37 Stage. Current stage: 6.
+T+00-000 00:02:30 Fairings deployed.
+T+00-000 00:02:36 Solar Panels Extended.
+T+00-000 00:02:44 Radio Antennas Extended.
+T+00-000 00:02:53 Stage: 6 eng: LV-T30 "Reliant" Liquid Fuel Engine flameout.
+T+00-000 00:02:53 Stage: 6 eng: LV-T30 "Reliant" Liquid Fuel Engine flameout.
+T+00-000 00:02:53 Stage. Current stage: 5.
+T+00-000 00:05:02 Stage: 5 no thrust.
+T+00-000 00:05:02 Stage. Current stage: 4.
+T+00-000 00:07:24 Radio Antennas Extended.
+T+00-000 00:07:35 Launch Complete.
+T+00-000 00:07:35 Circularize Node Added At Apoapsis.
+T+00-000 00:07:35 SAS Off.
+T+00-000 00:07:35 Calculated STAGEDV for stage 4 is: 1706.04174804688
+T+00-000 00:07:35 Executing node: NODE(16749.5935579911,0,0,393.360749340408)
+T+00-000 04:47:13 SAS On.
+T+00-000 04:47:13 Node Execution Complete.
+T+00-000 04:47:14 Mission Complete.
+T+00-000 04:49:14 None Selected
+T+00-000 04:49:31 None Selected
+T+00-000 04:49:34 Running Mission: Unknown Mission
+T+00-000 04:49:34 Inc/LAN Node Added: 25.3/155.5
+T+00-000 04:49:34 Mission Complete.
+T+00-000 04:50:25 None Selected
+T+00-000 04:50:30 Running Mission: Unknown Mission
+T+00-000 04:50:30 Inc/LAN Node Added: 25.3/155.5
+T+00-000 04:50:30 Mission Complete.
+T+00-000 04:50:58 None Selected
+T+00-000 04:51:00 Running Mission: Unknown Mission
+T+00-000 04:51:00 Inc/LAN Node Added: 25.3/155.5
+T+00-000 04:51:01 Mission Complete.
+T+00-000 04:53:23 Running Mission: Unknown Mission
+T+00-000 04:53:23 Inc/LAN/Alt Node Added: 25.3/155.5/11200955
+T+00-000 04:53:24 Mission Complete.
+T+00-000 04:54:54 Running Mission: Unknown Mission
+T+00-000 04:54:54 SAS Off.
+T+00-000 04:54:54 Calculated STAGEDV for stage 4 is: 1312.28588867188
+T+00-000 04:54:54 Executing node: NODE(26024.8574062437,-32.325030151544,-317.578982574881,-29.9882280116724)
+T+00-002 00:09:05 SAS On.
+T+00-002 00:09:05 Node Execution Complete.
+T+00-002 00:09:06 Mission Complete.
+T+00-002 04:05:08 Running Mission: Unknown Mission
+T+00-002 04:05:08 Change Apo Node Added.
+T+00-002 04:05:08 SAS Off.
+T+00-002 04:05:08 Calculated STAGEDV for stage 4 is: 990.988220214844
+T+00-002 04:05:08 Executing node: NODE(99677.4833717756,0,0,-160.196216184422)
+T+00-007 05:00:35 Running Mission: Unknown Mission
+T+00-007 05:00:35 Mission Complete.
+T+00-007 05:00:53 Running Mission: Unknown Mission
+T+00-007 05:00:53 Inc/LAN/Alt Node Added: 34.4/39.6/11742856
+T+00-007 05:00:53 Mission Complete.
+T+00-007 05:02:52 Running Mission: Unknown Mission
+T+00-007 05:02:52 SAS Off.
+T+00-007 05:02:52 Calculated STAGEDV for stage 4 is: 989.289489746094
+T+00-007 05:02:52 Executing node: NODE(50266.0660466589,21.5450704360274,-423.35697579313,-148.047224879379)
+T+00-010 01:01:06 SAS On.
+T+00-010 01:01:06 Node Execution Complete.
+T+00-010 01:01:06 Mission Complete.
+T+00-010 01:02:15 Running Mission: Unknown Mission
+T+00-010 01:02:15 Change Pe Node Added.
+T+00-010 01:02:16 Mission Complete.
+T+00-010 01:02:21 Running Mission: Unknown Mission
+T+00-010 01:02:21 SAS Off.
+T+00-010 01:02:21 Calculated STAGEDV for stage 4 is: 539.610900878906
+T+00-010 01:02:21 Executing node: NODE(68606.7173140757,0,0,-4.57438020513314)
+T+00-013 02:06:07 SAS On.
+T+00-013 02:06:07 Node Execution Complete.
+T+00-013 02:06:07 Mission Complete.
+T+00-013 02:09:40 Running Mission: Unknown Mission
+T+00-013 02:09:40 SAS Off.
+T+00-013 02:09:40 Calculated STAGEDV for stage 3 is: 388.073333740234
+T+00-013 02:09:40 Executing node: NODE(68576.1666611806,0,0,-0.32)
+T+00-016 03:12:53 SAS On.
+T+00-016 03:12:53 Node Execution Complete.
+T+00-016 03:12:53 Mission Complete.

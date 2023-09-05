@@ -8,19 +8,49 @@ local currmenulist to list(). // have to store this here just in case of resize 
     global UI is lexicon (
         "run",          term_run@,
         "msg add",      msg_add@,
-        "scr update",   scr_update@,
-        "menu run",     menu_run@,
+       // "scr update",   scr_update@,
         "AG6 stop",     ag6_stop@
     ).
 
     function term_run {
         until false {
+            local result to "".
+            local functionlist to list("Missions","Maneuvers","Vessel","Reboot"). 
+            clearscreen.
+            set result to menu_list("Choose a function:",functionlist).
+            if result="Missions"{
+                mission_menu_run().
+            } else if result = "Maneuvers"{
+                lexicon_menu_run(MNV).
+            } else if result = "Vessel" {
+                lexicon_menu_run(VES1).
+            } else if result = "Reboot" {
+                reboot.
+            }
+        }
+    }
+    function mission_menu_run{
+        until false {
             local missionfile is "None".
             If homeConnection:isconnected UTL["refresh mission files"]().
             clearScreen.
-            set missionfile to menu_run().
+            local fnamelist is list().
+            set fnamelist to UTL["list file contains"]("mission",BOOTVOLUME,"missions").
+            fnamelist:add("Prev Menu").
+            set missionfile to menu_list("Select a "+VES1["&name"]()+" mission file:",fnamelist).
             clearscreen.
-            if missionfile = "None" { msg_add("None Selected"). } else { runpath(BOOTVOLUME+":/missions/"+missionfile). }
+            if missionfile = "Prev Menu" { return false. } else { runpath(BOOTVOLUME+":/missions/"+missionfile). }
+        }
+    }
+    function lexicon_menu_run{
+        parameter my_lex.
+        until false {
+            local key_list to my_lex:keys.
+            key_list:add("Prev Menu").
+            local result to "".
+            set result to menu_list("Select an operation:",key_list).
+            clearscreen.
+            if result = "Prev Menu" {return false.} else {my_lex[result]().}
         }
     }
     function ag6_stop{
@@ -70,44 +100,56 @@ local currmenulist to list(). // have to store this here just in case of resize 
         RETURN (""+t):PADLEFT(l):REPLACE(" ","0").
     }
 
-    function scr_update {
-        // msg_update().
-        return.
-    }
-
-    function menu_run {
-        local fnamelist is list().
-        set fnamelist to UTL["list file contains"]("mission",BOOTVOLUME,"missions").
-        fnamelist:add("None").
-        return menu_list("Select a "+VES1["&name"]()+" mission file:",fnamelist).
-    }
+    // function scr_update {
+    //     // msg_update().
+    //     return.
+    // }
 
     function menu_list{
         parameter listtitle, list_of_names.
         
         // set INMENU to TRUE.
-            
+        local pagenum to 0.
+        local result_value to "".
         if list_of_names:empty{
             print "error: list_of_names should not be empty". print 1/0.
         }
         set currmenutitle to listtitle.
-        set currmenulist to list_of_names.
-        local len is list_of_names:length().
-        
-        menu_print().
-        
-        local result is input_pos_int().
-        // print(result).
-        until result <= len {
-            PRINT "ERROR: INPUT OUT OF RANGE" AT (4,termheight-3).
-            WAIT 1.
-            set result to input_pos_int().
-        }
+        local list_len is list_of_names:length().
+        local maxlength is termheight/3.
+        until false {
+            if list_len > maxlength {
+                set currmenulist to list_of_names:sublist(pagenum*maxlength,maxlength).
+                if pagenum <> 0 { currmenulist:insert(0,"PREV PAGE").}
+                if (pagenum+1)*maxlength < list_len { currmenulist:add("NEXT PAGE").} 
+            } else {
+                set currmenulist to list_of_names.
+            }
+            local currlist_len to currmenulist:length().
+            
+            //keep going until actual result acheived
+            clearscreen.
+            menu_print().
+            local result is input_pos_int().
+            // print(result).
+            until result < currlist_len {
+                PRINT "ERROR: INPUT OUT OF RANGE" AT (4,termheight-3).
+                WAIT 1.
+                set result to input_pos_int().
+            }
+            set result_value to currmenulist[result].
+            if  result_value = "PREV PAGE" { 
+                set pagenum to pagenum-1. 
+            } else if result_value = "NEXT PAGE" {
+                set pagenum to pagenum+1. 
+            } else {
+                break.
+            }
         // set INMENU to FALSE.
-        
+        }
         set currmenutitle to "".  //clear these out for next use
         set currmenulist to list(). // clear these out for next use
-        return list_of_names[result].
+        return result_value.
     }
 
     function menu_print{
@@ -115,7 +157,6 @@ local currmenulist to list(). // have to store this here just in case of resize 
         local len is currmenulist:length().
         print currmenutitle:PADRIGHT(midline-3) at(2,2).
         local i is 0.
-
         until i=len
         {
             print i+") "+currmenulist[i] at(2,i+4).
