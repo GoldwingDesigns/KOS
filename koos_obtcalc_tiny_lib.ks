@@ -67,12 +67,12 @@ function LAZcalc_init {
     //Orbital inclination can't be less than launch latitude or greater than 180 - launch latitude
     IF ABS(launchLatitude) > desiredInc {
         SET desiredInc TO ABS(launchLatitude).
-        HUDTEXT("Inclination impossible from current latitude, setting for lowest possible inclination.", 10, 2, 30, RED, FALSE).
+        // HUDTEXT("Inclination impossible from current latitude, setting for lowest possible inclination.", 10, 2, 30, RED, FALSE).
     }.
     
     IF 180 - ABS(launchLatitude) < desiredInc {
         SET desiredInc TO 180 - ABS(launchLatitude).
-        HUDTEXT("Inclination impossible from current latitude, setting for highest possible inclination.", 10, 2, 30, RED, FALSE).
+        // HUDTEXT("Inclination impossible from current latitude, setting for highest possible inclination.", 10, 2, 30, RED, FALSE).
     }.
     
     //Does all the one time calculations and stores them in a list to help reduce the overhead or continuously updating
@@ -168,6 +168,13 @@ function eta_true_anom {
 	return node_eta.
 }
 
+function pitchangle { //https://www.youtube.com/watch?v=0g3CQEEjbH8
+    local parameter direction.
+    local upvec to SHIP:UP:FOREVECTOR.
+    local dirvec to direction:FOREVECTOR.
+	local result to arccos((vdot(dirvec,upvec)/(dirvec:MAG))).
+    return result.
+}
 // function isPosigrade {
 //   return vdot(vcrs(SHIP:VELOCITY:orbit:normalized,ship:Body:position),SHIP:BODY:ANGULARVEL:normalized)>0.
 // }

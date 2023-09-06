@@ -1,0 +1,20 @@
+T+00-000 00:00:00 Running Mission: Unknown Mission
+T+00-000 00:00:00 Throttle Up.
+T+00-000 00:00:00 Engine Ignition.
+T+00-000 00:00:00 Launch Checks Successful.
+T+00-000 00:00:00 SAS Off.
+T+00-000 00:00:00 Commence Launch Program at 3y 80d 3h 20m 58s.
+T+00-000 00:00:18 Landing Gear Retracted.
+T+00-000 00:00:18 Commence Pitchover.
+T+00-000 00:00:24 Steering Unlocked. Gravity Turn Initiated.
+T+00-000 00:00:47 Stage: 4 eng: LV-T15 'Valiant' Liquid Fuel Engine flameout.
+T+00-000 00:00:47 Stage: 4 eng: LV-T15 'Valiant' Liquid Fuel Engine flameout.
+T+00-000 00:00:47 Stage. Current stage: 3.
+T+00-000 00:04:13 Fairings deployed.
+T+00-000 00:04:18 Radio Antennas Extended.
+T+00-000 00:04:22 Solar Panels Extended.
+T+00-000 00:05:46 Stage: 3 no thrust.
+T+00-000 00:05:46 Stage. Current stage: 2.
+T+00-000 00:06:07 Launch Complete.
+T+00-000 00:06:07 Circularize Node Added At Apoapsis.
+T+00-000 00:06:07 SAS Off.

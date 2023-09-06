@@ -74,6 +74,7 @@
             "fairing deploy",   meth_deploy_fairing@,
             // "ship to sun",      meth_ship_to_sun@,
             "prelaunch checks", meth_prelaunch_checks@,
+            "check ign",        meth_check_ignitions@,
             "blank",            meth_blank@
             ).
 
@@ -187,9 +188,35 @@
                     UI["msg add"]("Launch Checks Failed. Discontinuing Launch."). 
                     print 1/0.} 
                     UI["msg add"]("Launch Checks Successful.").
-                    UNLOCK THROTTLE.
+                    // UNLOCK THROTTLE.
                     return true.}
                 ).
+        }
+        function meth_check_ignitions {
+             
+            local myeng is list().
+            LIST ENGINES in myeng. 
+            local done is FALSE.
+            until done{
+                local e is list(). //list of eng with 0 ignitors left
+                local s is list(). //list of eng in stage
+                for eng in myeng { 
+                    if eng:stage=stage:number { 
+                        s:add(eng).
+                        if eng:HASMODULE("ModuleEngineIgnitor") {
+                            if eng:getmodule("ModuleEngineIgnitor"):getfield("ignitions"):split("[ ")[1]:split("/")[0] = "0" {
+                                e:add(eng).
+                            }
+                        }
+                    }
+                    
+                }
+                if (s:length = e:length) {//no ignitors left in stage or no eng in stage
+                    VES1["stage"]().
+                } else {
+                    set done to TRUE.
+                }
+            }
         }
         // function var_ship_to_sun { //dont want to make this a variable because it is always changing
         //     if solardirection:contains("fore"){

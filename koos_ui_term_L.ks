@@ -18,13 +18,13 @@ local currmenulist to list(). // have to store this here just in case of resize 
             local functionlist to list("Missions","Maneuvers","Vessel","Reboot"). 
             clearscreen.
             set result to menu_list("Choose a function:",functionlist).
-            if result="Missions"{
+            if functionlist[result]="Missions"{
                 mission_menu_run().
-            } else if result = "Maneuvers"{
+            } else if functionlist[result] = "Maneuvers"{
                 lexicon_menu_run(MNV).
-            } else if result = "Vessel" {
+            } else if functionlist[result] = "Vessel" {
                 lexicon_menu_run(VES1).
-            } else if result = "Reboot" {
+            } else if functionlist[result] = "Reboot" {
                 reboot.
             }
         }
@@ -35,11 +35,16 @@ local currmenulist to list(). // have to store this here just in case of resize 
             If homeConnection:isconnected UTL["refresh mission files"]().
             clearScreen.
             local fnamelist is list().
+            local fprintlist is list().
             set fnamelist to UTL["list file contains"]("mission",BOOTVOLUME,"missions").
-            fnamelist:add("Prev Menu").
-            set missionfile to menu_list("Select a "+VES1["&name"]()+" mission file:",fnamelist).
+            for name in fnamelist {
+                local strarr to name:SPLIT("mission_").
+                fprintlist:add(strarr[strarr:length-1]:split(".ks")[0]:replace("_"," "):toupper).
+            }
+            fprintlist:add("Prev Menu").
+            set missionfile to menu_list("Select a "+VES1["&name"]()+" mission file:",fprintlist).
             clearscreen.
-            if missionfile = "Prev Menu" { return false. } else { runpath(BOOTVOLUME+":/missions/"+missionfile). }
+            if missionfile = -1 { return false. } else { runpath(BOOTVOLUME+":/missions/"+fnamelist[missionfile]). }
         }
     }
     function lexicon_menu_run{
@@ -149,7 +154,8 @@ local currmenulist to list(). // have to store this here just in case of resize 
         }
         set currmenutitle to "".  //clear these out for next use
         set currmenulist to list(). // clear these out for next use
-        return result_value.
+        if result_value = "PREV MENU" {return -1.}
+        return list_of_names:indexof(result_value).
     }
 
     function menu_print{

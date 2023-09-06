@@ -1,0 +1,25 @@
+T+00-000 00:00:00 Running Mission: 0_mission_launch.ks
+T+00-000 00:00:00 Throttle Up.
+T+00-000 00:00:00 Engine Ignition.
+T+00-000 00:00:00 Launch Checks Successful.
+T+00-000 00:00:00 SAS Off.
+T+00-000 00:00:00 Commence Launch Program at 3y 93d 1h 2m 15s.
+T+00-000 00:00:16 Landing Gear Retracted.
+T+00-000 00:00:16 Commence Pitchover.
+T+00-000 00:00:22 Steering Unlocked. Gravity Turn Initiated.
+T+00-000 00:00:48 Stage: 3 eng: LV-T15 'Valiant' Liquid Fuel Engine flameout.
+T+00-000 00:00:48 Stage: 3 eng: LV-T15 'Valiant' Liquid Fuel Engine flameout.
+T+00-000 00:00:48 Stage. Current stage: 2.
+T+00-000 00:04:05 Fairings deployed.
+T+00-000 00:04:11 Radio Antennas Extended.
+T+00-000 00:04:17 Solar Panels Extended.
+T+00-000 00:05:27 Stage: 2 no thrust.
+T+00-000 00:05:27 Stage. Current stage: 1.
+T+00-000 00:05:39 Launch Complete.
+T+00-000 00:05:40 Circularize Node Added At Apoapsis.
+T+00-000 00:05:40 SAS Off.
+T+00-000 00:05:43 Calculated STAGEDV for stage 1 is: 1586.47155761719
+T+00-000 00:05:43 Executing node: NODE(665.549423988909,0,0,38.0984413962215)
+T+00-000 00:17:09 SAS On.
+T+00-000 00:17:09 Node Execution Complete.
+T+00-000 00:17:09 Mission Complete.

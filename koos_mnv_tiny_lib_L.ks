@@ -30,12 +30,13 @@ run koos_hillclimb_lib.
 	function MinThrottle {
 		local thst is 0.
 		local englist to list().
-		local press to MAX(0,MIN(1,ship:body:atm:altitudepressure(ship:altitude))).
+		//local press to MAX(0,MIN(1,ship:body:atm:altitudepressure(ship:altitude))).
 		list engines in englist.
 		// local mth to englist[englist:LENGTH - 1]:THRUST.
 		//set mth to SHIP:MAXTHRUST. // (depends on fixed kOS issue 940)
 		for e in englist {
-			set thst to e:availablethrustat(press) + thst.
+			// set thst to e:availablethrustat(press) + thst.
+			set thst to e:availablethrust + thst.
 		}
 		if thst >0{
 			local rd to SHIP:ALTITUDE+SHIP:BODY:RADIUS.
@@ -55,6 +56,7 @@ run koos_hillclimb_lib.
 		local TurnEnd TO launchalt. //The ending altitude for the ascent turn.
 		local MyPitch TO 90. //Initial setting for pitch on launch (straight up).
 		local newth to 0.
+		local atmoheight to SHIP:ORBIT:BODY:ATM:HEIGHT.
 		local stopatstage to VES1["&launchstage"]().
 		local launchaz to LAZcalc(LAZcalc_init(launchalt,launchinc)).
 		local THRPID to CHOOSE PIDLOOP(0.1,0.0,0.1,-0.5,0.5) if thrByEta else PIDLOOP(0.1,0,0.01,-0.5,0.5). //PID loop to set throttle to DesiredTWR.
@@ -68,14 +70,14 @@ run koos_hillclimb_lib.
 		//**Declare Triggers.
 
 		//**Trigger to open the Solar Panels and turn on Lights when above atmosphere. Had to split up because log file sharing conflict.
-		WHEN SHIP:altitude > 50000 THEN {
+		WHEN SHIP:altitude > atmoheight - 2000 THEN {
 			VES1["fairing deploy"]().
 	 	}
-		WHEN SHIP:altitude > 52000 THEN {
-    	VES1["panels on"]().
-		}
-		WHEN SHIP:altitude > 55000 THEN {
+		WHEN SHIP:altitude > atmoheight - 1000 THEN {
     	VES1["comms ext"]().
+		}
+		WHEN SHIP:altitude > atmoheight THEN {
+    	VES1["panels on"]().
 		}
 
 		if STARTTIME = 0 {set STARTTIME to TIME. local mtime to time. UI["msg add"]("Commence Launch Program at "+mTime:year+"y "+mtime:day+"d "+mtime:hour+"h "+mtime:minute+"m "+mtime:second+"s.").}
@@ -88,7 +90,7 @@ run koos_hillclimb_lib.
 			},
 			{
 				man_check_stage(stopatstage).
-				return ALT:RADAR > 100.
+				return ALT:RADAR > 500.
 			},
 			{
 				VES1["gear up"]().
@@ -111,24 +113,27 @@ run koos_hillclimb_lib.
 			},
 			{
 				//set MyPitch TO 90 * (1 - ((SHIP:ALTITUDE-TurnStart) / TurnEnd) ^ TurnExponent).
-				SET Steering_Lock to LOOKDIRUP(SHIP:srfPrograde:FOREVECTOR,SHIP:FACING:TOPVECTOR).
+				// SET Steering_Lock to LOOKDIRUP(SHIP:srfPrograde:FOREVECTOR,SHIP:FACING:TOPVECTOR).
+				SET Steering_Lock to HEADING(launchaz,90-pitchangle(SHIP:srfPrograde),roll).
+				// print dirangle(SHIP:srfPrograde:FOREVECTOR,"x").
+				// print SHIP:srfprograde:pitch.
 				local CurPoint to  ETA:APOAPSIS .
 				// local CurPoint to CHOOSE ETA:APOAPSIS if thrByEta else ShipTWR.
-				set newth to th+THRPID:UPDATE(time:seconds, CurPoint)*min(1,(launchalt-ship:apoapsis)/1000).
+				set newth to th+THRPID:UPDATE(time:seconds, CurPoint)*min(1,(launchalt-ship:apoapsis)/2000).
 				SET th to MIN(1,MAX(newth,MinThrottle)).
 				man_check_stage(stopatstage).
 				return SHIP:ALTITUDE > TurnEnd or SHIP:APOAPSIS > launchalt. //If still following the launch curve and desired apoapsis not reached
 			},
 			{
 				SET Steering_Lock TO HEADING(launchaz,0,roll).
-				IF SHIP:APOAPSIS < launchalt AND SHIP:ALTITUDE >=SHIP:ORBIT:BODY:ATM:HEIGHT{ //Apoapsis value has dropped due to drag.
-						set newth to 1*min(1,(launchalt-ship:apoapsis)/1000).
+				IF SHIP:APOAPSIS < launchalt AND SHIP:ALTITUDE >=atmoheight{ //Apoapsis value has dropped due to drag.
+						set newth to 1*min(1,(launchalt-ship:apoapsis)/2000).
 				} ELSE { //Coasting to Apoapsis.
 						set newth to 0.
 				}
 				SET th to MIN(1,MAX(newth,0)).
 				man_check_stage(stopatstage).
-				return SHIP:APOAPSIS >= launchalt AND SHIP:ALTITUDE >=SHIP:ORBIT:BODY:ATM:HEIGHT.
+				return SHIP:APOAPSIS >= launchalt AND SHIP:ALTITUDE >=atmoheight.
 			},
 			{
 				//**At this point, our apoapsis is above the desired value and our main loop has ended. Next
@@ -138,7 +143,6 @@ run koos_hillclimb_lib.
 				UNLOCK THROTTLE.
 				SET Steering_Lock TO LOOKDIRUP(ship:prograde:forevector, SHIP:BODY:POSITION).
 				set waitstart to time:seconds.
-				VES1["comms ext"]().
 				return true.
 			},
 			{
@@ -154,13 +158,15 @@ run koos_hillclimb_lib.
 
 	function man_check_stage{
 		parameter laststage.
-		local press to MAX(0,MIN(1,ship:body:atm:altitudepressure(ship:altitude))).
+		//local press to MAX(0,MIN(1,ship:body:atm:altitudepressure(ship:altitude))).
 		if stage:number >= laststage {
-			if ship:availablethrustat(press) = 0 {
-				UI["msg add"]("Stage: "+stage:number+" no thrust.").
-				VES1["stage"]().
-				return.
-			}
+			if ship:maxthrust = 0 {
+				WAIT 1.
+				if ship:maxthrust = 0 {
+					UI["msg add"]("Stage: "+stage:number+" no thrust.").
+					VES1["stage"]().
+				}
+			} else {
 			local numOut to 0.
 			local myengines to list().
 			LIST ENGINES IN myengines. 
@@ -170,8 +176,8 @@ run koos_hillclimb_lib.
 					SET numOut TO numOut + 1.
 				}
 			}
-			if numOut > 0 { VES1["stage"](). }.
-		}
+			if numOut > 0 { VES1["stage"](). }. //designed for if an assymetric booster engine goes out, but just causes problems with symmetric redundant ones.
+		}}
 	}
 
 	function circularize{
@@ -262,6 +268,8 @@ run koos_hillclimb_lib.
 		VES1["sas off"]().
 		LOCAL th to 0.
 		LOCK THROTTLE to th.
+		VES1["check ign"](). //make sure active stage has a good engine
+		wait 3.
 		local burntime to find_burntime(nd:deltaV:mag).
 		local lock max_acc to ship:maxthrust/ship:mass.
 		local dv0 to nd:DELTAV:vec.
@@ -625,11 +633,11 @@ run koos_hillclimb_lib.
 		list engines in englist.
 		local engISP to 0.1.
 		local engT to 0.1.
-		local press to MAX(0,MIN(1,ship:body:atm:altitudepressure(ship:altitude))).
+		//local press to MAX(0,MIN(1,ship:body:atm:altitudepressure(ship:altitude))).
 		for e in englist {
 			if e:stage = stagenum {
 				set engISP to engISP + e:VISP.
-				set engT to engT + e:availableThrustat(press).
+				set engT to engT + e:availableThrust.
 			}
 		}
 		if stageDV > inputDV {
