@@ -1,0 +1,63 @@
+T+00-000 00:00:00 Running Mission: Unknown Mission
+T+00-000 00:00:00 Throttle Up.
+T+00-000 00:00:00 Engine Ignition.
+T+00-000 00:00:00 Launch Checks Successful.
+T+00-000 00:00:00 SAS Off.
+T+-1-0-1 -1:-1:-1 Commence Launch Program at 3y 197d 1h 14m 33s.
+T+00-000 00:00:15 Landing Gear Retracted.
+T+00-000 00:00:15 Commence Pitchover.
+T+00-000 00:00:24 Steering Unlocked. Gravity Turn Initiated.
+T+00-000 00:01:11 Stage: 7 eng: BACC "Thumper" Solid Fuel Booster flameout.
+T+00-000 00:01:11 Stage: 7 eng: BACC "Thumper" Solid Fuel Booster flameout.
+T+00-000 00:01:11 Stage. Current stage: 6.
+T+00-000 00:03:44 Fairings deployed.
+T+00-000 00:03:48 Radio Antennas Extended.
+T+00-000 00:03:49 Stage: 6 no thrust.
+T+00-000 00:03:49 Stage. Current stage: 5.
+T+00-000 00:03:53 Solar Panels Extended.
+T+00-000 00:07:32 Launch Complete.
+T+00-000 00:07:32 Circularize Node Added At Apoapsis.
+T+00-000 00:07:33 SAS Off.
+T+00-000 00:07:36 Calculated STAGEDV for stage 5 is: 334.233032226563
+T+00-000 00:07:36 Executing node: NODE(718.107266455889,0,0,3.95116333598889)
+T+00-000 00:18:51 Running Mission: Unknown Mission
+T+00-000 00:18:51 SAS Off.
+T+00-000 00:18:54 Calculated STAGEDV for stage 5 is: 366.257995605469
+T+00-000 00:18:54 Executing node: NODE(40.3135464861989,0,0,3.95116333598889)
+T+00-000 00:19:54 SAS On.
+T+00-000 00:19:54 Node Execution Complete.
+T+00-000 00:19:54 Mission Complete.
+T+00-000 00:29:54 Running Mission: 3_mission_exec_node.ks
+T+00-000 00:29:54 SAS Off.
+T+00-000 00:29:57 Calculated STAGEDV for stage 5 is: 362.286560058594
+T+00-000 00:29:57 Calculated STAGEDV for stage 4 is: 0
+T+00-000 00:29:57 Calculated STAGEDV for stage 3 is: 814.524536132813
+T+00-000 00:29:57 Executing node: NODE(594.922127459198,0,0,837.591925982627)Burntime: 435.321948661738
+T+00-000 00:36:51 Stage: 5 no thrust.
+T+00-000 00:36:51 Stage. Current stage: 4.
+T+00-000 00:36:53 Stage: 4 no thrust.
+T+00-000 00:36:53 Stage. Current stage: 3.
+T+00-000 00:42:41 SAS On.
+T+00-000 00:42:41 Node Execution Complete.
+T+00-000 00:42:41 Mission Complete.
+T+00-000 00:48:16 Running Mission: 3_mission_exec_node.ks
+T+00-000 00:48:16 SAS Off.
+T+00-000 00:48:19 Calculated STAGEDV for stage 3 is: 250.364761352539
+T+00-000 00:48:20 Executing node: NODE(32.6790749542415,0,0,-13.2755526901699)Burntime: 4.22357790157348
+T+00-000 00:49:12 SAS On.
+T+00-000 00:49:13 Node Execution Complete.
+T+00-000 00:49:13 Mission Complete.
+T+00-000 00:54:27 Running Mission: 3_mission_exec_node.ks
+T+00-000 00:54:27 SAS Off.
+T+00-000 00:54:30 Calculated STAGEDV for stage 3 is: 237.135467529297
+T+00-000 00:54:30 Executing node: NODE(2221.51125836,-88.5540097455374,-3.83835334185469,12.1506074703053)Burntime: 28.0254272091332
+T+00-000 01:32:04 SAS On.
+T+00-000 01:32:04 Node Execution Complete.
+T+00-000 01:32:04 Mission Complete.
+T+00-000 01:37:05 Running Mission: 3_mission_exec_node.ks
+T+00-000 01:37:05 SAS Off.
+T+00-000 01:37:08 Calculated STAGEDV for stage 3 is: 645.690612792969
+T+00-000 01:37:08 Executing node: NODE(16790.1337706521,-49.0323324337244,9.91437303671381,246.917104210281)Burntime: 74.9775900520255
+T+00-001 00:17:54 SAS On.
+T+00-001 00:17:54 Node Execution Complete.
+T+00-001 00:17:55 Mission Complete.

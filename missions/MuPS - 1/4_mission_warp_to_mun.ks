@@ -4,7 +4,6 @@ local tgtmoon to body(tgtmoonname).
 
 
 local event_list to list(
-        MNV["exec node"]@,
     SYS["warp next patch"]@,
     SYS["wait soi chng"]@:bind(tgtmoonname)
 

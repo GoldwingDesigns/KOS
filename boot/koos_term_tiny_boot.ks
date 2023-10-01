@@ -22,23 +22,27 @@ clearscreen.
 print("Waiting for load...").
 WAIT UNTIL SHIP:UNPACKED.
 print("Waiting for connection...").
-
 LIST PROCESSORS in ALL_PROCESSORS.
 local i is 1.
-SET VOLUME(1):NAME TO BOOTVOLUME.
-print("This is "+VOLUME(1):NAME).
+local activeprocessors is 0.
 for p in ALL_PROCESSORS{
-	if p:BOOTFILENAME:contains("boot") {
-		set p:TAG to "MASTER".			
+    if p:TAG = ""{
+        if p:BOOTFILENAME:contains("boot") {
+            set p:TAG to "MASTER".
+            set p:volume:name to BOOTVOLUME.			
+        } else {
+            set p:TAG to "SLAVE_"+i.
+            SET p:VOLUME:NAME TO p:TAG+"_DISK".
+            print(p:VOLUME:NAME+" found."). //pass slave cpu obj, boot filename, volume number
+            if(i=1){set DATAVOLUME to p:VOLUME:NAME. print (p:VOLUME:NAME+" set to data volume.").}
+            set i to i+1.
+        }
+        set activeprocessors to activeprocessors+1.
 	} else {
-		set p:TAG to "SLAVE_"+i.
-        SET p:VOLUME:NAME TO p:TAG+"_DISK".
-		print(p:VOLUME:NAME+" found."). //pass slave cpu obj, boot filename, volume number
-        if(i=1){set DATAVOLUME to p:VOLUME:NAME. print (p:VOLUME:NAME+" set to data volume.").}
-		set i to i+1.
-	}
+        p:deactivate().
+    }
 }
-if ALL_PROCESSORS:LENGTH < 2 {set DATAVOLUME to BOOTVOLUME.}
+if activeprocessors = 1 {set DATAVOLUME to BOOTVOLUME.}
 IF SHIP:STATUS = "PRELAUNCH" or homeConnection:isconnected { //create a check here to see if there is an update
 	for b in BOOTFILES {
         compile "0:/boot/"+b to BOOTVOLUME+":/boot/"+b.

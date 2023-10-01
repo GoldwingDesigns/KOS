@@ -22,6 +22,7 @@
             // set roboticslist to ship:partsnamedpattern("^IR.*").
             set parachuteslist to ship:partsdubbedpattern("^*chute*").
             set fairinglist to ship:partsnamedpattern("^fairing*").
+            if fairinglist:length > 0 set fairinglist to fairinglist:partstaggedpattern("^((?!NOSTAGE).)*$"). //allow fairings tagged nostage in the VAB to not be deployed
                         
             if parachuteslist:length < 1 {
                 set lastchutestage to 0.
@@ -171,6 +172,7 @@
         }
         function meth_prelaunch_checks {
             //engines must be set to stage first and then launchclamps
+             local waitstart to 0.
             return list(
                 {if launchclamplist:length > 0 { 
                     LOCK THROTTLE to 1. 
@@ -179,8 +181,15 @@
                     UI["msg add"]("Engine Ignition.").
                     stage. 
                     }. 
-                WAIT 1. 
                 return true.
+                },
+                {
+
+                    set waitstart to time:seconds.
+                    return true.
+                },
+                {
+                    return waitstart+1 < time:seconds.
                 },
                 {
                     if failedlist:length > 0 {

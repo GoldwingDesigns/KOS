@@ -6,6 +6,7 @@
         "warp next patch", warp_to_nextpatch@,
         "wait time", wait_time@,
         "warp to alt", warp_to_alt@,
+        "warp to time", warp_to_time@,
         "pause", pause@
     ).
 
@@ -22,7 +23,18 @@
             }
         ).
     }
-
+    function warp_to_time {
+        parameter t.
+        return list (
+            {
+				warpto(t).
+				return true.
+			},
+			{
+				return time:seconds >= t.
+			}
+        ).
+    }
     function pause{
         KUniverse:pause().
         return true.

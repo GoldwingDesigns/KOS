@@ -175,6 +175,74 @@ function pitchangle { //https://www.youtube.com/watch?v=0g3CQEEjbH8
 	local result to arccos((vdot(dirvec,upvec)/(dirvec:MAG))).
     return result.
 }
+
+function findLaunchWindowToTarget {
+    parameter leadTime is 60, myTarget is target.
+    findLaunchWindow(leadTime,myTarget:orbit:inclination,myTarget:orbit:lan).
+}
+function findLaunchWindow {
+    parameter leadTime is 60, alpha is 0, raan is 0.
+    local lt is leadTime/3600.
+    local launchTimeSec is 0.
+    // local bodyperiodinhours is body:rotationperiod/60/60.
+    local bodyperiodinhours is 6.
+    local rotdegperhour is 360/(bodyperiodinhours).
+    print rotdegperhour.
+    local lat is ship:latitude.
+    local long is ship:longitude.
+    local lst to (mod(ship:body:rotationangle + mod((360+long),360),360))/rotdegperhour.
+    if abs(alpha) < abs(lat) {
+      UI["msg add"]("Unable to match target inclination").
+      return list(-1,-1).
+    } else if alpha=abs(lat){
+      local l is (raan+90)/rotdegperhour.
+      set launchTimeSec to time:seconds+(mod(l-lst+bodyperiodinhours,bodyperiodinhours)*3600).
+      return list(launchTimeSec,alpha).
+    } else {
+      local gamma is arcsin(cos(alpha)/cos(lat)).
+      local delta is arccos(cos(gamma)/sin(alpha)).
+      local lwstan is 0.
+      local lwstdn is 0.
+      local case is 0. //case 0 is north prograde, case 1 is south prograde or north retrograde, case 2 is south retrograde
+      if lat < 0 set case to case + 1.
+      if alpha > 90 or alpha < -90 set case to case + 1.
+      if case = 0 {
+        set lwstan to raan - delta.
+        set lwstdn to raan + (180 + delta).
+      } else {
+        set lwstan to raan + delta.
+        set lwstdn to raan + (180-delta).
+      }
+      local l1 is lwstan / rotdegperhour.  
+      local l2 is lwstdn / rotdegperhour.
+      local a is alpha.
+      local ltemp is 0.
+      if lst+lT > l1 and lst+lT < l2 {
+        // print "choose l2".
+        set a to -1 * a.
+        set ltemp to l2-lst.
+        until ltemp > 0  set ltemp to ltemp+bodyperiodinhours.
+        set launchTimeSec to time:seconds+(mod(ltemp+bodyperiodinhours,bodyperiodinhours)*3600). // change 6 to rotation of body in hrs
+      } else {
+        // print "choose l1".
+        set ltemp to l1-lst.
+        until ltemp > 0  set ltemp to ltemp+bodyperiodinhours.
+        set launchTimeSec to time:seconds+(mod(ltemp+bodyperiodinhours,bodyperiodinhours)*3600).
+      }
+      return list(launchTimeSec, a).
+    }
+}
+// function getLaunchAzimuth {
+//     parameter a.
+//     local lat is ship:latitude.
+//     if a < lat {
+//         return 1/0.
+//     } else {
+//       local gamma is arcsin(cos(a)/cos(lat)). 
+//       if a<0 return 180-gamma.
+//       return gamma.
+//     }
+// }
 // function isPosigrade {
 //   return vdot(vcrs(SHIP:VELOCITY:orbit:normalized,ship:Body:position),SHIP:BODY:ANGULARVEL:normalized)>0.
 // }

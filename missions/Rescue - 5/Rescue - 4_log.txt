@@ -1,0 +1,48 @@
+T+00-000 00:00:00 Unable to match target inclination
+T+00-000 00:00:00 Running Mission: 0_mission_launch.ks
+T+00-000 00:00:00 Throttle Up.
+T+00-000 00:00:00 Engine Ignition.
+T+00-000 00:00:00 Launch Checks Successful.
+T+00-000 00:00:00 SAS Off.
+T+00-000 00:00:00 Commence Launch Program at 3y 377d 3h 51m 18s.
+T+00-000 00:00:00 Stage: 5 eng: BACC "Thumper" Solid Fuel Booster flameout.
+T+00-000 00:00:00 Stage: 5 eng: BACC "Thumper" Solid Fuel Booster flameout.
+T+00-000 00:00:00 Stage. Current stage: 4.
+T+00-000 00:00:04 Stage: 4 no thrust.
+T+00-000 00:00:04 Stage. Current stage: 3.
+T+00-000 00:00:06 Stage: 3 no thrust.
+T+00-000 00:00:06 Stage. Current stage: 2.
+T+00-000 00:00:08 Stage: 2 no thrust.
+T+00-000 00:00:08 Stage. Current stage: 1.
+T+00-000 00:00:10 Stage: 0 no thrust.
+T+00-000 00:00:10 Stage. Current stage: 0.
+T+00-000 00:00:11 Stage: 0 no thrust.
+T+00-000 00:00:11 Stage. Current stage: 0.
+T+00-000 00:00:13 Stage: 0 no thrust.
+T+00-000 00:00:13 Stage. Current stage: 0.
+T+00-000 00:00:14 Stage: 0 no thrust.
+T+00-000 00:00:14 Stage. Current stage: 0.
+T+00-000 00:00:16 Stage: 0 no thrust.
+T+00-000 00:00:16 Stage. Current stage: 0.
+T+00-000 00:00:17 Stage: 0 no thrust.
+T+00-000 00:00:17 Stage. Current stage: 0.
+T+00-000 00:00:19 Stage: 0 no thrust.
+T+00-000 00:00:19 Stage. Current stage: 0.
+T+00-000 00:00:20 Stage: 0 no thrust.
+T+00-000 00:00:20 Stage. Current stage: 0.
+T+00-000 00:00:22 Stage: 0 no thrust.
+T+00-000 00:00:22 Stage. Current stage: 0.
+T+00-000 00:00:23 Stage: 0 no thrust.
+T+00-000 00:00:24 Stage. Current stage: 0.
+T+00-000 00:00:25 Stage: 0 no thrust.
+T+00-000 00:00:25 Stage. Current stage: 0.
+T+00-000 00:00:27 Stage: 0 no thrust.
+T+00-000 00:00:27 Stage. Current stage: 0.
+T+00-000 00:00:28 Stage: 0 no thrust.
+T+00-000 00:00:28 Stage. Current stage: 0.
+T+00-000 00:00:30 Stage: 0 no thrust.
+T+00-000 00:00:30 Stage. Current stage: 0.
+T+00-000 00:00:31 Stage: 0 no thrust.
+T+00-000 00:00:31 Stage. Current stage: 0.
+T+00-000 00:00:33 Stage: 0 no thrust.
+T+00-000 00:00:33 Stage. Current stage: 0.

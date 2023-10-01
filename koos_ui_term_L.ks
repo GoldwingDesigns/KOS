@@ -13,32 +13,98 @@ local currmenulist to list(). // have to store this here just in case of resize 
     ).
 
     function term_run {
-        until false {
-            local result to "".
-            local functionlist to list("Missions","Maneuvers","Vessel","Reboot"). 
-            clearscreen.
-            set result to menu_list("Choose a function:",functionlist).
-            if functionlist[result]="Missions"{
-                mission_menu_run().
-            } else if functionlist[result] = "Maneuvers"{
-                lexicon_menu_run(MNV).
-            } else if functionlist[result] = "Vessel" {
-                lexicon_menu_run(VES1).
-            } else if functionlist[result] = "Reboot" {
-                reboot.
+        parameter is_analog to false.
+        if is_analog {            
+            local fnamelist to get_mission_list().
+            local cList to create_command_list().
+            local verbLex to clist[0].
+            local nounLex to clist[1].
+            until false {
+            if AG7 {
+                AG7 off.
+                if fnamelist:length > 0 {
+                runpath(BOOTVOLUME+":/missions/"+fnamelist[0]).
+                }
+            }
+            if AG8 {
+                AG8 off.
+                if fnamelist:length > 1 {
+                runpath(BOOTVOLUME+":/missions/"+fnamelist[1]).
+                }
+            }
+            if AG9 {
+                AG9 off.
+                if fnamelist:length > 2 {
+                runpath(BOOTVOLUME+":/missions/"+fnamelist[2]).
+                }
             }
         }
+        } else {
+            until false {
+                local result to "".
+                local functionlist to list("Missions","Maneuvers","Vessel","Reboot"). 
+                clearscreen.
+                set result to menu_list("Choose a function:",functionlist).
+                if functionlist[result]="Missions"{
+                    mission_menu_run().
+                } else if functionlist[result] = "Maneuvers"{
+                    lexicon_menu_run(MNV).
+                } else if functionlist[result] = "Vessel" {
+                    lexicon_menu_run(VES1).
+                } else if functionlist[result] = "Reboot" {
+                    reboot.
+                }
+            }
+        }
+    }
+    function create_command_list{
+        local verbs to list("Run","Show Status","Stop","Reboot").
+        local verbLex to lexicon().
+        local nounLex to lexicon().
+        local missionIndex to -1.
+        local maneuverIndex to -1.
+        local vesselActionIndex to -1.
+        local vesselVarIndex to -1.
+        local verbKey to 0.
+        local nounKey to 0.
+        local missionList to get_mission_list().
+        for v in verbs {
+            verbLex:add(verbKey,v).
+            set verbKey to verbKey +1.
+        }
+        set missionIndex to nounKey.
+        for n in missionList {
+            nounLex:add(nounKey,n).
+            set nounKey to nounKey +1.
+        } 
+        set maneuverIndex to nounKey.
+        for n in MNV:keys {
+            nounLex:add(nounKey,n).
+            set nounKey to nounKey +1.
+        }
+        set vesselActionIndex to nounKey.
+        for n in VES1:keys {
+            nounLex:add(nounKey,n).
+            set nounKey to nounKey +1.
+        }
+        UTL["write commands"](verbLex ,nounLex , missionIndex , maneuverIndex , vesselActionIndex , vesselVarIndex).
+        return list(verbLex,nounLex).
+    }
+
+    function get_mission_list{
+        if homeConnection:isconnected UTL["refresh mission files"]().
+        local missionList to UTL["list file contains"]("mission",BOOTVOLUME,"missions").
+        return missionList.
     }
     function mission_menu_run{
         until false {
             local missionfile is "None".
-            If homeConnection:isconnected UTL["refresh mission files"]().
             clearScreen.
-            local fnamelist is list().
+            local fnamelist is get_mission_list().
             local fprintlist is list().
-            set fnamelist to UTL["list file contains"]("mission",BOOTVOLUME,"missions").
             for name in fnamelist {
                 local strarr to name:SPLIT("mission_").
+                // fprintlist:add(strarr[strarr:length-1]:toupper).
                 fprintlist:add(strarr[strarr:length-1]:split(".ks")[0]:replace("_"," "):toupper).
             }
             fprintlist:add("Prev Menu").
@@ -60,6 +126,7 @@ local currmenulist to list(). // have to store this here just in case of resize 
     }
     function ag6_stop{
         if AG6 {
+            AG6 off.
             MIS1["stop"]().
         }
     }

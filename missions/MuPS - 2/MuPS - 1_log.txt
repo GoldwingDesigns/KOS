@@ -1,0 +1,76 @@
+T+00-000 00:00:00 Running Mission: 0_mission_launch.ks
+T+00-000 00:00:00 Throttle Up.
+T+00-000 00:00:00 Engine Ignition.
+T+00-000 00:00:00 Launch Checks Successful.
+T+00-000 00:00:00 SAS Off.
+T+00-000 00:00:00 Commence Launch Program at 3y 93d 1h 2m 15s.
+T+00-000 00:00:16 Landing Gear Retracted.
+T+00-000 00:00:16 Commence Pitchover.
+T+00-000 00:00:22 Steering Unlocked. Gravity Turn Initiated.
+T+00-000 00:00:48 Stage: 3 eng: LV-T15 'Valiant' Liquid Fuel Engine flameout.
+T+00-000 00:00:48 Stage: 3 eng: LV-T15 'Valiant' Liquid Fuel Engine flameout.
+T+00-000 00:00:48 Stage. Current stage: 2.
+T+00-000 00:04:05 Fairings deployed.
+T+00-000 00:04:11 Radio Antennas Extended.
+T+00-000 00:04:17 Solar Panels Extended.
+T+00-000 00:05:27 Stage: 2 no thrust.
+T+00-000 00:05:27 Stage. Current stage: 1.
+T+00-000 00:05:39 Launch Complete.
+T+00-000 00:05:40 Circularize Node Added At Apoapsis.
+T+00-000 00:05:40 SAS Off.
+T+00-000 00:05:43 Calculated STAGEDV for stage 1 is: 1586.47155761719
+T+00-000 00:05:43 Executing node: NODE(665.549423988909,0,0,38.0984413962215)
+T+00-000 00:17:09 SAS On.
+T+00-000 00:17:09 Node Execution Complete.
+T+00-000 00:17:09 Mission Complete.
+T+00-018 04:35:57 Running Mission: 1_mission_find_mun_transfer.ks
+T+00-018 04:35:57 Finding Transfer to Mun
+T+00-018 04:36:02 Moon Transfer Node To Mun Added
+T+00-018 04:36:02 Mission Complete.
+T+00-018 04:36:23 Running Mission: 3_mission_exec_node.ks
+T+00-018 04:36:23 SAS Off.
+T+00-018 04:36:26 Calculated STAGEDV for stage 1 is: 0
+T+00-018 04:36:26 Calculated STAGEDV for stage 0 is: 0
+T+00-018 04:37:24 Running Mission: 3_mission_exec_node.ks
+T+00-018 04:37:24 SAS Off.
+T+00-018 04:37:27 Calculated STAGEDV for stage 1 is: 1530.30297851563
+T+00-018 04:37:27 Executing node: NODE(70.6553048677742,-1,0,811.784372217709)
+T+00-018 04:39:14 SAS On.
+T+00-018 04:39:14 Node Execution Complete.
+T+00-018 04:39:14 Mission Complete.
+T+00-018 04:39:31 Running Mission: 4_mission_warp_to_mun.ks
+T+00-018 04:45:28 Running Mission: 4_mission_warp_to_mun.ks
+T+00-019 03:38:32 SOI Change To Mun
+T+00-019 03:38:32 Mission Complete.
+T+00-019 03:38:54 Running Mission: 3_mission_exec_node.ks
+T+00-019 03:38:54 SAS Off.
+T+00-019 03:38:57 Calculated STAGEDV for stage 1 is: 718.084655761719
+T+00-019 03:38:57 Executing node: NODE(3564.71865795925,0,95.9445659798642,-319.899165853177)
+T+00-019 04:38:47 SAS On.
+T+00-019 04:38:48 Node Execution Complete.
+T+00-019 04:38:48 Mission Complete.
+T+00-019 04:40:52 Running Mission: 9_mission_circularize.ks
+T+00-019 04:40:52 Circularize Node Added At Apoapsis.
+T+00-019 04:41:26 Running Mission: 9_mission_circularize.ks
+T+00-019 04:41:26 Circularize Node Added At Apoapsis.
+T+00-019 04:41:26 SAS Off.
+T+00-019 04:41:29 Calculated STAGEDV for stage 1 is: 384.159454345703
+T+00-019 04:41:29 Executing node: NODE(36972.7315018401,0,0,75.2136077291402)
+T+00-021 02:59:39 Running Mission: 9_mission_circ_at_peri.ks
+T+00-021 03:00:17 Running Mission: 9_mission_circ_at_peri.ks
+T+00-021 03:00:17 Change Apo Node Added.
+T+00-021 03:00:17 SAS Off.
+T+00-021 03:00:20 Calculated STAGEDV for stage 1 is: 383.976226806641
+T+00-021 03:00:20 Executing node: NODE(18419.6749937087,0,0,-118.19054195145)
+T+00-022 05:04:16 Running Mission: 9_mission_circ_at_peri.ks
+T+00-022 05:04:16 Change Apo Node Added.
+T+00-022 05:04:16 SAS Off.
+T+00-022 05:04:19 Calculated STAGEDV for stage 1 is: 384.68603515625
+T+00-022 05:04:19 Executing node: NODE(26537.5502826273,0,0,-118.190665989835)
+T+00-025 04:36:39 Running Mission: 3_mission_exec_node.ks
+T+00-025 04:36:39 SAS Off.
+T+00-025 04:36:42 Calculated STAGEDV for stage 1 is: 384.401397705078
+T+00-025 04:36:42 Executing node: NODE(551.424213740975,0,0,-118.190665989835)
+T+00-025 04:46:15 SAS On.
+T+00-025 04:46:15 Node Execution Complete.
+T+00-025 04:46:16 Mission Complete.

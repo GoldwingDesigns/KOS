@@ -14,6 +14,7 @@
 		"update libfiles",	    updateLibFiles@,
 		"update bootfiles",     updateBootFile@,
 		"write log",			writeToLog@,
+		"write commands", writeCommandsFile@,
 		"reboot",			    rebootcpu@,
 		"kill program",		killprogram@
 	).
@@ -210,6 +211,47 @@
 			copyPath(fname,foldername).
 		}
 	}
+
+	function writeCommandsFile {
+		parameter verbLex is lexicon(), nounLex is lexicon(), missionIndex is -1, maneuverIndex is -1, vesselActionIndex is -1, vesselVarIndex is -1.
+		local fname to ship:name+"_commands.txt".
+		local foldername to "0:/missions/"+ship:name+"/".
+		if exists(fname) deletePath(fname).
+		local verbKeys to verbLex:keys.
+		log("VERBS"+CHAR(10)+"--------") to fname.
+		for k in verbKeys {
+			log(CHAR(9) + key_to_str(toOctal(k)) + CHAR(9)  + verbLex[k]) to fname.
+		}
+		local nounKeys to nounLex:keys.
+		log("NOUNS"+CHAR(10)+"--------") to fname.
+		for k in nounKeys {
+			if k=missionIndex {log(CHAR(9) + "Missions"+CHAR(10)+CHAR(9) +"-------") to fname.}
+			if k=maneuverIndex {log(CHAR(9) + "Maneuvers"+CHAR(10)+CHAR(9) +"-------") to fname.}
+			if k=vesselActionIndex {log(CHAR(9) + "Actions"+CHAR(10)+CHAR(9) +"-------") to fname.}
+			if k=vesselVarIndex {log(CHAR(9) + "Status"+CHAR(10)+CHAR(9) +"-------") to fname.}
+			log(CHAR(9) + key_to_str(toOctal(k)) + CHAR(9)  + nounLex[k]) to fname.
+		}
+		if homeConnection:isconnected {
+			if not exists(foldername) createdir(foldername).
+			if exists(foldername+fname) deletePath(foldername+fname).
+			copyPath(fname,foldername).
+		}
+	}
+	function key_to_str{
+        parameter str.
+        local s to "00"+str:tostring.
+        return s:substring(s:length-2,2).
+  }
+	function toOctal {
+	parameter decimal.	
+  local octal is "".
+  until (decimal = 0) {
+    set octal to MOD(decimal,8):tostring + octal.
+    set decimal to FLOOR(decimal/8).
+
+  }
+  return octal.
+}
 
 	function rebootcpu {
 		reboot.

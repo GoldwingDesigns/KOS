@@ -1,0 +1,35 @@
+T+00-000 00:00:00 Running Mission: 0_mission_launch.ks
+T+00-000 00:00:00 Throttle Up.
+T+00-000 00:00:00 Engine Ignition.
+T+00-000 00:00:00 Launch Checks Successful.
+T+00-000 00:00:00 SAS Off.
+T+00-000 00:00:00 Commence Launch Program at 3y 402d 0h 4m 25s.
+T+00-000 00:00:16 Landing Gear Retracted.
+T+00-000 00:00:16 Commence Pitchover.
+T+00-000 00:00:23 Steering Unlocked. Gravity Turn Initiated.
+T+00-000 00:01:47 Stage: 6 eng: CR-2 'Vesuvius' Liquid Hydrogen Engine flameout.
+T+00-000 00:01:48 Stage: 6 eng: CR-2 'Vesuvius' Liquid Hydrogen Engine flameout.
+T+00-000 00:01:48 Stage. Current stage: 5.
+T+00-000 00:04:22 Stage: 5 no thrust.
+T+00-000 00:04:22 Stage. Current stage: 4.
+T+00-000 00:04:46 Fairings deployed.
+T+00-000 00:05:09 Radio Antennas Extended.
+T+00-000 00:05:55 Solar Panels Extended.
+T+00-000 00:09:17 Launch Complete.
+T+00-000 00:09:18 Circularize Node Added At Apoapsis.
+T+00-000 00:09:18 SAS Off.
+T+00-000 00:09:21 Calculated STAGEDV for stage 4 is: 1564.06860351563
+T+00-000 00:09:21 Executing node: NODE(886.745984598994,0,0,32.0997403502679)Burntime: 4.67754455482717
+T+00-000 00:24:29 SAS On.
+T+00-000 00:24:29 Node Execution Complete.
+T+00-000 00:24:29 Mission Complete.
+T+00-000 00:24:37 Running Mission: 1_mission_find_mun_transfer.ks
+T+00-000 00:24:37 Finding Transfer to Mun
+T+00-000 00:24:46 Moon Transfer Node To Mun Added
+T+00-000 00:24:46 Mission Complete.
+T+00-000 00:24:52 Running Mission: 3_mission_exec_node.ks
+T+00-000 00:24:52 SAS Off.
+T+00-000 00:25:09 Running Mission: 3_mission_exec_node.ks
+T+00-000 00:25:09 SAS Off.
+T+00-000 00:25:12 Calculated STAGEDV for stage 4 is: 1530.69506835938
+T+00-000 00:25:12 Executing node: NODE(1946.87016209215,-1,-10.1,814.25681045827)Burntime: 111.831167618776

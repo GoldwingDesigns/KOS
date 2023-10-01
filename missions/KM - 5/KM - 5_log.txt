@@ -1,0 +1,33 @@
+T+-1-0-1 -1:-1:-1 Running Mission: Unknown Mission
+T+00-000 00:00:00 Throttle Up.
+T+00-000 00:00:00 Engine Ignition.
+T+00-000 00:00:00 Launch Checks Successful.
+T+00-000 00:00:00 SAS Off.
+T+00-000 00:00:00 Commence Launch Program at 3y 165d 4h 35m 27s.
+T+00-000 00:00:18 Landing Gear Retracted.
+T+00-000 00:00:18 Commence Pitchover.
+T+00-000 00:00:26 Steering Unlocked. Gravity Turn Initiated.
+T+00-000 00:04:31 Fairings deployed.
+T+00-000 00:04:43 Radio Antennas Extended.
+T+00-000 00:04:59 Solar Panels Extended.
+T+00-000 00:05:48 Stage: 3 no thrust.
+T+00-000 00:05:48 Stage. Current stage: 2.
+T+00-000 00:05:50 Stage: 2 no thrust.
+T+00-000 00:05:50 Stage. Current stage: 1.
+T+00-000 00:07:18 Launch Complete.
+T+00-000 00:07:19 Circularize Node Added At Apoapsis.
+T+00-000 00:07:19 SAS Off.
+T+00-000 00:07:22 Calculated STAGEDV for stage 1 is: 272.984344482422
+T+00-000 00:07:22 Executing node: NODE(869.185365229845,0,0,23.6753002577098)
+T+00-000 00:22:11 SAS On.
+T+00-000 00:22:12 Node Execution Complete.
+T+00-000 00:22:12 Mission Complete.
+T+00-000 00:34:45 Running Mission: Unknown Mission
+T+00-000 00:34:45 Change Pe Node Added.
+T+00-000 00:34:45 SAS Off.
+T+00-000 00:34:48 Calculated STAGEDV for stage 1 is: 320.402770996094
+T+00-000 00:34:48 Executing node: NODE(846.170546185225,0,0,-47.2206306298526)
+T+00-000 00:49:15 SAS On.
+T+00-000 00:49:15 Node Execution Complete.
+T+00-000 00:49:16 SAS Off.
+T+00-000 00:49:16 Commence Aero Land Program.

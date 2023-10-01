@@ -11,7 +11,7 @@ local event_list to list(
     // SYS["warp next patch"]@,
     // SYS["wait soi chng"]@:bind(tgtmoonname),
     
-        MNV["change inc lan alt"]@:bind(89,ship:orbit:lan,200000)
+        MNV["change inc lan alt"]@:bind(89,ship:orbit:lan,300000)
 
     // MNV["exec node"]@
     ).

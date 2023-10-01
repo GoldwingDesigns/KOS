@@ -1,0 +1,60 @@
+VERBS
+--------
+	00	Run
+	01	Show Status
+	02	Stop
+	03	Reboot
+NOUNS
+--------
+	Missions
+	-------
+	00	0_mission_launch.ks
+	01	1_mission_reentry.ks
+	Maneuvers
+	-------
+	02	launch atmo
+	03	circ
+	04	change inc lan
+	05	change inc lan alt
+	06	match inc lan
+	07	exec node
+	10	change apo
+	11	change per
+	12	change arg per
+	13	capture
+	14	hoh trans 1
+	15	hoh trans 2
+	16	moon trans
+	17	moon return
+	20	aero land
+	21	unlock all
+	Actions
+	-------
+	22	&lastchute
+	23	&firstchute
+	24	&launchstage
+	25	&chuteslist
+	26	&commslist
+	27	&failablelist
+	30	&solardir
+	31	&name
+	32	comms ext
+	33	comms ret
+	34	sas on
+	35	sas off
+	36	rcs on
+	37	rcs off
+	40	ladders on
+	41	ladders off
+	42	panels on
+	43	panels off
+	44	gear down
+	45	gear up
+	46	stage
+	47	extract stage
+	50	arm chutes
+	51	check fail
+	52	fairing deploy
+	53	prelaunch checks
+	54	check ign
+	55	blank

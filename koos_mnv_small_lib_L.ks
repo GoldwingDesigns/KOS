@@ -1025,9 +1025,9 @@ run koos_hillclimb_lib.
 				return tgtvec:mag < (hburnd).	
 			},
 			{
-	set steervec to lookDirUp(-1*survec,-1*body:position).
-					set ship:control:neutralize to TRUE.
-					return true.
+				set steervec to lookDirUp(-1*survec,-1*body:position).
+				set ship:control:neutralize to TRUE.
+				return true.
 			},
 			{
 				if ADDONS:TR:AVAILABLE {
