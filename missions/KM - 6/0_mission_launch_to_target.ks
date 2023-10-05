@@ -28,6 +28,6 @@ local interrupt_list to list(
 
 
 //create and run mission
-local MIS1 is MIS["new"](event_list,interrupt_list,reboot_persist).
+local MIS1 is MIS["new"](event_list,interrupt_list,reboot_persist,scriptPath():name).
 MIS1["run"]().
 }

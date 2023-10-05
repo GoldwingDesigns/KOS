@@ -38,7 +38,11 @@ for p in ALL_PROCESSORS{
             set i to i+1.
         }
         set activeprocessors to activeprocessors+1.
-	} else {
+	} else if p:tag = "MASTER" {
+        set p:volume:name to BOOTVOLUME.
+    } else if p:tag:contains("SLAVE") {
+        set p:tag to p:tag.
+    } else {
         p:deactivate().
     }
 }

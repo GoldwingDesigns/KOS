@@ -21,8 +21,11 @@
         function refreshparts {
             // set roboticslist to ship:partsnamedpattern("^IR.*").
             set parachuteslist to ship:partsdubbedpattern("^*chute*").
-            set fairinglist to ship:partsnamedpattern("^fairing*").
-            if fairinglist:length > 0 set fairinglist to fairinglist:partstaggedpattern("^((?!NOSTAGE).)*$"). //allow fairings tagged nostage in the VAB to not be deployed
+            local flist to ship:partsnamedpattern("^fairing*").
+             //allow fairings tagged nostage in the VAB to not be deployed
+            for f in flist {
+                if f:TAG:matchespattern("^((?!NOSTAGE).)*$")  fairinglist:add(f).
+            }
                         
             if parachuteslist:length < 1 {
                 set lastchutestage to 0.
