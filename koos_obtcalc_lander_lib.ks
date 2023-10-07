@@ -35,9 +35,11 @@ function find_landing_tgt_LAN{
     local transorbitperiod is orbit_period(tgt:body,init_alt,final_alt).
     local finalorbitperiod is orbit_period(tgt:body,final_alt,final_alt).
     local bodyrotationperiod is tgt:body:rotationperiod.
-    // local answer is calc_lng_from_tgt(tgt, inc)+tgt:body:rotationangle+(((initorbitperiod/bodyrotationperiod)*360)*0.5)+(((transorbitperiod/bodyrotationperiod)*360)*0.5)+(((finalorbitperiod/bodyrotationperiod)*360)*0.5).
+		local sameside to true.
+		if VDOT(tgt:position - SHIP:BODY:POSITION,ship:position - ship:body:position) < 0 set sameside to false.
     local answer is calc_lng_from_tgt(tgt, inc)+tgt:body:rotationangle+(((transorbitperiod/bodyrotationperiod)*360)*0.5)+(((finalorbitperiod/bodyrotationperiod)*360)*0.25).
-    //above is longitudinal dist from tgt minus current rotation angle from nodal line minus long dist covered by half transfer orbit minus dist covered during one quarter final orbit
+		if sameside = false set answer to answer + (((finalorbitperiod/bodyrotationperiod)*360)*0.5).
+    //above is longitudinal dist from tgt minus current rotation angle from nodal line minus long dist covered by half transfer orbit minus dist covered during one quarter final orbit, but if target and ship are starting on oposite sides then have to add an extra half orbit of final orbit.
     until answer >= 0 {set answer to answer + 360.}
     until answer <=360 {set answer to answer - 360.}
 		local info to plane_change_info(inc,answer).
@@ -109,9 +111,9 @@ function calc_lng_from_tgt {
         // if (tlat = inc) { set alpha to -90. } else if (tlat = -inc) { set alpha to 90. } else {set alpha to abs(arcsin(tan(tlat)/tan(180-inc))).}
 				set alpha to abs(arcsin(tan(tlat)/tan(180-inc))).
 		if tlat < 0 {
-			return tlong - alpha.
-		} else {
 			return tlong - alpha + 180.
+		} else {
+			return tlong - alpha.//i don't get it but ok.  this section really is same as above
 		}
 	}
 }
