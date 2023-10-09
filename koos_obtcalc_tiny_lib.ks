@@ -178,7 +178,7 @@ function pitchangle { //https://www.youtube.com/watch?v=0g3CQEEjbH8
 
 function findLaunchWindowToTarget {
     parameter leadTime is 60, myTarget is target.
-    findLaunchWindow(leadTime,myTarget:orbit:inclination,myTarget:orbit:lan).
+    return findLaunchWindow(leadTime,myTarget:orbit:inclination,myTarget:orbit:lan).
 }
 function findLaunchWindow {
     parameter leadTime is 60, alpha is 0, raan is 0.
@@ -187,7 +187,6 @@ function findLaunchWindow {
     // local bodyperiodinhours is body:rotationperiod/60/60.
     local bodyperiodinhours is 6.
     local rotdegperhour is 360/(bodyperiodinhours).
-    print rotdegperhour.
     local lat is ship:latitude.
     local long is ship:longitude.
     local lst to (mod(ship:body:rotationangle + mod((360+long),360),360))/rotdegperhour.
