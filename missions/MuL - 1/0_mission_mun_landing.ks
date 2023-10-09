@@ -1,10 +1,10 @@
 parameter reboot_persist to true.// set to true to persist mission through reboot.
 local tgtmoonname to "Mun".
 local tgtmoon to body(tgtmoonname).
-set ldgtgtname to "Mul - 1".
+set ldgtgtname to "MuL - 1".
 local tgt to waypoint(ldgtgtname):geoposition.
 local final_ldg_obt_alt to 10000.
-local rdroffset to 1.
+local rdroffset to 0.7.
 set LOGMSGS to false. //save disk space
 
 local event_list to list(

@@ -14,7 +14,7 @@ GLOBAL LIBFILES is LIST(
     "koos_sys_lib_L",
 	"koos_mnv_lander_lib_L",
     "koos_ves_lib_L",
-    "koos_utils_lib_L",
+    "koos_utils_small_lib_L",
     "koos_ui_term_L",
     "koos_obtcalc_lander_lib").
 clearscreen.
@@ -62,7 +62,7 @@ switch to DATAVOLUME.
 run koos_mnv_lander_lib_L.
 run koos_ves_lib_L.
 run koos_sys_lib_L.
-run koos_utils_lib_L.
+run koos_utils_small_lib_L.
 run koos_mission_runner_L.
 run koos_ui_term_L.
 

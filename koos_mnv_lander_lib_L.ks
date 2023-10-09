@@ -34,7 +34,6 @@ run koos_obtcalc_lander_lib.
 		return true.
 	}
 	
-
 	function man_check_stage{
 		parameter laststage.
 		//local press to MAX(0,MIN(1,ship:body:atm:altitudepressure(ship:altitude))).
@@ -58,8 +57,6 @@ run koos_obtcalc_lander_lib.
 			if numOut > 0 { VES1["stage"](). }. //designed for if an assymetric booster engine goes out, but just causes problems with symmetric redundant ones.
 		}}
 	}
-
-	
   
 	function exec_node{
 		parameter laststage to 0.
@@ -101,7 +98,6 @@ run koos_obtcalc_lander_lib.
 			{
 					lock throttle to 0.
 					local sd to VES1["&solardir"]().
-					print sd.
 					if sd:contains("fore") {
 							lock STEERING to Body("sun"):position.
 					} else if sd:contains("aft") {
@@ -219,7 +215,6 @@ run koos_obtcalc_lander_lib.
 				}
         set ship:control:starboard to -1 * NSPID:UPDATE(mytime,vdot(errorvec,nsvec:normalized)).
         set ship:control:top to -1 * EWPID:UPDATE(mytime,vdot(errorvec,ewvec:normalized)).
-				// 				print "TrueRadar: "+trueRadar at(0,0).
 				return trueRadar < stopDist + 100.
 			},
 			{

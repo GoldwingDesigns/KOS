@@ -4,7 +4,7 @@ local tgtmoon to body(tgtmoonname).
 set ldgtgtname to "Mul - 3".
 local tgt to waypoint(ldgtgtname):geoposition.
 local final_ldg_obt_alt to 10000.
-local rdroffset to 1.
+local rdroffset to 0.7.
 set LOGMSGS to false. //save disk space
 
 local event_list to list(

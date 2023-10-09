@@ -12,6 +12,7 @@ local event_list to list(
     local landersep to ship:partstagged("LANDER"+landernumber+"_SEP")[0].
     local landercpu to ship:partstagged("LANDER"+landernumber+"_CPU")[0].
     landercpu:getmodule("KOSProcessor"):activate().
+    wait 1.
     landersep:getmodule("ModuleDecouple"):doevent("decouple").
     
     return true.

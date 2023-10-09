@@ -1,7 +1,7 @@
 parameter reboot_persist to true.// set to true to persist mission through reboot.
 local tgtmoonname to "Mun".
 local tgtmoon to body(tgtmoonname).
-set ldgtgtname to "Mul - 3".
+set ldgtgtname to "Mul - 1".
 local tgt to waypoint(ldgtgtname):geoposition.
 local final_ldg_obt_alt to 10000.
 local rdroffset to 0.5.
@@ -10,6 +10,7 @@ set LOGMSGS to false. //save disk space
 local event_list to list(
     VES1["panels on"]@,
     VES1["comms ext"]@,
+    // MNV["change inc lan alt"]@:bind(30,120,ship:altitude)
     MNV["match landing lat"]@:bind(tgt,final_ldg_obt_alt),
 	MNV["exec node"]@,
     MNV["change apo"]@:bind(final_ldg_obt_alt),

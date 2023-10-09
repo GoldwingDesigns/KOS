@@ -31,15 +31,15 @@ function plane_change_info {
 	}
 function find_landing_tgt_LAN{
     parameter tgt, inc, final_alt is 20000, init_alt is ship:obt:semimajoraxis-tgt:body:radius.
-    local initorbitperiod is orbit_period(tgt:body,init_alt,init_alt).
+    // local initorbitperiod is orbit_period(tgt:body,init_alt,init_alt).
     local transorbitperiod is orbit_period(tgt:body,init_alt,final_alt).
     local finalorbitperiod is orbit_period(tgt:body,final_alt,final_alt).
     local bodyrotationperiod is tgt:body:rotationperiod.
 		local sameside to true.
 		if VDOT(tgt:position - SHIP:BODY:POSITION,ship:position - ship:body:position) < 0 set sameside to false.
-    local answer is calc_lng_from_tgt(tgt, inc)+tgt:body:rotationangle+(((transorbitperiod/bodyrotationperiod)*360)*0.5)+(((finalorbitperiod/bodyrotationperiod)*360)*0.25).
+		local answer to 0.
+    set answer to calc_lng_from_tgt(tgt, inc)+tgt:body:rotationangle+(((transorbitperiod/bodyrotationperiod)*360)*0.5)+(((finalorbitperiod/bodyrotationperiod)*360)*0.25).
 		if sameside = false set answer to answer + (((finalorbitperiod/bodyrotationperiod)*360)*0.5).
-    //above is longitudinal dist from tgt minus current rotation angle from nodal line minus long dist covered by half transfer orbit minus dist covered during one quarter final orbit, but if target and ship are starting on oposite sides then have to add an extra half orbit of final orbit.
     until answer >= 0 {set answer to answer + 360.}
     until answer <=360 {set answer to answer - 360.}
 		local info to plane_change_info(inc,answer).
@@ -50,32 +50,30 @@ function find_landing_tgt_LAN{
     return answer.
 }
 function eta_true_anom { 
-    //100% from https://www.reddit.com/r/Kos/comments/3r5pbj/set_inclination_from_orbit_script/  I tried to do on my own but couldn't
 	declare local parameter tgt_lng.
-	// convert the positon from reference to deg from PE (which is the true anomaly)
 	local ship_ref to mod(obt:lan+obt:argumentofperiapsis+obt:trueanomaly,360).
-	// s_ref = lan + arg + referenc
-
 	local node_true_anom to (mod (720+ tgt_lng - (obt:lan + obt:argumentofperiapsis),360)).
-
-	// print "Node anomaly   : " + round(node_true_anom,2).	
+	local progr to ship:obt:inclination < 91.
 	local node_eta to 0.
 	local ecc to OBT:ECCENTRICITY.
 	if ecc < 0.001 {
-		set node_eta to SHIP:OBT:PERIOD * ((mod(tgt_lng - ship_ref + 360,360))) / 360.
-	
-	} else {
+		if progr {
+		set node_eta to SHIP:OBT:PERIOD * ((mod(tgt_lng - ship_ref + 720,360))) / 360.
+		 } else {
+		set node_eta to SHIP:OBT:PERIOD * ((mod(360-tgt_lng - ship_ref + 720,360))) / 360.
+		 }
+			} else {
 		local eccentric_anomaly to	arccos((ecc + cos(node_true_anom)) / (1 + ecc * cos(node_true_anom))).
 		local mean_anom to (eccentric_anomaly - ((180 / (constant():pi)) * (ecc * sin(eccentric_anomaly)))).
-	
-		// time from periapsis to point
-		local time_2_anom to  SHIP:OBT:PERIOD * mean_anom /360.
-
+		local time_2_anom to 0.
+		if progr {
+		set time_2_anom to  SHIP:OBT:PERIOD * mean_anom /360.
+		} else {
+		set time_2_anom to  SHIP:OBT:PERIOD * (360-mean_anom) /360.
+		}
 		local my_time_in_orbit to ((OBT:MEANANOMALYATEPOCH)*OBT:PERIOD /360).
 		set node_eta to mod(OBT:PERIOD + time_2_anom - my_time_in_orbit,OBT:PERIOD) .
-
 	}
-	
 	return node_eta.
 }
 function circle_distance {
@@ -94,26 +92,32 @@ function orbit_period {
     return sqrt((4*(constant:pi^2)*((p+a)/2)^3)/tgtbody:mu).
 }
 function calc_lng_from_tgt {
-	//taken from https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/20070025021.pdf
     parameter tgt, inc.
     local tlat is tgt:lat.
     local tlong is tgt:lng.
+		// if tlong < 0 set tlong to tlong + 360.
 	local alpha is 0.
+
 	if inc < 90 { //posigrade
-    	// if (tlat = inc) { set alpha to -90. } else if (tlat = -inc) { set alpha to 90. } else {set alpha to abs(arcsin(tan(tlat)/tan(inc))).}
+	if abs(inc-abs(tlat))<0.001 set alpha to 90.
+		else {
 			set alpha to abs(arcsin(tan(tlat)/tan(inc))).
+		}
 		if tlat > 0 {
 			return tlong - alpha.
 		} else {
-			return tlong - alpha+ 180.
+			return tlong - alpha + 180.
 		}
 	} else {
-        // if (tlat = inc) { set alpha to -90. } else if (tlat = -inc) { set alpha to 90. } else {set alpha to abs(arcsin(tan(tlat)/tan(180-inc))).}
-				set alpha to abs(arcsin(tan(tlat)/tan(180-inc))).
-		if tlat < 0 {
-			return tlong - alpha + 180.
-		} else {
-			return tlong - alpha.//i don't get it but ok.  this section really is same as above
+		if abs((180-inc)-abs(tlat))<0.001 set alpha to 90.
+		else {
+		set alpha to abs(arcsin(tan(tlat)/tan(180-inc))).
 		}
+		if tlat < 0 {
+			return tlong - alpha.
+		} else {
+			return tlong - alpha + 180.
+		}
+		
 	}
 }
