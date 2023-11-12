@@ -1,0 +1,528 @@
+T+00-000 00:00:09 Running Mission: mission_dock.ks
+T+00-000 00:07:31 Running Mission: mission_dock.ks
+T+00-000 00:05:42 Running Mission: mission_dock.ks
+T+00-000 00:01:45 Running Mission: mission_dock.ks
+T+00-000 00:00:24 Running Mission: mission_dock.ks
+T+00-000 00:00:31 Running Mission: mission_dock.ks
+T+00-000 00:02:25 Running Mission: mission_dock.ks
+T+00-000 00:00:20 Running Mission: mission_dock.ks
+T+00-000 00:00:20 Distant Approach to STATION - 1
+T+00-000 00:01:25 Running Mission: mission_dock.ks
+T+00-000 00:01:25 Distant Approach
+T+00-000 00:04:35 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:04:35 Target Port Set To dockingPort2
+T+00-000 00:04:35 Aligning Reference and Target Ports
+T+00-000 00:04:41 Close Approach to STATION - 1
+T+00-000 00:04:42 Close Approach to STATION - 1
+T+00-000 00:05:23 Close Approach to STATION - 1
+T+00-000 00:05:54 Final Approach to dockingPort2
+T+00-000 00:06:23 Docking Complete
+T+00-000 00:06:23 Distant Approach
+T+00-000 00:00:41 Running Mission: mission_dock.ks
+T+00-000 00:00:41 Distant Approach
+T+00-000 00:00:51 Running Mission: mission_dock.ks
+T+00-000 00:00:51 Distant Approach
+T+00-000 00:02:12 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:02:12 Target Port Set To dockingPort2
+T+00-000 00:02:12 Aligning Reference and Target Ports
+T+00-000 00:02:17 Close Approach to STATION - 1
+T+00-000 00:02:18 Close Approach to STATION - 1
+T+00-000 00:03:12 Close Approach to STATION - 1
+T+00-000 00:03:45 Final Approach to dockingPort2
+T+00-000 00:06:54 Running Mission: mission_dock.ks
+T+00-000 00:06:54 Distant Approach
+T+00-000 00:07:24 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:07:24 Target Port Set To dockingPort2
+T+00-000 00:08:11 Running Mission: mission_dock.ks
+T+00-000 00:08:11 Distant Approach
+T+00-000 00:09:25 Running Mission: mission_dock.ks
+T+00-000 00:09:25 Distant Approach
+T+00-000 00:09:40 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:09:40 Target Port Set To dockingPort2
+T+00-000 00:09:40 Aligning Reference and Target Ports
+T+00-000 00:09:46 Close Approach to STATION - 1
+T+00-000 00:09:47 Close Approach to STATION - 1
+T+00-000 00:10:37 Close Approach to STATION - 1
+T+00-000 00:11:08 Final Approach to STATION - 1
+T+00-000 00:12:46 Running Mission: mission_dock.ks
+T+00-000 00:12:46 Distant Approach
+T+00-000 00:13:43 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:13:43 Target Port Set To dockingPort2
+T+00-000 00:13:43 Aligning Reference and Target Ports
+T+00-000 00:13:49 Close Approach to STATION - 1
+T+00-000 00:13:50 Close Approach to STATION - 1
+T+00-000 00:14:36 Close Approach to STATION - 1
+T+00-000 00:15:09 Final Approach to STATION - 1
+T+00-000 00:17:15 Running Mission: mission_dock.ks
+T+00-000 00:17:15 Distant Approach
+T+00-000 00:17:52 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:17:52 Target Port Set To dockingPort2
+T+00-000 00:17:52 Aligning Reference and Target Ports
+T+00-000 00:17:57 Close Approach to STATION - 1
+T+00-000 00:17:59 Close Approach to STATION - 1
+T+00-000 00:18:48 Close Approach to STATION - 1
+T+00-000 00:19:20 Final Approach to STATION - 1
+T+00-000 00:20:43 Running Mission: mission_dock.ks
+T+00-000 00:20:43 Distant Approach
+T+00-000 00:22:02 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:22:02 Target Port Set To dockingPort2
+T+00-000 00:22:02 Aligning Reference and Target Ports
+T+00-000 00:22:08 Close Approach to dockingPort2
+T+00-000 00:22:09 Close Approach to dockingPort2
+T+00-000 00:22:55 Close Approach to dockingPort2
+T+00-000 00:23:29 Final Approach to STATION - 1
+T+00-000 00:27:30 Running Mission: mission_dock.ks
+T+00-000 00:27:30 Distant Approach
+T+00-000 00:32:10 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:32:10 Target Port Set To dockingPort2
+T+00-000 00:32:10 Aligning Reference and Target Ports
+T+00-000 00:32:16 Close Approach to STATION - 1
+T+00-000 00:32:17 Close Approach to STATION - 1
+T+00-000 00:33:11 Close Approach to STATION - 1
+T+00-000 00:33:42 Final Approach to STATION - 1
+T+00-000 00:00:22 Running Mission: mission_dock.ks
+T+00-000 00:00:22 Distant Approach
+T+00-000 00:01:14 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:01:14 Target Port Set To dockingPort2
+T+00-000 00:01:14 Aligning Reference and Target Ports
+T+00-000 00:01:19 Close Approach to STATION - 1
+T+00-000 00:01:20 Close Approach to STATION - 1
+T+00-000 00:02:29 Close Approach to STATION - 1
+T+00-000 00:03:21 Final Approach to STATION - 1
+T+00-000 00:02:24 Running Mission: mission_dock.ks
+T+00-000 00:02:24 Distant Approach
+T+00-000 00:03:02 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:03:02 Target Port Set To dockingPort2
+T+00-000 00:03:02 Aligning Reference and Target Ports
+T+00-000 00:03:21 Running Mission: mission_dock.ks
+T+00-000 00:03:54 Running Mission: mission_dock.ks
+T+00-000 00:03:54 Distant Approach
+T+00-000 00:04:08 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:04:08 Target Port Set To dockingPort2
+T+00-000 00:04:08 Aligning Reference and Target Ports
+T+00-000 00:04:13 Close Approach to STATION - 1
+T+00-000 00:04:14 Close Approach to STATION - 1
+T+00-000 00:05:16 Final Approach to STATION - 1
+T+00-000 00:01:35 Running Mission: mission_dock.ks
+T+00-000 00:01:35 Distant Approach
+T+00-000 00:03:03 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:03:03 Target Port Set To dockingPort2
+T+00-000 00:03:03 Aligning Reference and Target Ports
+T+00-000 00:03:08 Close Approach to STATION - 1
+T+00-000 00:03:10 Close Approach to STATION - 1
+T+00-000 00:04:22 Final Approach to STATION - 1
+T+00-000 00:05:31 Running Mission: mission_dock.ks
+T+00-000 00:05:31 Distant Approach
+T+00-000 00:07:58 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:07:58 Target Port Set To dockingPort2
+T+00-000 00:07:58 Aligning Reference and Target Ports
+T+00-000 00:08:03 Close Approach to STATION - 1
+T+00-000 00:08:05 Close Approach to STATION - 1
+T+00-000 00:09:12 Close Approach to STATION - 1
+T+00-000 00:10:10 Final Approach to dockingPort2
+T+00-000 00:14:41 Running Mission: mission_dock.ks
+T+00-000 00:14:41 Distant Approach
+T+00-000 00:24:30 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:24:30 Target Port Set To dockingPort2
+T+00-000 00:24:30 Aligning Reference and Target Ports
+T+00-000 00:24:35 Close Approach to STATION - 1
+T+00-000 00:24:37 Close Approach to STATION - 1
+T+00-000 00:25:53 Final Approach to STATION - 1
+T+00-000 00:26:59 Running Mission: mission_dock.ks
+T+00-000 00:26:59 Distant Approach
+T+00-000 00:27:50 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:27:50 Target Port Set To dockingPort2
+T+00-000 00:27:50 Aligning Reference and Target Ports
+T+00-000 00:27:56 Close Approach to STATION - 1
+T+00-000 00:27:57 Close Approach to STATION - 1
+T+00-000 00:29:16 Close Approach to STATION - 1
+T+00-000 00:30:02 Final Approach to STATION - 1
+T+00-000 00:30:27 Docking Complete
+T+00-000 00:30:27 Distant Approach
+T+00-000 00:30:29 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:00:11 Running Mission: mission_dock.ks
+T+00-000 00:00:11 Distant Approach
+T+00-000 00:01:56 Running Mission: mission_dock.ks
+T+00-000 00:01:56 Distant Approach
+T+00-000 00:03:21 Running Mission: mission_dock.ks
+T+00-000 00:03:21 Distant Approach
+T+00-000 00:04:02 Running Mission: mission_dock.ks
+T+00-000 00:04:02 Distant Approach
+T+00-000 00:04:41 Running Mission: mission_dock.ks
+T+00-000 00:04:41 Distant Approach
+T+00-000 00:06:41 Running Mission: mission_dock.ks
+T+00-000 00:06:41 Distant Approach
+T+00-000 00:07:08 Running Mission: mission_dock.ks
+T+00-000 00:07:08 Distant Approach
+T+00-000 00:07:10 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:07:10 Target Port Set To dockingPort2
+T+00-000 00:07:10 Aligning Reference and Target Ports
+T+00-000 00:07:15 Close Approach to STATION - 1
+T+00-000 00:07:16 Close Approach to STATION - 1
+T+00-000 00:09:53 Running Mission: mission_dock.ks
+T+00-000 00:09:53 Distant Approach
+T+00-000 00:12:23 Running Mission: mission_dock.ks
+T+00-000 00:12:23 Distant Approach
+T+00-000 00:12:28 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:12:28 Target Port Set To dockingPort2
+T+00-000 00:12:28 Aligning Reference and Target Ports
+T+00-000 00:12:34 Close Approach to STATION - 1
+T+00-000 00:12:35 Close Approach to STATION - 1
+T+00-000 00:15:10 Running Mission: mission_dock.ks
+T+00-000 00:15:10 Distant Approach
+T+00-000 00:17:38 Running Mission: mission_dock.ks
+T+00-000 00:17:38 Distant Approach
+T+00-000 00:17:59 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:17:59 Target Port Set To dockingPort2
+T+00-000 00:17:59 Aligning Reference and Target Ports
+T+00-000 00:18:04 Close Approach to STATION - 1
+T+00-000 00:18:06 Close Approach to STATION - 1
+T+00-000 00:18:57 Close Approach to STATION - 1
+T+00-000 00:19:34 Final Approach to STATION - 1
+T+00-000 00:19:57 Docking Complete
+T+00-000 00:19:57 Mission Complete.
+T+00-000 00:01:09 Running Mission: mission_dock.ks
+T+00-000 00:01:09 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:01:09 Target Port Set To dockingPort2
+T+00-000 00:01:09 Aligning Reference and Target Ports
+T+00-000 00:01:14 Distant Approach
+T+00-000 00:02:05 Close Approach to STATION - 1
+T+00-000 00:02:06 Close Approach to STATION - 1
+T+00-000 00:02:50 Final Approach to dockingPort2
+T+00-000 00:04:52 Running Mission: mission_dock.ks
+T+00-000 00:04:52 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:04:52 Target Port Set To dockingPort2
+T+00-000 00:04:52 Aligning Reference and Target Ports
+T+00-000 00:04:57 Distant Approach
+T+00-000 00:09:16 Running Mission: mission_dock.ks
+T+00-000 00:09:16 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:09:16 Target Port Set To dockingPort2
+T+00-000 00:09:16 Aligning Reference and Target Ports
+T+00-000 00:09:21 Distant Approach
+T+00-000 00:10:04 Running Mission: mission_dock.ks
+T+00-000 00:10:04 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:10:04 Target Port Set To dockingPort2
+T+00-000 00:10:04 Aligning Reference and Target Ports
+T+00-000 00:10:09 Distant Approach
+T+00-000 00:12:34 Running Mission: mission_dock.ks
+T+00-000 00:12:34 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:12:34 Target Port Set To dockingPort2
+T+00-000 00:12:34 Aligning Reference and Target Ports
+T+00-000 00:12:39 Distant Approach
+T+00-000 00:13:32 Running Mission: mission_dock.ks
+T+00-000 00:13:32 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:13:32 Target Port Set To dockingPort2
+T+00-000 00:13:32 Aligning Reference and Target Ports
+T+00-000 00:13:37 Distant Approach
+T+00-000 00:14:32 Running Mission: mission_dock.ks
+T+00-000 00:14:32 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:14:32 Target Port Set To dockingPort2
+T+00-000 00:14:32 Aligning Reference and Target Ports
+T+00-000 00:14:37 Distant Approach
+T+00-000 00:19:48 Running Mission: mission_dock.ks
+T+00-000 00:19:48 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:19:48 Target Port Set To dockingPort2
+T+00-000 00:19:48 Aligning Reference and Target Ports
+T+00-000 00:19:53 Distant Approach
+T+00-000 00:20:44 Running Mission: mission_dock.ks
+T+00-000 00:20:44 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:20:44 Target Port Set To dockingPort2
+T+00-000 00:20:44 Aligning Reference and Target Ports
+T+00-000 00:20:49 Distant Approach
+T+00-000 00:22:58 Running Mission: mission_dock.ks
+T+00-000 00:22:58 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:22:58 Target Port Set To dockingPort2
+T+00-000 00:22:58 Aligning Reference and Target Ports
+T+00-000 00:23:03 Distant Approach
+T+00-000 00:23:33 Close Approach to STATION - 1
+T+00-000 00:23:34 Close Approach to STATION - 1
+T+00-000 00:24:51 Close Approach to STATION - 1
+T+00-000 00:25:30 Final Approach to dockingPort2
+T+00-000 00:29:35 Running Mission: mission_dock.ks
+T+00-000 00:29:35 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:29:35 Target Port Set To dockingPort2
+T+00-000 00:29:35 Aligning Reference and Target Ports
+T+00-000 00:29:40 Distant Approach
+T+00-000 00:30:32 Close Approach to STATION - 1
+T+00-000 00:30:33 Close Approach to STATION - 1
+T+00-000 00:31:34 Close Approach to STATION - 1
+T+00-000 00:33:24 Running Mission: mission_dock.ks
+T+00-000 00:33:24 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:33:24 Target Port Set To dockingPort2
+T+00-000 00:33:24 Aligning Reference and Target Ports
+T+00-000 00:33:29 Distant Approach
+T+00-000 00:34:12 Close Approach to STATION - 1
+T+00-000 00:34:13 Close Approach to STATION - 1
+T+00-000 00:35:15 Close Approach to STATION - 1
+T+00-000 00:35:54 Final Approach
+T+00-000 00:37:47 Running Mission: mission_dock.ks
+T+00-000 00:37:47 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:37:47 Target Port Set To dockingPort2
+T+00-000 00:37:47 Aligning Reference and Target Ports
+T+00-000 00:37:52 Distant Approach
+T+00-000 00:38:35 Close Approach to STATION - 1
+T+00-000 00:38:36 Close Approach to STATION - 1
+T+00-000 00:39:37 Close Approach to STATION - 1
+T+00-000 00:40:16 Final Approach
+T+00-000 00:41:27 Running Mission: mission_dock.ks
+T+00-000 00:41:28 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:41:28 Target Port Set To dockingPort2
+T+00-000 00:41:28 Aligning Reference and Target Ports
+T+00-000 00:41:33 Distant Approach
+T+00-000 00:42:25 Close Approach to STATION - 1
+T+00-000 00:42:26 Close Approach to STATION - 1
+T+00-000 00:43:30 Close Approach to STATION - 1
+T+00-000 00:44:04 Final Approach
+T+00-000 01:17:13 Running Mission: mission_dock.ks
+T+00-000 01:17:28 Running Mission: mission_dock.ks
+T+00-000 01:17:28 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 01:17:28 Target Port Set To dockingPort2
+T+00-000 01:17:28 Aligning Reference and Target Ports
+T+00-000 01:17:33 Distant Approach
+T+00-000 01:18:01 Close Approach to STATION - 1
+T+00-000 01:18:02 Close Approach to STATION - 1
+T+00-000 01:19:21 Final Approach
+T+00-000 01:21:35 Running Mission: mission_dock.ks
+T+00-000 01:21:35 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 01:21:35 Target Port Set To dockingPort2
+T+00-000 01:21:35 Aligning Reference and Target Ports
+T+00-000 01:21:40 Distant Approach
+T+00-000 01:22:34 Close Approach to STATION - 1
+T+00-000 01:22:35 Close Approach to STATION - 1
+T+00-000 01:23:37 Close Approach to STATION - 1
+T+00-000 01:24:12 Final Approach
+T+00-000 01:26:43 Running Mission: mission_dock.ks
+T+00-000 01:26:43 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 01:26:43 Target Port Set To dockingPort2
+T+00-000 01:26:43 Aligning Reference and Target Ports
+T+00-000 01:26:48 Distant Approach
+T+00-000 01:27:24 Running Mission: mission_dock.ks
+T+00-000 01:27:24 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 01:27:24 Target Port Set To dockingPort2
+T+00-000 01:27:24 Aligning Reference and Target Ports
+T+00-000 01:27:30 Distant Approach
+T+00-000 01:28:14 Running Mission: mission_dock.ks
+T+00-000 01:28:14 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 01:28:14 Target Port Set To dockingPort2
+T+00-000 01:28:14 Aligning Reference and Target Ports
+T+00-000 01:28:19 Distant Approach
+T+00-000 01:29:16 Close Approach to STATION - 1
+T+00-000 01:29:38 Close Approach to STATION - 1
+T+00-000 01:30:41 Close Approach to STATION - 1
+T+00-000 01:31:14 Final Approach
+T+00-000 01:39:44 Running Mission: mission_dock.ks
+T+00-000 01:39:44 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 01:39:44 Target Port Set To dockingPort2
+T+00-000 01:39:44 Aligning Reference and Target Ports
+T+00-000 01:39:49 Distant Approach
+T+00-000 01:40:37 Close Approach to STATION - 1
+T+00-000 01:40:59 Close Approach to STATION - 1
+T+00-000 01:42:05 Close Approach to STATION - 1
+T+00-000 01:42:38 Final Approach
+T+00-000 01:44:28 Running Mission: mission_dock.ks
+T+00-000 01:44:28 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 01:44:28 Target Port Set To dockingPort2
+T+00-000 01:44:28 Aligning Reference and Target Ports
+T+00-000 01:44:33 Distant Approach
+T+00-000 01:45:28 Close Approach to STATION - 1
+T+00-000 01:45:51 Close Approach to STATION - 1
+T+00-000 01:46:54 Close Approach to STATION - 1
+T+00-000 01:47:26 Final Approach
+T+00-000 01:50:32 Running Mission: mission_dock.ks
+T+00-000 01:50:32 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 01:50:32 Target Port Set To dockingPort2
+T+00-000 01:50:32 Aligning Reference and Target Ports
+T+00-000 01:50:37 Distant Approach
+T+00-000 01:51:32 Close Approach to STATION - 1
+T+00-000 01:51:55 Close Approach to STATION - 1
+T+00-000 01:52:57 Close Approach to STATION - 1
+T+00-000 01:53:29 Final Approach
+T+00-000 01:54:40 Running Mission: mission_dock.ks
+T+00-000 01:54:40 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 01:54:40 Target Port Set To dockingPort2
+T+00-000 01:54:40 Aligning Reference and Target Ports
+T+00-000 01:54:45 Distant Approach
+T+00-000 01:55:37 Close Approach to STATION - 1
+T+00-000 01:56:40 Close Approach to STATION - 1
+T+00-000 01:57:13 Final Approach
+T+00-000 01:58:37 Running Mission: mission_dock.ks
+T+00-000 01:58:37 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 01:58:37 Target Port Set To dockingPort2
+T+00-000 01:58:37 Aligning Reference and Target Ports
+T+00-000 01:58:42 Distant Approach
+T+00-000 01:59:37 Close Approach to STATION - 1
+T+00-000 02:00:40 Close Approach to STATION - 1
+T+00-000 02:01:12 Final Approach
+T+00-000 02:04:04 Running Mission: mission_dock.ks
+T+00-000 02:04:04 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 02:04:04 Target Port Set To dockingPort2
+T+00-000 02:04:04 Aligning Reference and Target Ports
+T+00-000 02:04:09 Distant Approach
+T+00-000 02:05:04 Close Approach to STATION - 1
+T+00-000 02:06:05 Close Approach to STATION - 1
+T+00-000 02:06:38 Final Approach
+T+00-000 02:09:36 Docking Complete
+T+00-000 02:09:36 Mission Complete.
+T+00-000 00:00:25 Running Mission: mission_dock.ks
+T+00-000 00:00:25 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:01:10 Running Mission: mission_dock.ks
+T+00-000 00:01:10 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:01:10 Target Port Set To dockingPort2
+T+00-000 00:01:10 Aligning Reference and Target Ports
+T+00-000 00:01:15 Distant Approach
+T+00-000 00:02:05 Close Approach to STATION - 1
+T+00-000 00:03:10 Final Approach
+T+00-000 00:05:14 Running Mission: mission_dock.ks
+T+00-000 00:05:14 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:05:14 Target Port Set To dockingPort2
+T+00-000 00:05:14 Aligning Reference and Target Ports
+T+00-000 00:05:20 Distant Approach
+T+00-000 00:05:21 Mission Complete.
+T+00-000 00:00:16 Running Mission: mission_dock.ks
+T+00-000 00:00:23 Running Mission: mission_dock.ks
+T+00-000 00:00:40 Running Mission: mission_dock.ks
+T+00-000 00:00:40 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:00:40 Target Port Set To dockingPort2
+T+00-000 00:00:40 Aligning Reference and Target Ports
+T+00-000 00:00:45 Distant Approach
+T+00-000 00:01:39 Close Approach to STATION - 1
+T+00-000 00:02:39 Close Approach to STATION - 1
+T+00-000 00:03:14 Final Approach
+T+00-000 00:08:00 Running Mission: mission_dock.ks
+T+00-000 00:08:00 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:08:00 Target Port Set To dockingPort2
+T+00-000 00:08:00 Aligning Reference and Target Ports
+T+00-000 00:08:05 Distant Approach
+T+00-000 00:08:46 Close Approach to STATION - 1
+T+00-000 00:09:49 Close Approach to STATION - 1
+T+00-000 00:10:21 Final Approach
+T+00-000 00:11:08 Running Mission: mission_dock.ks
+T+00-000 00:11:08 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:11:08 Target Port Set To dockingPort2
+T+00-000 00:11:08 Aligning Reference and Target Ports
+T+00-000 00:11:13 Distant Approach
+T+00-000 00:16:32 Close Approach to STATION - 1
+T+00-000 00:17:44 Final Approach
+T+00-000 00:22:04 Running Mission: mission_dock.ks
+T+00-000 00:22:04 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:22:04 Target Port Set To dockingPort2
+T+00-000 00:22:04 Aligning Reference and Target Ports
+T+00-000 00:22:09 Distant Approach
+T+00-000 00:23:36 Close Approach to STATION - 1
+T+00-000 00:24:53 Final Approach
+T+00-000 00:25:57 Running Mission: mission_dock.ks
+T+00-000 00:25:57 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:25:57 Target Port Set To dockingPort2
+T+00-000 00:25:57 Aligning Reference and Target Ports
+T+00-000 00:26:02 Distant Approach
+T+00-000 00:26:45 Close Approach to STATION - 1
+T+00-000 00:27:59 Final Approach
+T+00-000 00:29:02 Running Mission: mission_dock.ks
+T+00-000 00:29:02 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:29:02 Target Port Set To dockingPort2
+T+00-000 00:29:02 Aligning Reference and Target Ports
+T+00-000 00:29:07 Distant Approach
+T+00-000 00:29:52 Close Approach to STATION - 1
+T+00-000 00:31:09 Final Approach
+T+00-000 00:31:51 Running Mission: mission_dock.ks
+T+00-000 00:31:51 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:31:51 Target Port Set To dockingPort2
+T+00-000 00:31:51 Aligning Reference and Target Ports
+T+00-000 00:31:56 Distant Approach
+T+00-000 00:32:42 Close Approach to STATION - 1
+T+00-000 00:33:45 Final Approach
+T+00-000 00:34:49 Running Mission: mission_dock.ks
+T+00-000 00:34:49 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:34:49 Target Port Set To dockingPort2
+T+00-000 00:34:49 Aligning Reference and Target Ports
+T+00-000 00:34:54 Distant Approach
+T+00-000 00:35:27 Close Approach to STATION - 1
+T+00-000 00:36:39 Final Approach
+T+00-000 00:38:04 Running Mission: mission_dock.ks
+T+00-000 00:38:04 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:38:04 Target Port Set To dockingPort2
+T+00-000 00:38:04 Aligning Reference and Target Ports
+T+00-000 00:38:09 Distant Approach
+T+00-000 00:39:04 Close Approach to STATION - 1
+T+00-000 00:40:07 Close Approach to STATION - 1
+T+00-000 00:40:40 Final Approach
+T+00-000 00:41:44 Running Mission: mission_dock.ks
+T+00-000 00:41:44 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:41:44 Target Port Set To dockingPort2
+T+00-000 00:41:44 Aligning Reference and Target Ports
+T+00-000 00:41:49 Distant Approach
+T+00-000 00:42:35 Close Approach to STATION - 1
+T+00-000 00:43:49 Final Approach
+T+00-000 00:45:47 Running Mission: mission_dock.ks
+T+00-000 00:45:47 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:45:47 Target Port Set To dockingPort2
+T+00-000 00:45:47 Aligning Reference and Target Ports
+T+00-000 00:45:52 Distant Approach
+T+00-000 00:46:39 Close Approach to STATION - 1
+T+00-000 00:47:51 Final Approach
+T+00-000 00:49:44 Running Mission: mission_dock.ks
+T+00-000 00:49:44 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:49:44 Target Port Set To dockingPort2
+T+00-000 00:49:44 Aligning Reference and Target Ports
+T+00-000 00:49:49 Distant Approach
+T+00-000 00:54:19 Close Approach to STATION - 1
+T+00-000 00:55:32 Final Approach
+T+00-000 00:58:09 Running Mission: mission_dock.ks
+T+00-000 00:58:09 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 00:58:09 Target Port Set To dockingPort2
+T+00-000 00:58:09 Aligning Reference and Target Ports
+T+00-000 00:58:14 Distant Approach
+T+00-000 01:00:02 Close Approach to STATION - 1
+T+00-000 01:01:19 Final Approach
+T+00-000 01:02:41 Running Mission: mission_dock.ks
+T+00-000 01:02:41 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 01:02:41 Target Port Set To dockingPort2
+T+00-000 01:02:41 Aligning Reference and Target Ports
+T+00-000 01:02:46 Distant Approach
+T+00-000 01:03:02 Running Mission: mission_dock.ks
+T+00-000 01:03:02 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 01:03:02 Target Port Set To dockingPort2
+T+00-000 01:03:02 Aligning Reference and Target Ports
+T+00-000 01:03:07 Distant Approach
+T+00-000 01:04:32 Running Mission: mission_dock.ks
+T+00-000 01:04:32 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 01:04:32 Target Port Set To dockingPort2
+T+00-000 01:04:32 Aligning Reference and Target Ports
+T+00-000 01:04:37 Distant Approach
+T+00-000 01:04:57 Close Approach to STATION - 1
+T+00-000 01:06:00 Close Approach to STATION - 1
+T+00-000 01:06:36 Final Approach
+T+00-000 01:07:52 Running Mission: mission_dock.ks
+T+00-000 01:07:52 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 01:07:52 Target Port Set To dockingPort2
+T+00-000 01:08:05 Running Mission: mission_dock.ks
+T+00-000 01:08:05 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 01:08:05 Target Port Set To dockingPort2
+T+00-000 01:08:05 Aligning Reference and Target Ports
+T+00-000 01:08:10 Distant Approach
+T+00-000 01:09:05 Close Approach to STATION - 1
+T+00-000 01:10:07 Close Approach to STATION - 1
+T+00-000 01:11:20 Running Mission: mission_dock.ks
+T+00-000 01:11:20 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 01:11:20 Target Port Set To dockingPort2
+T+00-000 01:11:20 Aligning Reference and Target Ports
+T+00-000 01:11:25 Distant Approach
+T+00-000 01:12:14 Close Approach to STATION - 1
+T+00-000 01:13:19 Close Approach to STATION - 1
+T+00-000 01:13:51 Final Approach
+T+00-000 01:14:27 Running Mission: mission_dock.ks
+T+00-000 01:14:27 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 01:14:27 Target Port Set To dockingPort2
+T+00-000 01:14:27 Aligning Reference and Target Ports
+T+00-000 01:14:32 Distant Approach
+T+00-000 01:15:15 Close Approach to STATION - 1
+T+00-000 01:16:15 Close Approach to STATION - 1
+T+00-000 01:16:54 Final Approach
+T+00-000 01:18:48 Running Mission: mission_dock.ks
+T+00-000 01:18:48 Reference Port Set To ExtraDockingPorts-SmallModularDockingPort
+T+00-000 01:18:48 Target Port Set To dockingPort2
+T+00-000 01:18:48 Aligning Reference and Target Ports
+T+00-000 01:18:53 Distant Approach
+T+00-000 01:19:43 Close Approach to STATION - 1
+T+00-000 01:20:45 Close Approach to STATION - 1
+T+00-000 01:21:18 Final Approach

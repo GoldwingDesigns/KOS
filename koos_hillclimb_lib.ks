@@ -76,10 +76,10 @@ function arrsort{
 }		
 		
 function evaluate{
-	parameter nd, moonname, tgtvalue, ish.
+	parameter nd, tgt, tgtvalue, ish.
 	ADD nd.
 	WAIT 0.1.
-	local score is scorenode(moonname,tgtvalue, nd).
+	local score is scorenode(tgt,tgtvalue, nd).
 	REMOVE nd.
 	if score < ish { return list(nd,0). }
 	return list(nd,score).
@@ -98,6 +98,9 @@ function scorenode{
 	// if tgtvalue[i] = "apoapsis" { set score to score + abs(nd:ORBIT:NEXTPATCH:APOAPSIS - tgtvalue[i+1]). }
 	if tgtvalue[i] = "inclination" { set score to score + (abs(nd:ORBIT:NEXTPATCH:INCLINATION - tgtvalue[i+1])*100). }
 	if tgtvalue[i] = "eccentricity" { set score to score + abs(nd:ORBIT:NEXTPATCH:ECCENTRICITY - tgtvalue[i+1]). }
+	if tgtvalue[i] = "shiptoship" { 
+			set score to score + abs(cpa(tgt,nd)-tgtvalue[i+1]).
+	}
 	}
 	// print score.
 	return score.

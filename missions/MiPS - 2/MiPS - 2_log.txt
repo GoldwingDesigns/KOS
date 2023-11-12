@@ -1,0 +1,17 @@
+T+00-012 04:43:40 Running Mission: 9_mission_circ_at_peri.ks
+T+00-012 04:43:40 Change Apo Node Added.
+T+00-012 04:43:40 SAS Off.
+T+00-012 04:43:43 Calculated STAGEDV for stage 1 is: 778.299194335938
+T+00-012 04:43:43 Executing node: NODE(88439.4790375009,0,0,-18.260518408172)Burntime: 6.48729509982985
+T+00-016 05:18:09 SAS On.
+T+00-016 05:18:09 Node Execution Complete.
+T+00-016 05:18:09 Mission Complete.
+T+00-037 00:53:55 Running Mission: 3_mission_exec_node.ks
+T+00-037 00:53:55 SAS Off.
+T+00-037 00:54:07 Running Mission: 3_mission_exec_node.ks
+T+00-037 00:54:07 SAS Off.
+T+00-037 00:54:10 Calculated STAGEDV for stage 1 is: 729.795104980469
+T+00-037 00:54:10 Executing node: NODE(4184.00349854678,0,-13.4693481898183,0)Burntime: 3.87333399527786
+T+00-037 02:04:18 SAS On.
+T+00-037 02:04:18 Node Execution Complete.
+T+00-037 02:04:18 Mission Complete.

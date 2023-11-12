@@ -303,7 +303,7 @@ run koos_hillclimb_lib.
 			{
 					lock throttle to 0.
 					local sd to VES1["&solardir"]().
-					print sd.
+					// print sd.
 					if sd:contains("fore") {
 							lock STEERING to Body("sun"):position.
 					} else if sd:contains("aft") {

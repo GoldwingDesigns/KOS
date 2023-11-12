@@ -1,0 +1,2 @@
+T+00-009 01:44:57 Running Mission: mission_undock.ks
+T+00-009 01:44:57 Aligning Reference and Target Ports

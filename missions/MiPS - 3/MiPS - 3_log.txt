@@ -1,0 +1,18 @@
+T+00-008 05:56:16 Running Mission: 6_mission_change_inc_alt.ks
+T+00-008 05:56:16 Inc/LAN/Alt Node Added: 80/282.195948112737/350000
+T+00-008 05:56:16 Mission Complete.
+T+00-008 05:56:19 Running Mission: 3_mission_exec_node.ks
+T+00-008 05:56:19 SAS Off.
+T+00-008 05:56:23 Calculated STAGEDV for stage 4 is: 449.437652587891
+T+00-008 05:56:23 Executing node: NODE(123553.437041037,0,-21.2518525434489,-34.3755732877294)Burntime: 2.74370001478925
+T+00-014 04:16:02 SAS On.
+T+00-014 04:16:02 Node Execution Complete.
+T+00-014 04:16:03 Mission Complete.
+T+00-014 04:17:13 Running Mission: 9_mission_circ_at_peri.ks
+T+00-014 04:17:13 Change Apo Node Added.
+T+00-014 04:17:13 SAS Off.
+T+00-014 04:17:17 Calculated STAGEDV for stage 4 is: 408.295684814453
+T+00-014 04:17:17 Executing node: NODE(74865.0463816598,0,0,-17.2174633714764)Burntime: 1.15862909218065
+T+00-018 01:05:27 SAS On.
+T+00-018 01:05:27 Node Execution Complete.
+T+00-018 01:05:27 Mission Complete.

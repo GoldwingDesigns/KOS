@@ -11,11 +11,14 @@ GLOBAL DATAVOLUME to "SLAVE_1_DISK".
 GLOBAL BOOTFILES is LIST("koos_term_docker_boot").
 GLOBAL LIBFILES is LIST(
     "koos_mission_runner_L",
+    "koos_mnv_tiny_lib_L",
+    "koos_obtcalc_tiny_lib",
     "koos_sys_lib_L",
     "koos_ves_lib_L",
     "koos_utils_lib_L",
     "koos_ui_term_L",
     "koos_dock_lib_L",
+    "koos_hillclimb_lib",
     "koos_pathfinding_lib",
     "lib_enum").
 clearscreen.
@@ -59,6 +62,7 @@ IF SHIP:STATUS = "PRELAUNCH" or homeConnection:isconnected { //create a check he
 
 switch to DATAVOLUME.
 run koos_ves_lib_L.
+run koos_mnv_tiny_lib_L.
 run koos_dock_lib_L.
 run koos_sys_lib_L.
 run koos_utils_lib_L.

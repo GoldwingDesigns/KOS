@@ -18,15 +18,17 @@ function findslope {
 }
 
 function cpa { //largely stolen from CheersKevin - largely
-	parameter tgt,nd.
-	
+	parameter tgt,nd,returntime is false, sensitivity is 1.
+        local st is TIME:SECONDS.
+        local et is st + ship:ORBIT:PERIOD.
 	if HASNODE {
-		local st is TIME:SECONDS + nd:ETA.
-        local et is st + nd:ORBIT:PERIOD.
+		set st to TIME:SECONDS + nd:ETA.
+        set et to st + nd:ORBIT:PERIOD.
+    }
 		local mt is (st+et)/2.
 		local sslope is findslope(tgt,st).
 		local mslope is findslope(tgt,mt).
-		until (et-st<0.1) or mslope < 0.1 {
+		until (et-st<0.1) or abs(mslope) < 0.1^sensitivity {
 			if (mslope * sslope) > 0
 				set st to mt.
 			else
@@ -34,9 +36,12 @@ function cpa { //largely stolen from CheersKevin - largely
 			set mt to (st+et)/2.
 			set mslope to findslope(tgt,mt).
 		}
+        if returntime {
+            return mt.
+        } else {
 		return seperation_at(tgt,mt).
-		
-	}
+        }
+	
 }
 
 function LAZcalc_init {
@@ -180,6 +185,7 @@ function findLaunchWindowToTarget {
     parameter leadTime is 60, myTarget is target.
     return findLaunchWindow(leadTime,myTarget:orbit:inclination,myTarget:orbit:lan).
 }
+
 function findLaunchWindow {
     parameter leadTime is 60, alpha is 0, raan is 0.
     local lt is leadTime/3600.

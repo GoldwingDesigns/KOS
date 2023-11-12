@@ -3,7 +3,7 @@ T+00-000 00:00:00 Throttle Up.
 T+00-000 00:00:00 Engine Ignition.
 T+00-000 00:00:00 Launch Checks Successful.
 T+00-000 00:00:00 SAS Off.
-T+-1-0-1 -1:-1:-1 Commence Launch Program at 4y 28d 0h 39m 32s.
+T+00-000 00:00:00 Commence Launch Program at 4y 49d 3h 19m 35s.
 T+00-000 00:00:16 Landing Gear Retracted.
 T+00-000 00:00:16 Commence Pitchover.
 T+00-000 00:00:23 Steering Unlocked. Gravity Turn Initiated.
@@ -12,27 +12,75 @@ T+00-000 00:01:48 Stage: 6 eng: CR-2 'Vesuvius' Liquid Hydrogen Engine flameout.
 T+00-000 00:01:48 Stage. Current stage: 5.
 T+00-000 00:04:19 Stage: 5 no thrust.
 T+00-000 00:04:19 Stage. Current stage: 4.
-T+00-000 00:04:37 Fairings deployed.
-T+00-000 00:04:55 Radio Antennas Extended.
-T+00-000 00:05:24 Solar Panels Extended.
-T+00-000 00:08:14 Launch Complete.
-T+00-000 00:08:15 Circularize Node Added At Apoapsis.
-T+00-000 00:08:15 SAS Off.
-T+00-000 00:08:18 Calculated STAGEDV for stage 4 is: 1553.16638183594
-T+00-000 00:08:18 Executing node: NODE(872.458068463951,0,0,11.7532040879428)Burntime: 1.71814701533105
-T+00-000 00:23:10 SAS On.
-T+00-000 00:23:10 Node Execution Complete.
-T+00-000 00:23:11 Mission Complete.
-T+00-000 00:23:14 Running Mission: 1_mission_find_minmus_transfer.ks
-T+00-000 00:23:14 Finding Transfer to Minmus
-T+00-000 00:24:54 Moon Transfer Node To Minmus Added
-T+00-000 00:24:54 Mission Complete.
-T+00-000 00:25:03 Running Mission: 3_mission_exec_node.ks
-T+00-000 00:25:03 SAS Off.
-T+00-000 00:25:29 Running Mission: 3_mission_exec_node.ks
-T+00-000 00:25:29 SAS Off.
-T+00-000 00:25:32 Calculated STAGEDV for stage 4 is: 1548.51220703125
-T+00-000 00:25:32 Executing node: NODE(670.066815875471,10,0,916.265582057966)Burntime: 125.94481888672
-T+00-000 00:37:58 SAS On.
-T+00-000 00:37:58 Node Execution Complete.
-T+00-000 00:37:59 Mission Complete.
+T+00-000 00:04:41 Fairings deployed.
+T+00-000 00:05:01 Radio Antennas Extended.
+T+00-000 00:05:36 Solar Panels Extended.
+T+00-000 00:08:02 Launch Complete.
+T+00-000 00:08:02 Circularize Node Added At Apoapsis.
+T+00-000 00:08:02 SAS Off.
+T+00-000 00:08:05 Calculated STAGEDV for stage 4 is: 1555.78381347656
+T+00-000 00:08:06 Executing node: NODE(858.683853957802,0,0,7.98615188013628)Burntime: 1.16982809099898
+T+00-000 00:22:43 SAS On.
+T+00-000 00:22:44 Node Execution Complete.
+T+00-000 00:22:44 Mission Complete.
+T+00-000 00:22:55 Running Mission: 1_mission_find_minmus_transfer.ks
+T+00-000 00:22:56 Finding Transfer to Minmus
+T+00-000 00:23:25 Running Mission: 1_mission_find_minmus_transfer.ks
+T+00-000 00:23:25 Finding Transfer to Minmus
+T+00-000 00:23:36 Moon Transfer Node To Minmus Added
+T+00-000 00:23:36 Mission Complete.
+T+00-000 00:24:56 Running Mission: 3_mission_exec_node.ks
+T+00-000 00:24:56 SAS Off.
+T+00-000 00:24:59 Calculated STAGEDV for stage 4 is: 1552.62658691406
+T+00-000 00:24:59 Executing node: NODE(565.414794709533,-0.2,2,919.712755029794)Burntime: 126.73468503973
+T+00-000 00:35:40 SAS On.
+T+00-000 00:35:40 Node Execution Complete.
+T+00-000 00:35:41 Mission Complete.
+T+00-008 00:17:17 Running Mission: 5_mission_capture_body.ks
+T+00-008 00:17:17 Orbit Capture Node Added
+T+00-008 00:17:17 SAS Off.
+T+00-008 00:17:20 Calculated STAGEDV for stage 4 is: 636.386962890625
+T+00-008 00:17:20 Executing node: NODE(2687.99517969787,0,0,-197.022916795551)Burntime: 144.666151603546
+T+00-008 01:04:02 SAS On.
+T+00-008 01:04:02 Node Execution Complete.
+T+00-008 01:04:02 Mission Complete.
+T+00-008 01:04:32 Running Mission: 6_mission_change_inc.ks
+T+00-008 01:04:32 Inc/LAN Node Added: 0/69.5673148613475
+T+00-008 01:04:32 Mission Complete.
+T+00-008 01:05:05 Running Mission: 3_mission_exec_node.ks
+T+00-008 01:05:05 SAS Off.
+T+00-008 01:05:08 Calculated STAGEDV for stage 4 is: 428.165802001953
+T+00-008 01:05:08 Executing node: NODE(195483.468758788,0,-3.1515639161891,-0.169614257213855)Burntime: 0.487605962176567
+T+00-017 01:23:32 SAS On.
+T+00-017 01:23:32 Node Execution Complete.
+T+00-017 01:23:32 Mission Complete.
+T+00-017 01:24:53 Running Mission: 7_mission_change_peri.ks
+T+00-017 01:24:53 Change Pe Node Added.
+T+00-017 01:24:53 Mission Complete.
+T+00-017 01:35:03 Running Mission: 3_mission_exec_node.ks
+T+00-017 01:35:03 SAS Off.
+T+00-017 01:35:07 Calculated STAGEDV for stage 4 is: 427.604522705078
+T+00-017 01:35:07 Executing node: NODE(15685.8246108256,0,0,-14.2159253649546)Burntime: 2.19272761837118
+T+00-017 05:56:54 SAS On.
+T+00-017 05:56:54 Node Execution Complete.
+T+00-017 05:56:54 Mission Complete.
+T+00-017 05:57:04 Running Mission: 8_mission_change_apo.ks
+T+00-017 05:57:04 Change Apo Node Added.
+T+00-017 05:57:05 Mission Complete.
+T+00-021 04:28:46 Running Mission: 3_mission_exec_node.ks
+T+00-021 04:28:46 SAS Off.
+T+00-021 04:28:49 Calculated STAGEDV for stage 4 is: 423.381195068359
+T+00-021 04:28:49 Executing node: NODE(14054.6141752228,0,0,-17.6555559141378)Burntime: 2.71232823657524
+T+00-022 02:23:26 SAS On.
+T+00-022 02:23:26 Node Execution Complete.
+T+00-022 02:23:26 Mission Complete.
+T+00-023 00:55:08 Running Mission: 7_mission_change_peri.ks
+T+00-023 00:55:08 Change Pe Node Added.
+T+00-023 00:55:09 Mission Complete.
+T+00-023 00:55:30 Running Mission: 3_mission_exec_node.ks
+T+00-023 00:55:30 SAS Off.
+T+00-023 00:55:33 Calculated STAGEDV for stage 4 is: 403.418731689453
+T+00-023 00:55:33 Executing node: NODE(1408.63392913714,0,0,-0.232307438959218)Burntime: 0.240397408163109
+T+00-023 01:19:17 SAS On.
+T+00-023 01:19:18 Node Execution Complete.
+T+00-023 01:19:18 Mission Complete.

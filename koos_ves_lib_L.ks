@@ -78,8 +78,7 @@
             "fairing deploy",   meth_deploy_fairing@,
             // "ship to sun",      meth_ship_to_sun@,
             "prelaunch checks", meth_prelaunch_checks@,
-            "check ign",        meth_check_ignitions@,
-            "blank",            meth_blank@
+            "check ign",        meth_check_ignitions@
             ).
 
         function var_lastchute {
@@ -175,7 +174,7 @@
         }
         function meth_prelaunch_checks {
             //engines must be set to stage first and then launchclamps
-             local waitstart to 0.
+            local waitstart to 0.
             return list(
                 {if launchclamplist:length > 0 { 
                     LOCK THROTTLE to 1. 
@@ -205,7 +204,6 @@
                 ).
         }
         function meth_check_ignitions {
-             
             local myeng is list().
             LIST ENGINES in myeng. 
             local done is FALSE.
@@ -310,9 +308,6 @@
                 return true.
             }
             else return false.
-        }
-        function meth_blank {
-            return true.
         }
         function meth_sep_stage {
             local waitstart to 0.

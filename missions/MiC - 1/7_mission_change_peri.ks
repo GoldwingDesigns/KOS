@@ -10,7 +10,7 @@ local event_list to list(
     // MNV["exec node"]@
     // SYS["warp next patch"]@,
     // SYS["wait soi chng"]@:bind(tgtmoonname),
-   MNV["change peri"]@:bind(250000)
+   MNV["change per"]@:bind(250000)
     ).
 
 local interrupt_list to list(
