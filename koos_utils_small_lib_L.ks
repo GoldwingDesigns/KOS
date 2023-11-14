@@ -216,7 +216,7 @@
 	// }
 	
 	function killprogram {
-		UI["msg add"]("Program Stopped at User Request.").
+		UI["msg add"]("Program Killed at User Request.").
 		print 1/0.
 	}
 }

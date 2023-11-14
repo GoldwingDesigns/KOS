@@ -1,0 +1,598 @@
+T+00-000 00:00:00 Running Mission: 0_mission_launch.ks
+T+00-000 00:00:00 Throttle Up.
+T+00-000 00:00:00 Engine Ignition.
+T+00-000 00:00:00 Launch Checks Successful.
+T+00-000 00:00:00 SAS Off.
+T+00-000 00:00:00 Commence Launch Program at 1y 50d 1h 13m 55s.
+T+00-000 00:00:13 Landing Gear Retracted.
+T+00-000 00:00:13 Commence Pitchover.
+T+00-000 00:00:20 Steering Unlocked. Gravity Turn Initiated.
+T+00-000 00:02:15 Stage: 4 eng: LV-T45 "Swivel" Liquid Fuel Engine flameout.
+T+00-000 00:02:15 Stage: 4 eng: LV-T45 "Swivel" Liquid Fuel Engine flameout.
+T+00-000 00:02:15 Stage. Current stage: 3.
+T+00-000 00:03:38 Fairings deployed.
+T+00-000 00:03:43 Radio Antennas Extended.
+T+00-000 00:03:48 Solar Panels Extended.
+T+00-000 00:05:06 Stage: 3 no thrust.
+T+00-000 00:05:06 Stage. Current stage: 2.
+T+00-000 00:05:18 Launch Complete.
+T+00-000 00:05:18 Circularize Node Added At Apoapsis.
+T+00-000 00:05:18 SAS Off.
+T+00-000 00:05:21 Calculated STAGEDV for stage 2 is: 1180.70520019531
+T+00-000 00:05:21 Executing Node. dV: V(-106.002823533709, 0.150414741157784, -144.915058755408) Burntime: 31.7659207656073
+T+00-000 00:06:24 SAS On.
+T+00-000 00:06:24 Node Execution Complete.
+T+00-000 00:06:25 Mission Complete.
+T+00-000 00:06:46 Running Mission: 1_mission_rdvz_STATION-1.ks
+T+00-000 00:06:54 SAS Off.
+T+00-000 00:06:57 Calculated STAGEDV for stage 2 is: 1005.73834228516
+T+00-000 00:06:57 Executing Node. dV: 53 Burntime: 9
+T+00-000 01:29:58 SAS On.
+T+00-000 01:29:58 Node Execution Complete.
+T+00-000 01:29:58 Calculated STAGEDV for stage 2 is: 1005.72259521484
+T+00-000 01:45:31 Mission Complete.
+T+00-000 01:52:54 Running Mission: 2_mission_dock_STATION-1.ks
+T+00-000 01:52:54 Reference Port Set To ExtraDockingPorts-TinyModularDockingPort
+T+00-000 01:52:54 Target Port Set To dockingPort3
+T+00-000 01:52:54 Aligning Reference and Target Ports
+T+00-000 01:52:59 Distant Approach To STATION - 1
+T+00-000 01:57:22 Running Mission: 2_mission_dock_STATION-1.ks
+T+00-000 01:57:22 Reference Port Set To ExtraDockingPorts-TinyModularDockingPort
+T+00-000 01:57:22 Target Port Set To dockingPort3
+T+00-000 01:57:22 Aligning Reference and Target Ports
+T+00-000 01:57:27 Distant Approach To STATION - 1
+T+00-000 01:57:38 Close Approach to STATION - 1
+T+00-000 01:58:55 Final Approach To dockingPort3
+T+00-000 02:00:29 Docking Complete
+T+00-000 00:05:28 Running Mission: 2_mission_dock_STATION-1.ks
+T+00-000 00:05:28 Reference Port Set To ExtraDockingPorts-TinyModularDockingPort
+T+00-000 00:05:28 Target Port Set To dockingPort3
+T+00-000 00:05:28 Aligning Reference and Target Ports
+T+00-000 00:05:33 Distant Approach To STATION - 1
+T+00-000 00:06:29 Close Approach to STATION - 1
+T+00-000 00:07:50 Final Approach To dockingPort3
+T+00-000 00:09:50 Docking Complete
+T+00-000 00:09:50 Mission Complete.
+T+00-000 00:00:00 Aligning Reference and Target Ports
+T+00-000 00:00:05 Close Approach to dockingPort3
+T+00-000 00:00:20 Running Mission: 2_mission_dock_STATION-1.ks
+T+00-000 00:00:20 Reference Port Set To ExtraDockingPorts-TinyModularDockingPort
+T+00-000 00:01:48 Running Mission: 2_mission_dock_STATION-1.ks
+T+00-000 00:01:48 Reference Port Set To ExtraDockingPorts-TinyModularDockingPort
+T+00-000 00:01:48 Target Port Set To dockingPort3
+T+00-000 00:01:48 Aligning Reference and Target Ports
+T+00-000 00:01:53 Distant Approach To STATION - 1
+T+00-000 00:02:51 Running Mission: 2_mission_dock_STATION-1.ks
+T+00-000 00:02:51 Reference Port Set To ExtraDockingPorts-TinyModularDockingPort
+T+00-000 00:02:51 Target Port Set To dockingPort3
+T+00-000 00:02:51 Aligning Reference and Target Ports
+T+00-000 00:02:56 Distant Approach To STATION - 1
+T+00-000 00:03:59 Close Approach to STATION - 1
+T+00-000 00:06:35 Running Mission: 2_mission_dock_STATION-1.ks
+T+00-000 00:06:35 Reference Port Set To ExtraDockingPorts-TinyModularDockingPort
+T+00-000 00:06:35 Target Port Set To dockingPort3
+T+00-000 00:06:35 Aligning Reference and Target Ports
+T+00-000 00:06:40 Distant Approach To STATION - 1
+T+00-000 00:07:43 Close Approach to STATION - 1
+T+00-000 00:08:53 Close Approach to STATION - 1
+T+00-000 00:09:25 Final Approach To dockingPort3
+T+00-000 00:11:09 Docking Complete
+T+00-000 00:11:09 Mission Complete.
+T+00-000 00:00:00 Aligning Reference and Target Ports
+T+00-000 00:00:05 Close Approach to dockingPort3
+T+00-000 00:02:14 Running Mission: 2_mission_dock_STATION-1.ks
+T+00-000 00:02:14 Reference Port Set To ExtraDockingPorts-TinyModularDockingPort
+T+00-000 00:02:14 Target Port Set To dockingPort3
+T+00-000 00:02:14 Aligning Reference and Target Ports
+T+00-000 00:02:19 Distant Approach To STATION - 1
+T+00-000 00:03:18 Close Approach to STATION - 1
+T+00-000 00:04:22 Close Approach to STATION - 1
+T+00-000 00:04:57 Final Approach To dockingPort3
+T+00-000 00:09:58 Docking Complete
+T+00-000 00:09:58 Mission Complete.
+T+00-000 00:00:00 Reference Port Set To ExtraDockingPorts-TinyModularDockingPort
+T+00-000 00:00:00 Aligning Reference and Target Ports
+T+00-000 00:00:05 Close Approach to dockingPort3
+T+00-000 00:00:07 Reference Port Set To ExtraDockingPorts-TinyModularDockingPort
+T+00-000 00:00:07 Aligning Reference and Target Ports
+T+00-000 00:02:06 Running Mission: 2_mission_dock_STATION-1.ks
+T+00-000 00:02:06 Reference Port Set To ExtraDockingPorts-TinyModularDockingPort
+T+00-000 00:02:06 Mission Complete.
+T+00-000 00:02:09 Running Mission: 2_mission_dock_STATION-1.ks
+T+00-000 00:02:09 Reference Port Set To ExtraDockingPorts-TinyModularDockingPort
+T+00-000 00:02:09 Mission Complete.
+T+00-000 00:02:11 Running Mission: 2_mission_dock_STATION-1.ks
+T+00-000 00:02:11 Reference Port Set To ExtraDockingPorts-TinyModularDockingPort
+T+00-000 00:02:11 Mission Complete.
+T+00-000 00:02:18 Running Mission: 2_mission_dock_STATION-1.ks
+T+00-000 00:02:18 Reference Port Set To ExtraDockingPorts-TinyModularDockingPort
+T+00-000 00:02:18 Target Port Set To dockingPort3
+T+00-000 00:02:18 Aligning Reference and Target Ports
+T+00-000 00:02:24 Close Approach to STATION - 1
+T+00-000 00:03:05 Close Approach to STATION - 1
+T+00-000 00:03:41 Final Approach To dockingPort3
+T+00-000 00:05:44 Docking Complete
+T+00-000 00:05:44 Mission Complete.
+T+00-011 03:32:39 Running Mission: 9_mission_undock.ks
+T+00-000 00:00:00 Reference Port Set To ExtraDockingPorts-TinyModularDockingPort
+T+00-000 00:00:00 Aligning Reference and Target Ports
+T+00-000 00:00:05 Close Approach to dockingPort3
+T+00-000 00:04:07 Mission Complete.
+T+00-000 00:04:15 Running Mission: 10_mission_reentry.ks
+T+00-000 00:04:15 Change Pe Node Added.
+T+00-000 00:04:15 SAS Off.
+T+00-000 00:04:15 No ignitors or no engine. Staging.
+T+00-000 00:04:15 Stage. Current stage: 2.
+T+00-000 00:04:18 Calculated STAGEDV for stage 2 is: 1020.63433837891
+T+00-000 00:04:18 Executing Node. dV: 87 Burntime: 15
+T+00-000 00:32:11 SAS On.
+T+00-000 00:32:11 Node Execution Complete.
+T+00-000 00:32:11 SAS Off.
+T+00-000 00:32:11 Commence Aero Land Program.
+T+00-000 00:32:14 Stage. Current stage: 1.
+T+00-000 00:32:14 RCS On.
+T+00-000 00:32:28 RCS Off.
+T+00-000 00:32:28 Radio Antennas Retracted.
+T+00-000 00:48:23 Running Mission: 10_mission_reentry.ks
+T+00-000 00:48:23 SAS Off.
+T+00-000 00:48:23 Commence Aero Land Program.
+T+00-000 00:48:35 Running Mission: 10_mission_reentry.ks
+T+00-000 00:48:35 SAS Off.
+T+00-000 00:48:35 Commence Aero Land Program.
+T+00-000 00:48:35 REALCHUTES NOT IMPLEMENTED - DEPLOY CHUTES MANUALLY!
+T+00-000 00:49:53 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416843436584113, -61.4773894489421 Biome: Water
+T+00-000 00:49:53 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416843436584113, -61.4773894489421
+T+00-000 00:49:53 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416841278664069, -61.4773889423504 Biome: Water
+T+00-000 00:49:53 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416841278664069, -61.4773889423504
+T+00-000 00:49:53 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416830875514099, -61.4773866026176 Biome: Water
+T+00-000 00:49:53 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416830875514099, -61.4773866026176
+T+00-000 00:49:53 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416813111688983, -61.4773826023592 Biome: Water
+T+00-000 00:49:53 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416813111688983, -61.4773826023592
+T+00-000 00:49:53 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416790727321285, -61.4773778436427 Biome: Water
+T+00-000 00:49:53 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416790727321285, -61.4773778436427
+T+00-000 00:49:53 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416765958577395, -61.4773728729994 Biome: Water
+T+00-000 00:49:53 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416765958577395, -61.4773728729994
+T+00-000 00:49:53 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416740275683749, -61.4773678676804 Biome: Water
+T+00-000 00:49:53 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416740275683749, -61.4773678676804
+T+00-000 00:49:54 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416714477798437, -61.4773628613229 Biome: Water
+T+00-000 00:49:54 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416714477798437, -61.4773628613229
+T+00-000 00:49:54 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416688752119549, -61.4773578594431 Biome: Water
+T+00-000 00:49:54 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416688752119549, -61.4773578594431
+T+00-000 00:49:54 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416665948361335, -61.4773534314704 Biome: Water
+T+00-000 00:49:54 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416665948361335, -61.4773534314704
+T+00-000 00:49:54 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416646093529352, -61.4773495984916 Biome: Water
+T+00-000 00:49:54 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416646093529352, -61.4773495984916
+T+00-000 00:49:54 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416628675335733, -61.4773463760612 Biome: Water
+T+00-000 00:49:54 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416628675335733, -61.4773463760612
+T+00-000 00:49:54 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416615206541291, -61.4773441710444 Biome: Water
+T+00-000 00:49:54 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416615206541291, -61.4773441710444
+T+00-000 00:49:54 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416607309860905, -61.4773432265288 Biome: Water
+T+00-000 00:49:54 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416607309860905, -61.4773432265288
+T+00-000 00:49:55 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416607271941136, -61.477343623157 Biome: Water
+T+00-000 00:49:55 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416607271941136, -61.477343623157
+T+00-000 00:49:55 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041661838745151, -61.4773453791604 Biome: Water
+T+00-000 00:49:55 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041661838745151, -61.4773453791604
+T+00-000 00:49:55 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416644689753728, -61.4773485539787 Biome: Water
+T+00-000 00:49:55 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416644689753728, -61.4773485539787
+T+00-000 00:49:55 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416689664945224, -61.4773533421407 Biome: Water
+T+00-000 00:49:55 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416689664945224, -61.4773533421407
+T+00-000 00:49:55 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416753964615507, -61.4773600995074 Biome: Water
+T+00-000 00:49:55 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416753964615507, -61.4773600995074
+T+00-000 00:49:55 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041683238186229, -61.4773690184533 Biome: Water
+T+00-000 00:49:55 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041683238186229, -61.4773690184533
+T+00-000 00:49:55 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416905991113547, -61.4773777755457 Biome: Water
+T+00-000 00:49:55 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416905991113547, -61.4773777755457
+T+00-000 00:49:55 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416972756091653, -61.4773859570949 Biome: Water
+T+00-000 00:49:55 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00416972756091653, -61.4773859570949
+T+00-000 00:49:56 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417038924212248, -61.4773941050504 Biome: Water
+T+00-000 00:49:56 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417038924212248, -61.4773941050504
+T+00-000 00:49:56 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417274765057528, -61.4774232065891 Biome: Water
+T+00-000 00:49:56 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417274765057528, -61.4774232065891
+T+00-000 00:49:56 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417340747670966, -61.4774313572472 Biome: Water
+T+00-000 00:49:56 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417340747670966, -61.4774313572472
+T+00-000 00:49:56 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417406231775258, -61.4774395018515 Biome: Water
+T+00-000 00:49:56 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417406231775258, -61.4774395018515
+T+00-000 00:49:57 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417467943599383, -61.477447622546 Biome: Water
+T+00-000 00:49:57 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417467943599383, -61.477447622546
+T+00-000 00:49:57 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417518742878629, -61.477455480519 Biome: Water
+T+00-000 00:49:57 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417518742878629, -61.477455480519
+T+00-000 00:49:57 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417573328175058, -61.4774620251093 Biome: Water
+T+00-000 00:49:57 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417573328175058, -61.4774620251093
+T+00-000 00:49:57 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417636841087038, -61.4774669364043 Biome: Water
+T+00-000 00:49:57 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417636841087038, -61.4774669364043
+T+00-000 00:49:57 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041769128070097, -61.4774705723725 Biome: Water
+T+00-000 00:49:57 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041769128070097, -61.4774705723725
+T+00-000 00:49:57 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417733286367752, -61.4774733235357 Biome: Water
+T+00-000 00:49:57 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417733286367752, -61.4774733235357
+T+00-000 00:49:57 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417770632837161, -61.4774757268434 Biome: Water
+T+00-000 00:49:57 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417770632837161, -61.4774757268434
+T+00-000 00:49:58 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417807286727524, -61.4774780324696 Biome: Water
+T+00-000 00:49:58 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417807286727524, -61.4774780324696
+T+00-000 00:49:58 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417841892711706, -61.4774802212619 Biome: Water
+T+00-000 00:49:58 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417841892711706, -61.4774802212619
+T+00-000 00:49:58 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417875512239121, -61.4774822922778 Biome: Water
+T+00-000 00:49:58 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417875512239121, -61.4774822922778
+T+00-000 00:49:58 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417908919346552, -61.4774842806307 Biome: Water
+T+00-000 00:49:58 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417908919346552, -61.4774842806307
+T+00-000 00:49:58 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417942569106424, -61.4774862381001 Biome: Water
+T+00-000 00:49:58 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417942569106424, -61.4774862381001
+T+00-000 00:49:58 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417979332696534, -61.4774879171665 Biome: Water
+T+00-000 00:49:58 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00417979332696534, -61.4774879171665
+T+00-000 00:49:58 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418018771842537, -61.477489306873 Biome: Water
+T+00-000 00:49:58 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418018771842537, -61.477489306873
+T+00-000 00:49:59 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418058471623491, -61.4774906546327 Biome: Water
+T+00-000 00:49:59 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418058471623491, -61.4774906546327
+T+00-000 00:49:59 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418098072692195, -61.4774919849148 Biome: Water
+T+00-000 00:49:59 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418098072692195, -61.4774919849148
+T+00-000 00:49:59 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418137081600991, -61.477493288435 Biome: Water
+T+00-000 00:49:59 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418137081600991, -61.477493288435
+T+00-000 00:49:59 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418174642539725, -61.4774945567122 Biome: Water
+T+00-000 00:49:59 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418174642539725, -61.4774945567122
+T+00-000 00:49:59 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418207921779197, -61.4774956912177 Biome: Water
+T+00-000 00:49:59 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418207921779197, -61.4774956912177
+T+00-000 00:49:59 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041823409892701, -61.4774965832522 Biome: Water
+T+00-000 00:49:59 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041823409892701, -61.4774965832522
+T+00-000 00:49:59 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418259544074684, -61.4774974379272 Biome: Water
+T+00-000 00:49:59 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418259544074684, -61.4774974379272
+T+00-000 00:49:59 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418285364770818, -61.4774982517147 Biome: Water
+T+00-000 00:49:59 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418285364770818, -61.4774982517147
+T+00-000 00:50:00 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418313971712087, -61.4774990093655 Biome: Water
+T+00-000 00:50:00 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418313971712087, -61.4774990093655
+T+00-000 00:50:00 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418347805290209, -61.4774996961327 Biome: Water
+T+00-000 00:50:00 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418347805290209, -61.4774996961327
+T+00-000 00:50:00 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418384877202574, -61.4775003274872 Biome: Water
+T+00-000 00:50:00 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418384877202574, -61.4775003274872
+T+00-000 00:50:00 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418426025318454, -61.4775008701491 Biome: Water
+T+00-000 00:50:00 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418426025318454, -61.4775008701491
+T+00-000 00:50:00 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418473835257034, -61.4775012764878 Biome: Water
+T+00-000 00:50:00 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418473835257034, -61.4775012764878
+T+00-000 00:50:00 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418524546985741, -61.4775016313902 Biome: Water
+T+00-000 00:50:00 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418524546985741, -61.4775016313902
+T+00-000 00:50:00 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418574041392785, -61.4775019768882 Biome: Water
+T+00-000 00:50:00 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418574041392785, -61.4775019768882
+T+00-000 00:50:01 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418616568270085, -61.47750228032 Biome: Water
+T+00-000 00:50:01 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418616568270085, -61.47750228032
+T+00-000 00:50:01 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418651097287317, -61.4775025371028 Biome: Water
+T+00-000 00:50:01 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418651097287317, -61.4775025371028
+T+00-000 00:50:01 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418680569745395, -61.4775027666452 Biome: Water
+T+00-000 00:50:01 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418680569745395, -61.4775027666452
+T+00-000 00:50:01 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418706000228938, -61.4775029780348 Biome: Water
+T+00-000 00:50:01 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418706000228938, -61.4775029780348
+T+00-000 00:50:01 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418725468108674, -61.4775031406922 Biome: Water
+T+00-000 00:50:01 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418725468108674, -61.4775031406922
+T+00-000 00:50:01 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418742631371697, -61.477503283657 Biome: Water
+T+00-000 00:50:01 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418742631371697, -61.477503283657
+T+00-000 00:50:01 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418760119667219, -61.477503423466 Biome: Water
+T+00-000 00:50:01 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418760119667219, -61.477503423466
+T+00-000 00:50:02 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418779122506496, -61.4775035546785 Biome: Water
+T+00-000 00:50:02 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418779122506496, -61.4775035546785
+T+00-000 00:50:02 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418802359797455, -61.4775036711543 Biome: Water
+T+00-000 00:50:02 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418802359797455, -61.4775036711543
+T+00-000 00:50:02 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418832034024105, -61.4775037694664 Biome: Water
+T+00-000 00:50:02 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418832034024105, -61.4775037694664
+T+00-000 00:50:02 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418865151008733, -61.4775038576363 Biome: Water
+T+00-000 00:50:02 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418865151008733, -61.4775038576363
+T+00-000 00:50:02 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418899262335652, -61.477503941351 Biome: Water
+T+00-000 00:50:02 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418899262335652, -61.477503941351
+T+00-000 00:50:02 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418933431173442, -61.4775040265945 Biome: Water
+T+00-000 00:50:02 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418933431173442, -61.4775040265945
+T+00-000 00:50:02 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418965559275113, -61.4775041198451 Biome: Water
+T+00-000 00:50:02 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418965559275113, -61.4775041198451
+T+00-000 00:50:03 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418992064369176, -61.4775042417928 Biome: Water
+T+00-000 00:50:03 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00418992064369176, -61.4775042417928
+T+00-000 00:50:03 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419013349595729, -61.4775044039812 Biome: Water
+T+00-000 00:50:03 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419013349595729, -61.4775044039812
+T+00-000 00:50:03 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419032971987581, -61.4775045818819 Biome: Water
+T+00-000 00:50:03 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419032971987581, -61.4775045818819
+T+00-000 00:50:03 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041905211493131, -61.4775047620008 Biome: Water
+T+00-000 00:50:03 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041905211493131, -61.4775047620008
+T+00-000 00:50:03 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419070495543764, -61.4775049492834 Biome: Water
+T+00-000 00:50:03 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419070495543764, -61.4775049492834
+T+00-000 00:50:03 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419087838039996, -61.4775051451296 Biome: Water
+T+00-000 00:50:03 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419087838039996, -61.4775051451296
+T+00-000 00:50:03 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419103884691453, -61.4775053490193 Biome: Water
+T+00-000 00:50:03 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419103884691453, -61.4775053490193
+T+00-000 00:50:04 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419118157674984, -61.4775055553672 Biome: Water
+T+00-000 00:50:04 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419118157674984, -61.4775055553672
+T+00-000 00:50:04 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419129622392646, -61.4775057537268 Biome: Water
+T+00-000 00:50:04 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419129622392646, -61.4775057537268
+T+00-000 00:50:04 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419138775244661, -61.4775059380458 Biome: Water
+T+00-000 00:50:04 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419138775244661, -61.4775059380458
+T+00-000 00:50:04 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419146702948475, -61.477506108694 Biome: Water
+T+00-000 00:50:04 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419146702948475, -61.477506108694
+T+00-000 00:50:04 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419153257926503, -61.4775062524654 Biome: Water
+T+00-000 00:50:04 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419153257926503, -61.4775062524654
+T+00-000 00:50:04 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419158221428757, -61.4775063614439 Biome: Water
+T+00-000 00:50:04 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419158221428757, -61.4775063614439
+T+00-000 00:50:04 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419163048527977, -61.4775064642405 Biome: Water
+T+00-000 00:50:04 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419163048527977, -61.4775064642405
+T+00-000 00:50:05 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419168563311775, -61.4775065699402 Biome: Water
+T+00-000 00:50:05 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419168563311775, -61.4775065699402
+T+00-000 00:50:05 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419175985317557, -61.4775066890016 Biome: Water
+T+00-000 00:50:05 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419175985317557, -61.4775066890016
+T+00-000 00:50:05 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419186659391077, -61.4775068291216 Biome: Water
+T+00-000 00:50:05 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419186659391077, -61.4775068291216
+T+00-000 00:50:05 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419200814218436, -61.4775069950425 Biome: Water
+T+00-000 00:50:05 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419200814218436, -61.4775069950425
+T+00-000 00:50:05 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419216720646765, -61.4775071777041 Biome: Water
+T+00-000 00:50:05 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419216720646765, -61.4775071777041
+T+00-000 00:50:05 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419233070242535, -61.4775073694907 Biome: Water
+T+00-000 00:50:05 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419233070242535, -61.4775073694907
+T+00-000 00:50:05 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419249072394709, -61.477507591387 Biome: Water
+T+00-000 00:50:05 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419249072394709, -61.477507591387
+T+00-000 00:50:06 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419263155264332, -61.4775078355894 Biome: Water
+T+00-000 00:50:06 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419263155264332, -61.4775078355894
+T+00-000 00:50:06 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419274296497861, -61.4775080842096 Biome: Water
+T+00-000 00:50:06 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419274296497861, -61.4775080842096
+T+00-000 00:50:06 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419284514953351, -61.4775083266412 Biome: Water
+T+00-000 00:50:06 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419284514953351, -61.4775083266412
+T+00-000 00:50:06 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041929267822497, -61.4775085492024 Biome: Water
+T+00-000 00:50:06 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041929267822497, -61.4775085492024
+T+00-000 00:50:06 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419293612651947, -61.4775086990549 Biome: Water
+T+00-000 00:50:06 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419293612651947, -61.4775086990549
+T+00-000 00:50:06 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419289496422429, -61.477508789884 Biome: Water
+T+00-000 00:50:06 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419289496422429, -61.477508789884
+T+00-000 00:50:06 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419283671521058, -61.4775088516193 Biome: Water
+T+00-000 00:50:06 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419283671521058, -61.4775088516193
+T+00-000 00:50:06 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419278916444321, -61.4775089233428 Biome: Water
+T+00-000 00:50:06 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419278916444321, -61.4775089233428
+T+00-000 00:50:07 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419277647277381, -61.4775090395184 Biome: Water
+T+00-000 00:50:07 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419277647277381, -61.4775090395184
+T+00-000 00:50:07 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419279727795153, -61.4775092005246 Biome: Water
+T+00-000 00:50:07 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419279727795153, -61.4775092005246
+T+00-000 00:50:07 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419283269916888, -61.4775093950835 Biome: Water
+T+00-000 00:50:07 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419283269916888, -61.4775093950835
+T+00-000 00:50:07 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419285909746666, -61.4775096069791 Biome: Water
+T+00-000 00:50:07 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419285909746666, -61.4775096069791
+T+00-000 00:50:07 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419286770078339, -61.4775098060385 Biome: Water
+T+00-000 00:50:07 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419286770078339, -61.4775098060385
+T+00-000 00:50:07 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419286379547376, -61.4775099675544 Biome: Water
+T+00-000 00:50:07 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419286379547376, -61.4775099675544
+T+00-000 00:50:07 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041928458645603, -61.4775100925549 Biome: Water
+T+00-000 00:50:07 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041928458645603, -61.4775100925549
+T+00-000 00:50:08 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419281414586008, -61.4775101851652 Biome: Water
+T+00-000 00:50:08 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419281414586008, -61.4775101851652
+T+00-000 00:50:08 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419276942701749, -61.4775102491367 Biome: Water
+T+00-000 00:50:08 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419276942701749, -61.4775102491367
+T+00-000 00:50:08 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419271357885676, -61.4775102871966 Biome: Water
+T+00-000 00:50:08 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419271357885676, -61.4775102871966
+T+00-000 00:50:08 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041926500329116, -61.4775103031131 Biome: Water
+T+00-000 00:50:08 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041926500329116, -61.4775103031131
+T+00-000 00:50:08 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419258474127353, -61.477510312037 Biome: Water
+T+00-000 00:50:08 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419258474127353, -61.477510312037
+T+00-000 00:50:08 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419252126859633, -61.4775103230873 Biome: Water
+T+00-000 00:50:08 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419252126859633, -61.4775103230873
+T+00-000 00:50:08 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041924627143016, -61.4775103434424 Biome: Water
+T+00-000 00:50:08 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041924627143016, -61.4775103434424
+T+00-000 00:50:09 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419241320431644, -61.4775103796365 Biome: Water
+T+00-000 00:50:09 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419241320431644, -61.4775103796365
+T+00-000 00:50:09 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419237702271438, -61.4775104424496 Biome: Water
+T+00-000 00:50:09 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419237702271438, -61.4775104424496
+T+00-000 00:50:09 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419235519574157, -61.4775105338178 Biome: Water
+T+00-000 00:50:09 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419235519574157, -61.4775105338178
+T+00-000 00:50:09 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419234410910504, -61.4775106533448 Biome: Water
+T+00-000 00:50:09 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419234410910504, -61.4775106533448
+T+00-000 00:50:09 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419233747139615, -61.477510800331 Biome: Water
+T+00-000 00:50:09 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419233747139615, -61.477510800331
+T+00-000 00:50:09 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419232599168758, -61.4775110101217 Biome: Water
+T+00-000 00:50:09 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419232599168758, -61.4775110101217
+T+00-000 00:50:09 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419230750358461, -61.4775112612952 Biome: Water
+T+00-000 00:50:09 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419230750358461, -61.4775112612952
+T+00-000 00:50:10 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419228718749347, -61.4775115146652 Biome: Water
+T+00-000 00:50:10 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419228718749347, -61.4775115146652
+T+00-000 00:50:10 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419226179923004, -61.4775117603469 Biome: Water
+T+00-000 00:50:10 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419226179923004, -61.4775117603469
+T+00-000 00:50:10 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419222707635164, -61.4775119876331 Biome: Water
+T+00-000 00:50:10 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419222707635164, -61.4775119876331
+T+00-000 00:50:10 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419218740443389, -61.4775121853102 Biome: Water
+T+00-000 00:50:10 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419218740443389, -61.4775121853102
+T+00-000 00:50:10 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419214231569291, -61.4775123480363 Biome: Water
+T+00-000 00:50:10 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419214231569291, -61.4775123480363
+T+00-000 00:50:10 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419209222111981, -61.4775124737987 Biome: Water
+T+00-000 00:50:10 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419209222111981, -61.4775124737987
+T+00-000 00:50:10 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419203947838174, -61.4775125684511 Biome: Water
+T+00-000 00:50:10 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419203947838174, -61.4775125684511
+T+00-000 00:50:11 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419198619064832, -61.4775126408949 Biome: Water
+T+00-000 00:50:11 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419198619064832, -61.4775126408949
+T+00-000 00:50:11 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419193283193888, -61.4775126962284 Biome: Water
+T+00-000 00:50:11 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419193283193888, -61.4775126962284
+T+00-000 00:50:11 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419188259164971, -61.4775127346438 Biome: Water
+T+00-000 00:50:11 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419188259164971, -61.4775127346438
+T+00-000 00:50:11 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419184036839822, -61.4775127560971 Biome: Water
+T+00-000 00:50:11 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419184036839822, -61.4775127560971
+T+00-000 00:50:11 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041918042777688, -61.477512777545 Biome: Water
+T+00-000 00:50:11 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041918042777688, -61.477512777545
+T+00-000 00:50:11 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041917728892069, -61.477512809934 Biome: Water
+T+00-000 00:50:11 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041917728892069, -61.477512809934
+T+00-000 00:50:11 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419174450608484, -61.4775128518719 Biome: Water
+T+00-000 00:50:11 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419174450608484, -61.4775128518719
+T+00-000 00:50:12 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419171729235078, -61.4775129011472 Biome: Water
+T+00-000 00:50:12 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419171729235078, -61.4775129011472
+T+00-000 00:50:12 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419169151798512, -61.4775129580399 Biome: Water
+T+00-000 00:50:12 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419169151798512, -61.4775129580399
+T+00-000 00:50:12 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419166740011762, -61.4775130186748 Biome: Water
+T+00-000 00:50:12 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419166740011762, -61.4775130186748
+T+00-000 00:50:12 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419164535676588, -61.4775130831887 Biome: Water
+T+00-000 00:50:12 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419164535676588, -61.4775130831887
+T+00-000 00:50:12 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419162520960844, -61.4775131501325 Biome: Water
+T+00-000 00:50:12 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419162520960844, -61.4775131501325
+T+00-000 00:50:12 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419160674363446, -61.4775132184714 Biome: Water
+T+00-000 00:50:12 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419160674363446, -61.4775132184714
+T+00-000 00:50:12 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419159077469704, -61.4775132810662 Biome: Water
+T+00-000 00:50:12 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419159077469704, -61.4775132810662
+T+00-000 00:50:13 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419157406431246, -61.4775133284481 Biome: Water
+T+00-000 00:50:13 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419157406431246, -61.4775133284481
+T+00-000 00:50:13 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419155513227176, -61.4775133545692 Biome: Water
+T+00-000 00:50:13 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419155513227176, -61.4775133545692
+T+00-000 00:50:13 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041915377043156, -61.4775133584802 Biome: Water
+T+00-000 00:50:13 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041915377043156, -61.4775133584802
+T+00-000 00:50:13 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419154617185428, -61.4775133447772 Biome: Water
+T+00-000 00:50:13 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419154617185428, -61.4775133447772
+T+00-000 00:50:13 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419159753998513, -61.4775133299696 Biome: Water
+T+00-000 00:50:13 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419159753998513, -61.4775133299696
+T+00-000 00:50:13 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419167152503606, -61.4775133345229 Biome: Water
+T+00-000 00:50:13 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419167152503606, -61.4775133345229
+T+00-000 00:50:13 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041917209060208, -61.4775133661065 Biome: Water
+T+00-000 00:50:13 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041917209060208, -61.4775133661065
+T+00-000 00:50:13 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419167597717192, -61.4775133726106 Biome: Water
+T+00-000 00:50:13 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419167597717192, -61.4775133726106
+T+00-000 00:50:14 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419147928806059, -61.4775132311015 Biome: Water
+T+00-000 00:50:14 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419147928806059, -61.4775132311015
+T+00-000 00:50:14 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419119419136176, -61.4775129633362 Biome: Water
+T+00-000 00:50:14 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419119419136176, -61.4775129633362
+T+00-000 00:50:14 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419090322576032, -61.4775126651668 Biome: Water
+T+00-000 00:50:14 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419090322576032, -61.4775126651668
+T+00-000 00:50:14 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419065755490165, -61.4775124120364 Biome: Water
+T+00-000 00:50:14 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419065755490165, -61.4775124120364
+T+00-000 00:50:14 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041904706165672, -61.4775122051761 Biome: Water
+T+00-000 00:50:14 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041904706165672, -61.4775122051761
+T+00-000 00:50:14 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419034425660355, -61.4775120473767 Biome: Water
+T+00-000 00:50:14 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419034425660355, -61.4775120473767
+T+00-000 00:50:14 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419027604265115, -61.4775119454799 Biome: Water
+T+00-000 00:50:14 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419027604265115, -61.4775119454799
+T+00-000 00:50:15 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419025242732764, -61.4775119155023 Biome: Water
+T+00-000 00:50:15 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419025242732764, -61.4775119155023
+T+00-000 00:50:15 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419025647444993, -61.4775119632701 Biome: Water
+T+00-000 00:50:15 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419025647444993, -61.4775119632701
+T+00-000 00:50:15 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419028658497508, -61.4775120904534 Biome: Water
+T+00-000 00:50:15 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419028658497508, -61.4775120904534
+T+00-000 00:50:15 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419033640373255, -61.4775122758098 Biome: Water
+T+00-000 00:50:15 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419033640373255, -61.4775122758098
+T+00-000 00:50:15 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419040547135615, -61.4775125010107 Biome: Water
+T+00-000 00:50:15 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419040547135615, -61.4775125010107
+T+00-000 00:50:15 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419048486490036, -61.4775127376974 Biome: Water
+T+00-000 00:50:15 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419048486490036, -61.4775127376974
+T+00-000 00:50:15 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041905672844742, -61.4775129745193 Biome: Water
+T+00-000 00:50:15 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041905672844742, -61.4775129745193
+T+00-000 00:50:16 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419065244933539, -61.4775132067928 Biome: Water
+T+00-000 00:50:16 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419065244933539, -61.4775132067928
+T+00-000 00:50:16 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419074053797033, -61.4775134298765 Biome: Water
+T+00-000 00:50:16 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419074053797033, -61.4775134298765
+T+00-000 00:50:16 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419082815180536, -61.4775136383078 Biome: Water
+T+00-000 00:50:16 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419082815180536, -61.4775136383078
+T+00-000 00:50:16 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419090434694217, -61.477513813595 Biome: Water
+T+00-000 00:50:16 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419090434694217, -61.477513813595
+T+00-000 00:50:16 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419096067139477, -61.4775139407306 Biome: Water
+T+00-000 00:50:16 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419096067139477, -61.4775139407306
+T+00-000 00:50:16 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419100950320548, -61.4775140340601 Biome: Water
+T+00-000 00:50:16 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419100950320548, -61.4775140340601
+T+00-000 00:50:16 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419105553767542, -61.4775141120153 Biome: Water
+T+00-000 00:50:16 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419105553767542, -61.4775141120153
+T+00-000 00:50:17 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419109171721022, -61.4775142162574 Biome: Water
+T+00-000 00:50:17 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419109171721022, -61.4775142162574
+T+00-000 00:50:17 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419111470127283, -61.477514356251 Biome: Water
+T+00-000 00:50:17 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419111470127283, -61.477514356251
+T+00-000 00:50:17 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419112949040899, -61.477514521882 Biome: Water
+T+00-000 00:50:17 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419112949040899, -61.477514521882
+T+00-000 00:50:17 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419114382991029, -61.4775146969591 Biome: Water
+T+00-000 00:50:17 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419114382991029, -61.4775146969591
+T+00-000 00:50:17 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419116542666051, -61.4775148669388 Biome: Water
+T+00-000 00:50:17 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419116542666051, -61.4775148669388
+T+00-000 00:50:17 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419119902223306, -61.4775150213006 Biome: Water
+T+00-000 00:50:17 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419119902223306, -61.4775150213006
+T+00-000 00:50:17 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419124559090884, -61.4775151503274 Biome: Water
+T+00-000 00:50:17 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419124559090884, -61.4775151503274
+T+00-000 00:50:18 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419130390081715, -61.4775152508411 Biome: Water
+T+00-000 00:50:18 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419130390081715, -61.4775152508411
+T+00-000 00:50:18 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419137179266162, -61.4775153195057 Biome: Water
+T+00-000 00:50:18 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419137179266162, -61.4775153195057
+T+00-000 00:50:18 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419143881998932, -61.4775153627529 Biome: Water
+T+00-000 00:50:18 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419143881998932, -61.4775153627529
+T+00-000 00:50:18 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419149310569688, -61.4775153918676 Biome: Water
+T+00-000 00:50:18 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419149310569688, -61.4775153918676
+T+00-000 00:50:18 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419153654384361, -61.4775154095911 Biome: Water
+T+00-000 00:50:18 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419153654384361, -61.4775154095911
+T+00-000 00:50:18 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419158269381143, -61.4775154179517 Biome: Water
+T+00-000 00:50:18 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419158269381143, -61.4775154179517
+T+00-000 00:50:18 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419162909240668, -61.4775154385063 Biome: Water
+T+00-000 00:50:18 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419162909240668, -61.4775154385063
+T+00-000 00:50:19 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419167294400513, -61.4775154881082 Biome: Water
+T+00-000 00:50:19 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419167294400513, -61.4775154881082
+T+00-000 00:50:19 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419171508719564, -61.477515566366 Biome: Water
+T+00-000 00:50:19 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419171508719564, -61.477515566366
+T+00-000 00:50:19 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419175931696259, -61.4775156575462 Biome: Water
+T+00-000 00:50:19 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419175931696259, -61.4775156575462
+T+00-000 00:50:19 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419180765245808, -61.4775157323134 Biome: Water
+T+00-000 00:50:19 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419180765245808, -61.4775157323134
+T+00-000 00:50:19 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419184766336172, -61.4775157853857 Biome: Water
+T+00-000 00:50:19 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419184766336172, -61.4775157853857
+T+00-000 00:50:19 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419187675854971, -61.4775158244318 Biome: Water
+T+00-000 00:50:19 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419187675854971, -61.4775158244318
+T+00-000 00:50:19 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419189727922994, -61.4775158553335 Biome: Water
+T+00-000 00:50:19 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419189727922994, -61.4775158553335
+T+00-000 00:50:20 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419191317189956, -61.4775158833034 Biome: Water
+T+00-000 00:50:20 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419191317189956, -61.4775158833034
+T+00-000 00:50:20 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419192190743261, -61.4775159083591 Biome: Water
+T+00-000 00:50:20 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419192190743261, -61.4775159083591
+T+00-000 00:50:20 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.004191919228688, -61.4775159415787 Biome: Water
+T+00-000 00:50:20 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.004191919228688, -61.4775159415787
+T+00-000 00:50:20 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419190572696968, -61.4775159882512 Biome: Water
+T+00-000 00:50:20 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419190572696968, -61.4775159882512
+T+00-000 00:50:20 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419188754982833, -61.4775160447639 Biome: Water
+T+00-000 00:50:20 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419188754982833, -61.4775160447639
+T+00-000 00:50:20 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419186885429246, -61.4775161137415 Biome: Water
+T+00-000 00:50:20 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419186885429246, -61.4775161137415
+T+00-000 00:50:20 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419185856725327, -61.4775162094109 Biome: Water
+T+00-000 00:50:20 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419185856725327, -61.4775162094109
+T+00-000 00:50:20 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041918613348932, -61.4775163159308 Biome: Water
+T+00-000 00:50:20 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041918613348932, -61.4775163159308
+T+00-000 00:50:21 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419187829156221, -61.4775164202739 Biome: Water
+T+00-000 00:50:21 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419187829156221, -61.4775164202739
+T+00-000 00:50:21 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419190329974394, -61.4775165080731 Biome: Water
+T+00-000 00:50:21 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419190329974394, -61.4775165080731
+T+00-000 00:50:21 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419193501711884, -61.4775165720526 Biome: Water
+T+00-000 00:50:21 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419193501711884, -61.4775165720526
+T+00-000 00:50:21 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419197412895789, -61.477516608386 Biome: Water
+T+00-000 00:50:21 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419197412895789, -61.477516608386
+T+00-000 00:50:21 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419201839210666, -61.4775166176308 Biome: Water
+T+00-000 00:50:21 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419201839210666, -61.4775166176308
+T+00-000 00:50:21 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419206466937882, -61.4775166104156 Biome: Water
+T+00-000 00:50:21 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419206466937882, -61.4775166104156
+T+00-000 00:50:21 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419211032831367, -61.47751659715 Biome: Water
+T+00-000 00:50:21 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419211032831367, -61.47751659715
+T+00-000 00:50:22 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419215323301284, -61.4775165907554 Biome: Water
+T+00-000 00:50:22 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419215323301284, -61.4775165907554
+T+00-000 00:50:22 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419219231423832, -61.4775165965073 Biome: Water
+T+00-000 00:50:22 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419219231423832, -61.4775165965073
+T+00-000 00:50:22 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419222747002828, -61.4775166162453 Biome: Water
+T+00-000 00:50:22 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419222747002828, -61.4775166162453
+T+00-000 00:50:22 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041922591191916, -61.4775166449291 Biome: Water
+T+00-000 00:50:22 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041922591191916, -61.4775166449291
+T+00-000 00:50:22 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041922903325913, -61.4775166812335 Biome: Water
+T+00-000 00:50:22 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041922903325913, -61.4775166812335
+T+00-000 00:50:22 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041923254056468, -61.4775167232648 Biome: Water
+T+00-000 00:50:22 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041923254056468, -61.4775167232648
+T+00-000 00:50:22 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419235906087176, -61.477516765474 Biome: Water
+T+00-000 00:50:22 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419235906087176, -61.477516765474
+T+00-000 00:50:23 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419238989469814, -61.4775168035164 Biome: Water
+T+00-000 00:50:23 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419238989469814, -61.4775168035164
+T+00-000 00:50:23 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419241889030649, -61.4775168302394 Biome: Water
+T+00-000 00:50:23 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419241889030649, -61.4775168302394
+T+00-000 00:50:23 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419244661411214, -61.4775168401063 Biome: Water
+T+00-000 00:50:23 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419244661411214, -61.4775168401063
+T+00-000 00:50:23 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419247723546644, -61.4775168321698 Biome: Water
+T+00-000 00:50:23 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419247723546644, -61.4775168321698
+T+00-000 00:50:23 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419251465481812, -61.4775168132918 Biome: Water
+T+00-000 00:50:23 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419251465481812, -61.4775168132918
+T+00-000 00:50:23 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041925560556666, -61.4775167951806 Biome: Water
+T+00-000 00:50:23 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041925560556666, -61.4775167951806
+T+00-000 00:50:23 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419258759045936, -61.4775168013583 Biome: Water
+T+00-000 00:50:23 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419258759045936, -61.4775168013583
+T+00-000 00:50:24 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041926069595276, -61.4775168284842 Biome: Water
+T+00-000 00:50:24 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.0041926069595276, -61.4775168284842
+T+00-000 00:50:24 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419261556149592, -61.4775168629372 Biome: Water
+T+00-000 00:50:24 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419261556149592, -61.4775168629372
+T+00-000 00:50:24 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419261039413029, -61.4775168942369 Biome: Water
+T+00-000 00:50:24 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419261039413029, -61.4775168942369
+T+00-000 00:50:24 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419259395797569, -61.477516911873 Biome: Water
+T+00-000 00:50:24 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419259395797569, -61.477516911873
+T+00-000 00:50:24 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419257253360881, -61.4775169114558 Biome: Water
+T+00-000 00:50:24 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419257253360881, -61.4775169114558
+T+00-000 00:50:24 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419255270052574, -61.4775168926427 Biome: Water
+T+00-000 00:50:24 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419255270052574, -61.4775168926427
+T+00-000 00:50:29 Running Mission: 10_mission_reentry.ks
+T+00-000 00:50:29 SAS Off.
+T+00-000 00:50:29 Commence Aero Land Program.
+T+00-000 00:50:29 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419724969629463, -61.4774938471842 Biome: Water
+T+00-000 00:50:29 Kerbal 1 test splashed down on BODY("Kerbin"). L/L: 0.00419724969629463, -61.4774938471842
+T+00-000 00:50:30 Mission Complete.
