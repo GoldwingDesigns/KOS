@@ -372,7 +372,7 @@
         function meth_arm_chutes {
             if actionsavail {
             for p in parachuteslist{
-                p:getmodule("realchutemodule"):doaction("arm parachute",true).
+                if p:hasmodule("realchutemodule") p:getmodule("realchutemodule"):doaction("arm parachute",true).
             }
             UI["msg add"]("Parachutes armed. Radalt: "+alt:radar).
             return true.

@@ -908,16 +908,12 @@ runpath(DATAVOLUME+":/lib/koos_pathfinding_lib").
 					unlock steering.
 					return true.
 				},
-				// {
-				// 	VES1["arm chutes"]().
-				// 	if (not chutesSafe){
-				// 		chutesSafe on.
-				// 	}
-				// 	return chutes.
-				// },
 				{
-					UI["msg add"]("REALCHUTES NOT IMPLEMENTED - DEPLOY CHUTES MANUALLY!").
-					return true.
+				// 	VES1["arm chutes"]().
+					if (not chutesSafe){
+						chutesSafe on.
+					}
+					return chutes.
 				},
 				{
 					return SHIP:STATUS = "SPLASHED" or SHIP:STATUS = "LANDED".
