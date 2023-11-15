@@ -373,6 +373,7 @@
             if actionsavail {
             for p in parachuteslist{
                 if p:hasmodule("realchutemodule") p:getmodule("realchutemodule"):doaction("arm parachute",true).
+                else if p:hasmodule("realchuteFAR") p:getmodule("realchuteFAR"):doaction("deploy chute",true).
             }
             UI["msg add"]("Parachutes armed. Radalt: "+alt:radar).
             return true.

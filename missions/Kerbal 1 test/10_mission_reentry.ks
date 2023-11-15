@@ -9,6 +9,7 @@ local event_list to list(
     
     MNV["change per"]@:bind(reentry_tgt_alt),
     MNV["exec node"]@,
+    SYS["warp to alt"]@:bind(body:atm:height+20000),
     MNV["aero land"]@:bind(laststage)
     
     //VES1["ladders on"]@

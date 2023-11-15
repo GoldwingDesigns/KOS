@@ -109,7 +109,7 @@ runpath(DATAVOLUME+":/lib/koos_pathfinding_lib").
 				if sd:contains("fore") {
 						lock STEERING to Body("sun"):position.
 				} else if sd:contains("aft") {
-						lock STEERING to 1 * Body("sun"):position.
+						lock STEERING to -1 * Body("sun"):position.
 				} else if sd:contains("side") {
 						lock STEERING to VCRS(Body("sun"):position,ship:velocity:orbit).
 				} else { 
@@ -860,6 +860,7 @@ runpath(DATAVOLUME+":/lib/koos_pathfinding_lib").
 					return abs(vdot(vcrs(body:position,ship:velocity:orbit):normalized,ship:facing:vector:normalized)) > 0.98.
 				},
 				{
+					wait 1.
 					if stage:ready and stage:number > laststage {
 						VES1["stage"]().
 						return false.
@@ -902,18 +903,19 @@ runpath(DATAVOLUME+":/lib/koos_pathfinding_lib").
 				},
 				{
 					set steervec to lookDirUp(-1*ship:velocity:surface,-1*body:position).
-					return alt:radar < 15000.
+					return alt:radar < 20000 and ship:airspeed < 280. //to protect parachutes
 				},
 				{
 					unlock steering.
 					return true.
 				},
 				{
-				// 	VES1["arm chutes"]().
-					if (not chutesSafe){
-						chutesSafe on.
-					}
-					return chutes.
+					VES1["arm chutes"]().
+					// if (not chutesSafe){
+					// 	chutesSafe on.
+					// }
+					// return chutes.
+					return true.
 				},
 				{
 					return SHIP:STATUS = "SPLASHED" or SHIP:STATUS = "LANDED".
@@ -926,6 +928,7 @@ runpath(DATAVOLUME+":/lib/koos_pathfinding_lib").
 						if ship:status = "LANDED" {
 							UI["msg add"](ship:name+" landed on "+ship:body:name+". L/L: "+ship:geoposition:lat+", "+ship:geoposition:lng+" Biome: "+addons:scansat:currentbiome).
 						}
+					}
 					else {
 						if ship:status = "SPLASHED" {
 							UI["msg add"](ship:name+" splashed down on "+ship:body:name+". L/L: "+ship:geoposition:lat+", "+ship:geoposition:lng).
@@ -933,7 +936,6 @@ runpath(DATAVOLUME+":/lib/koos_pathfinding_lib").
 						if ship:status = "LANDED" {
 							UI["msg add"](ship:name+" landed on "+ship:body:name+". L/L: "+ship:geoposition:lat+", "+ship:geoposition:lng).
 						}
-					}
 					}
 					return true.
 				}

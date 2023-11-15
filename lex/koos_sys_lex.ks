@@ -46,14 +46,16 @@
     }
 
     function warp_to_alt{
-        parameter a.
+        parameter a, descending to true.
         return list(
 			{
-				warpto(etatoaltitude2(a)+time:seconds).
+                if (descending and ship:altitude > a) or (not descending and ship:altitude < a){
+				warpto(etatoaltitude2(a)+time:seconds).}//requires obtcalc lib!  need to fix...
 				return true.
 			},
 			{
-				return ship:altitude < a.
+				if descending return ship:altitude < a.
+                else return ship:altitude > a.
 			}
         ).
     }
