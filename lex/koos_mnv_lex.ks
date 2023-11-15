@@ -1,8 +1,9 @@
 @lazyglobal off.
-runpath(DATAVOLUME+":/lib/koos_obtcalc_lib"). 
-runpath(DATAVOLUME+":/lib/koos_mnv_lib"). 
-runpath(DATAVOLUME+":/lib/koos_hillclimb_lib"). 
-runpath(DATAVOLUME+":/lib/koos_pathfinding_lib"). 
+runOncePath(DATAVOLUME+":/lib/koos_obtcalc_lib"). 
+runOncePath(DATAVOLUME+":/lib/koos_mnv_lib"). 
+runOncePath(DATAVOLUME+":/lib/koos_hillclimb_lib"). 
+runOncePath(DATAVOLUME+":/lib/koos_pathfinding_lib"). 
+runOncePath(DATAVOLUME+":/lib/LAZCalc_lib"). 
 
 {
 	global MNV is lexicon(
