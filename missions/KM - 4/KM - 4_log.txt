@@ -1,6 +1,0 @@
-T+00-000 00:00:00 Running Mission: Unknown Mission
-T+00-000 00:00:00 Throttle Up.
-T+00-000 00:00:00 Engine Ignition.
-T+00-000 00:00:00 Launch Checks Successful.
-T+00-000 00:00:00 SAS Off.
-T+00-000 00:00:00 Commence Launch Program at 3y 148d 4h 38m 53s.
