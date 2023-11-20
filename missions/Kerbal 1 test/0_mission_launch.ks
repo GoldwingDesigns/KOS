@@ -4,6 +4,7 @@ local launch_alt to 80000.
 local pitchover to 4. //Turn exponent for curvature. Lower is more vertical.
 local launch_inc to ship:geoposition:lat.
 
+UTL["build MNV lex"](list("core","lnch")).
 
 local event_list to list(
     VES1["prelaunch checks"]@,

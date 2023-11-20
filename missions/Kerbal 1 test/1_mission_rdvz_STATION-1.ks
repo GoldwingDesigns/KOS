@@ -4,12 +4,12 @@ local targetname to "Station - 1".
 local tgt to vessel(targetname).
 local rdvzdist to 100.
 
+UTL["build MNV lex"](list("core","rdvz")).
 
 local event_list to list(
     MNV["ship transfer"]@:bind(tgt,rdvzdist),
     MNV["exec node"]@,
-    MNV["cancel vel cpa"]@:bind(tgt),
-    MNV["cancel vel rcs"]@:bind(tgt)
+    MNV["cancel vel cpa"]@:bind(tgt)
 ).
 
 local interrupt_list to list(

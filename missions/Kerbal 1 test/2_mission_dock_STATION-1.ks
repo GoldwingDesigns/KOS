@@ -2,6 +2,7 @@ parameter reboot_persist to true.// set to true to persist mission through reboo
 
 local targetname to ("Station - 1").
 
+UTL["build MNV lex"](list("dock")).
 
 local event_list to list(
     mnv["dock with vessel"]@:bind(targetname)

@@ -23,20 +23,106 @@ T+00-000 00:05:21 Executing Node. dV: V(-106.002823533709, 0.150414741157784, -1
 T+00-000 00:06:24 SAS On.
 T+00-000 00:06:24 Node Execution Complete.
 T+00-000 00:06:25 Mission Complete.
-T+00-000 00:06:43 Running Mission: 10_mission_reentry.ks
-T+00-000 00:06:43 Change Pe Node Added.
-T+00-000 00:06:43 SAS Off.
-T+00-000 00:06:46 Calculated STAGEDV for stage 2 is: 1005.73815917969
-T+00-000 00:06:46 Executing Node. dV: 39 Burntime: 7
-T+00-000 00:33:04 SAS On.
-T+00-000 00:33:04 Node Execution Complete.
-T+00-000 00:33:05 SAS Off.
-T+00-000 00:33:05 Commence Aero Land Program.
-T+00-000 00:33:09 Stage. Current stage: 1.
-T+00-000 00:33:10 RCS On.
-T+00-000 00:33:23 RCS Off.
-T+00-000 00:33:24 Radio Antennas Retracted.
-T+00-000 00:44:58 Parachutes armed. Radalt: 13809.1298828125
-T+00-000 00:47:22 Kerbal 1 test splashed down on Kerbin. L/L: 0.0541305171984709, -1.56341795278184 Biome: Water
-T+00-000 00:47:22 Kerbal 1 test splashed down on Kerbin. L/L: 0.0541305171984709, -1.56341795278184
-T+00-000 00:47:22 Mission Complete.
+T+00-000 00:06:59 Library Files Updated.
+T+00-000 00:07:00 Library Files Updated.
+T+00-000 00:08:35 Library Files Updated.
+T+00-000 00:08:36 Lexicon Files Updated.
+T+00-000 00:09:58 Library Files Updated.
+T+00-000 00:09:58 Lexicon Files Updated.
+T+00-000 00:10:24 Library Files Updated.
+T+00-000 00:10:24 Lexicon Files Updated.
+T+00-000 00:10:54 Library Files Updated.
+T+00-000 00:10:55 Lexicon Files Updated.
+T+00-000 00:11:18 Library Files Updated.
+T+00-000 00:11:18 Lexicon Files Updated.
+T+00-000 00:12:26 Library Files Updated.
+T+00-000 00:12:27 Lexicon Files Updated.
+T+00-000 00:14:35 Library Files Updated.
+T+00-000 00:14:36 Lexicon Files Updated.
+T+00-000 00:14:46 Library Files Updated.
+T+00-000 00:14:47 Lexicon Files Updated.
+T+00-000 00:17:18 Library Files Updated.
+T+00-000 00:17:19 Lexicon Files Updated.
+T+00-000 00:17:26 Library Files Updated.
+T+00-000 00:17:27 Lexicon Files Updated.
+T+00-000 00:19:22 Library Files Updated.
+T+00-000 00:19:23 Lexicon Files Updated.
+T+00-000 00:20:07 Library Files Updated.
+T+00-000 00:20:08 Lexicon Files Updated.
+T+00-000 00:20:36 Library Files Updated.
+T+00-000 00:20:37 Lexicon Files Updated.
+T+00-000 00:21:46 Library Files Updated.
+T+00-000 00:21:47 Lexicon Files Updated.
+T+00-000 00:23:58 Library Files Updated.
+T+00-000 00:23:59 Lexicon Files Updated.
+T+00-000 00:24:03 Library Files Updated.
+T+00-000 00:24:05 Lexicon Files Updated.
+T+00-000 00:24:36 Library Files Updated.
+T+00-000 00:24:38 Lexicon Files Updated.
+T+00-000 00:24:45 Library Files Updated.
+T+00-000 00:24:47 Lexicon Files Updated.
+T+00-000 00:25:01 Library Files Updated.
+T+00-000 00:25:03 Lexicon Files Updated.
+T+00-000 00:25:22 Library Files Updated.
+T+00-000 00:25:23 Lexicon Files Updated.
+T+00-000 00:25:50 Library Files Updated.
+T+00-000 00:25:51 Lexicon Files Updated.
+T+00-000 00:26:14 Library Files Updated.
+T+00-000 00:26:15 Lexicon Files Updated.
+T+00-000 00:26:29 Library Files Updated.
+T+00-000 00:26:31 Lexicon Files Updated.
+T+00-000 00:26:39 Library Files Updated.
+T+00-000 00:26:41 Lexicon Files Updated.
+T+00-000 00:27:02 Library Files Updated.
+T+00-000 00:27:03 Lexicon Files Updated.
+T+00-000 00:27:13 Library Files Updated.
+T+00-000 00:27:14 Lexicon Files Updated.
+T+00-000 00:27:28 Library Files Updated.
+T+00-000 00:27:29 Lexicon Files Updated.
+T+00-000 00:27:48 Library Files Updated.
+T+00-000 00:27:49 Lexicon Files Updated.
+T+00-000 00:27:54 Library Files Updated.
+T+00-000 00:27:55 Lexicon Files Updated.
+T+00-000 00:28:34 Library Files Updated.
+T+00-000 00:28:35 Lexicon Files Updated.
+T+00-000 00:28:42 Library Files Updated.
+T+00-000 00:28:44 Lexicon Files Updated.
+T+00-000 00:29:22 Library Files Updated.
+T+00-000 00:29:23 Lexicon Files Updated.
+T+00-000 00:29:32 Library Files Updated.
+T+00-000 00:29:33 Lexicon Files Updated.
+T+00-000 00:30:02 Library Files Updated.
+T+00-000 00:30:04 Lexicon Files Updated.
+T+00-000 00:30:11 Library Files Updated.
+T+00-000 00:30:12 Lexicon Files Updated.
+T+00-000 00:30:50 Library Files Updated.
+T+00-000 00:30:51 Lexicon Files Updated.
+T+00-000 00:30:58 Library Files Updated.
+T+00-000 00:30:59 Lexicon Files Updated.
+T+00-000 00:32:10 Library Files Updated.
+T+00-000 00:32:11 Lexicon Files Updated.
+T+00-000 00:32:19 Library Files Updated.
+T+00-000 00:32:20 Lexicon Files Updated.
+T+00-000 00:32:20 Running Mission: 1_mission_rdvz_STATION-1.ks
+T+00-000 00:32:50 Library Files Updated.
+T+00-000 00:32:51 Lexicon Files Updated.
+T+00-000 00:32:56 Library Files Updated.
+T+00-000 00:32:56 Lexicon Files Updated.
+T+00-000 00:32:56 Running Mission: 1_mission_rdvz_STATION-1.ks
+T+00-000 00:34:29 Library Files Updated.
+T+00-000 00:34:30 Lexicon Files Updated.
+T+00-000 00:34:33 Library Files Updated.
+T+00-000 00:34:34 Lexicon Files Updated.
+T+00-000 00:34:34 Running Mission: 1_mission_rdvz_STATION-1.ks
+T+00-000 00:35:56 Library Files Updated.
+T+00-000 00:35:57 Lexicon Files Updated.
+T+00-000 00:36:01 Library Files Updated.
+T+00-000 00:36:02 Lexicon Files Updated.
+T+00-000 00:36:02 Running Mission: 1_mission_rdvz_STATION-1.ks
+T+00-000 00:36:14 SAS Off.
+T+00-000 00:36:17 Calculated STAGEDV for stage 2 is: 1005.73303222656
+T+00-000 00:36:17 Executing Node. dV: 57 Burntime: 10
+T+00-000 02:08:12 Library Files Updated.
+T+00-000 02:08:13 Lexicon Files Updated.
+T+00-000 02:09:29 Library Files Updated.
+T+00-000 02:09:30 Lexicon Files Updated.
