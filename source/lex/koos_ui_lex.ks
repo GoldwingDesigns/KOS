@@ -121,7 +121,7 @@ local currmenulist to list(). // have to store this here just in case of resize 
             local result to "".
             set result to menu_list("Select an operation:",key_list).
             clearscreen.
-            if result = "Prev Menu" {return false.} else {my_lex[result]().}
+            if result = -1 {return false.} else {if key_list[result]:contains("&") {print "OUTPUT: "+my_lex[key_list[result]]() at (2,termheight-2). wait 2. return false.} else my_lex[key_list[result]]().}
         }
     }
     function ag6_stop{
@@ -205,7 +205,7 @@ local currmenulist to list(). // have to store this here just in case of resize 
             local result is input_pos_int().
             // print(result).
             until result < currlist_len {
-                PRINT "ERROR: INPUT OUT OF RANGE" AT (4,termheight-3).
+                PRINT "ERROR: INPUT OUT OF RANGE" AT (9,termheight-3).
                 WAIT 1.
                 set result to input_pos_int().
             }
@@ -242,6 +242,7 @@ local currmenulist to list(). // have to store this here just in case of resize 
 	local j is 0.
 	local charstring to "".
 	local tempchar to "".
+    print "INPUT: " at (2,termheight-3).
 	until false{
 		if Terminal:INPUT:HASCHAR(){
 			local ch to Terminal:Input:Getchar().
@@ -257,23 +258,23 @@ local currmenulist to list(). // have to store this here just in case of resize 
 							set j to j+1.
 						}
 						charQ:POP.
-						print charstring + " " AT (4,termheight-3).
+						print charstring + " " AT (9,termheight-3).
 					}
 				} 
 				else if ch = Terminal:Input:RETURN {
-					IF charstring = "" {print "FAIL" AT (30,30).} //if empty dont do anything
-					else {	break. } //else submit the charstring
+					IF charstring = "" print "FAIL" AT (9,termheight-3). //if empty dont do anything
+					else break. //else submit the charstring
 				} 
 				else if unchar(ch) >= 48 AND unchar(ch) <= 57 { 
 				charQ:PUSH(ch).
 				set charstring to charstring+ch.
-				print charstring AT (4,termheight-3).
+				print charstring AT (9,termheight-3).
 			}	
 		}
 		wait 0.1.
 	}
 	set tempchar to "".
-	print tempchar:PADRIGHT(termwidth-6) AT (4,termheight-3).
+	print tempchar:PADRIGHT(termwidth-9) AT (9,termheight-3).
 	return charstring:TOSCALAR.
     }	
 
