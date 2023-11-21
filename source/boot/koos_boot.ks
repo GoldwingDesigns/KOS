@@ -1,4 +1,3 @@
-// #EXTERNAL_IDS lazyGlobal, MNV, MNV_TMP, VES, VES1, UTL, UI, SYS, man_check_stage, find_burntime, find_eta_to_true_anomaly, plane_change_info, find_landing_tgt_LAN,get_path_to_apprpoint,find_landing_tgt_LAN_lowalt, unlock_all, orbit_circumference, circle_distance, LAZcalc, LAZcalc_init, pitchangle, hillclimb,etatoaltitude2
 SET CONFIG:TELNET TO TRUE.
 GLOBAL STARTTIME to 0.
 GLOBAL LOGMSGS to TRUE.
@@ -51,11 +50,15 @@ IF SHIP:STATUS = "PRELAUNCH" or homeConnection:isconnected { //create a check he
 	for b in BOOTFILES {
         copypath("0:/boot/"+b+".ks","1:/boot/").
     }
+    // createDir(DATAVOLUME+":/lib/").
     for f in LIBFILES {
-        compile "0:/"+"lib/"+f to DATAVOLUME+":/"+"lib/"+f.
-	}
+        copypath("0:/lib/"+f+".ks",DATAVOLUME+":/lib/"+f+".ks").
+        // compile "0:/"+"lib/"+f to DATAVOLUME+":/"+"lib/"+f.
+	    }
+    // createDir(DATAVOLUME+":/lex/").
     for f in LEXFILES {
-        compile "0:/"+"lex/"+f to DATAVOLUME+":/"+"lex/"+f.
+        copypath("0:/lex/"+f+".ks",DATAVOLUME+":/lex/"+f+".ks").
+        // compile "0:/"+"lex/"+f to DATAVOLUME+":/"+"lex/"+f.
 	}
     print("Files Copied").
 }
@@ -75,6 +78,6 @@ global VES1 to VES["new"](ship,UTL["read config"]()).
 GLOBAL MNV is lex().
 // if shipcapacity > 200000 UTL["build MNV lex"](list("all")).
 // else
- UTL["build MNV lex"](list("core")).
+UTL["build MNV lex"](list("core")).
 
 UI["run"]().

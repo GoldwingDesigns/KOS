@@ -1,6 +1,4 @@
 //@lazyglobal off.
-// #EXTERNAL_IDS lazyGlobal, MNV, MNV_TMP, VES, VES1, UTL, UI, SYS, man_check_stage, find_burntime, find_eta_to_true_anomaly, plane_change_info, find_landing_tgt_LAN,get_path_to_apprpoint,find_landing_tgt_LAN_lowalt, unlock_all, orbit_circumference, circle_distance, LAZcalc, LAZcalc_init, pitchangle, hillclimb,etatoaltitude2
-
 {
     function create_ship {
         parameter s is SHIP, shipCfg is lex().
@@ -170,7 +168,7 @@
                 if pm:name:tostring:contains("ModuleUPFMEvents"){ //OhScrap
                 if pm:allevents:tostring:contains("failure") { 
                     if not failedlist:contains(pm:part:uid) {
-                        print "oscrap_failure".
+                        // print "oscrap_failure".
                         failedlist:add(pm:part:uid).
                         UI["msg add"](pm:part:title + " has failed").
                         local V0 TO GetVoice(0).
@@ -182,10 +180,10 @@
                 local fieldname is pm:allfieldnames[0]:tostring.
                 // local fieldname is pm:allfieldnames[0]:tostring.
                 local partstatus is pm:getfield(fieldname):tostring.
-                print pm:part:name.
-                print partstatus:contains("malfunction").
+                // print pm:part:name.
+                // print partstatus:contains("malfunction").
                 if partstatus:contains("malfunction") or partstatus:contains("failure") {
-                    print "kerbalism_failure". 
+                    // print "kerbalism_failure". 
                     if not failedlist:contains(pm:part:uid) {
                         failedlist:add(pm:part:uid).
                         UI["msg add"](pm:part:title + " has failed").

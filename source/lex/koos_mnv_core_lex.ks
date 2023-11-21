@@ -1,7 +1,6 @@
 //@lazyglobal off.
-// #EXTERNAL_IDS lazyGlobal, MNV, MNV_TMP, VES, VES1, UTL, UI, SYS, man_check_stage, find_burntime, find_eta_to_true_anomaly, plane_change_info, find_landing_tgt_LAN,get_path_to_apprpoint,find_landing_tgt_LAN_lowalt, unlock_all, orbit_circumference, circle_distance, LAZcalc, LAZcalc_init, pitchangle, hillclimb
-//runoncepath(DATAVOLUME+":/lib/koos_obtcalc_lib"). 
-//runoncepath(DATAVOLUME+":/lib/koos_mnv_lib"). 
+// runpath(DATAVOLUME+":/lib/koos_obtcalc_lib"). 
+// runpath(DATAVOLUME+":/lib/koos_mnv_lib"). 
 
 {
 	global MNV_TMP is lexicon(
@@ -75,7 +74,7 @@
 			},
 			{
 				SET SHIP:CONTROL:PILOTMAINTHROTTLE to 0.
-				unlock_all().
+				MNV["unlock all"]().	
 				VES1["sas on"]().
 				
 				REMOVE nd.
@@ -115,7 +114,9 @@
 
 	function change_inc_lan_alt {
 		parameter inc_t, lan_t, alt_t.
+		print "yoyuo".
 		if lan_t:istype("UserDelegate") set lan_t to lan_t:call.
+		
 		local info to plane_change_info(inc_t,lan_t).
 		local theta to info[0].
 		local nd_time to info[1].

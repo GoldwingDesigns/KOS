@@ -1,5 +1,4 @@
 //@lazyglobal off.
-// #EXTERNAL_IDS lazyGlobal, MNV, MNV_TMP, VES, VES1, UTL, UI, SYS, man_check_stage, find_burntime, find_eta_to_true_anomaly, plane_change_info, find_landing_tgt_LAN,get_path_to_apprpoint,find_landing_tgt_LAN_lowalt, unlock_all, orbit_circumference, circle_distance, LAZcalc, LAZcalc_init, pitchangle, hillclimb
 {
 	global MNV_TMP is lexicon(
     //#region Reentry
@@ -101,6 +100,7 @@
 							UI["msg add"](ship:name+" landed on "+ship:body:name+". L/L: "+ship:geoposition:lat+", "+ship:geoposition:lng).
 						}
 					}
+					WAIT 1.
 					return true.
 				}
 			).

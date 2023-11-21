@@ -1,6 +1,4 @@
 //@lazyglobal off.
-// #EXTERNAL_IDS lazyGlobal, MNV, MNV_TMP, VES, VES1, UTL, UI, SYS, man_check_stage, find_burntime, find_eta_to_true_anomaly, plane_change_info, find_landing_tgt_LAN,get_path_to_apprpoint,find_landing_tgt_LAN_lowalt, unlock_all, orbit_circumference, circle_distance, LAZcalc, LAZcalc_init, pitchangle, hillclimb,etatoaltitude2
-
 {
 	local opsLex to lex(
 		"aobt", list("koos_mnv_aobt_lex"),
@@ -48,10 +46,10 @@
 	).
 
 	function hasFile {
-		//taken from u/DeOriginale69
-		Parameter file_name,volume_number,folder to "".
+		//taken from u/DeOriginale69 
+		Parameter file_name,volume_number,folder to " ".
 		local p is path(volume(volume_number)).
-		if folder <> "" set p to p:combine(folder).
+		if folder <> " " set p to p:combine(folder).
 		local allfiles to list().
 		local filematch to FALSE.
 		local tempvol to path().
@@ -70,9 +68,9 @@
 
   function hasFileContains {
 		//taken from u/DeOriginale69
-		Parameter file_name,volume_number,folder to "".
+		Parameter file_name,volume_number,folder to " ".
 		local p is path(volume(volume_number)).
-		if folder <> "" set p to p:combine(folder).
+		if folder <> " " set p to p:combine(folder).
 		local allfiles to list().
 		local filematch to FALSE.
 		local tempvol to path().
@@ -91,9 +89,9 @@
 
   function listFileContains {
 		//taken from u/DeOriginale69
-		Parameter file_name,volume_number,folder to "".
+		Parameter file_name,volume_number,folder to " ".
 		local p is path(volume(volume_number)).
-		if folder <> "" set p to p:combine(folder).
+		if folder <> " " set p to p:combine(folder).
 		local filelist to list().
 		local allfiles to list().
 		local tempvol to path().
@@ -109,17 +107,17 @@
 	} 
 
 	function deleteFile {
-		Parameter file_name,volume_number,folder to "".
+		Parameter file_name,volume_number,folder to " ".
     local p is path(volume(volume_number)).
-    if folder <> "" set p to p:combine(folder).
+    if folder <> " " set p to p:combine(folder).
 		if hasFile(file_name,volume_number,folder) deletepath(p:combine(file_name)). 
 		return true.
 	}
 
 	function deleteFiles {
-		parameter volume_number,folder to "",fNameMatches to "".
+		parameter volume_number,folder to " ",fNameMatches to "".
 		local p is path(volume(volume_number)).
-		if folder <> "" set p to p:combine(folder).
+		if folder <> " " set p to p:combine(folder).
 		local tempvol to path().
 		if exists(p) {chdir(p).} else {return false.}
 		local fList is list().
@@ -132,17 +130,17 @@
 	}
 
 	function retrieveFile {
-		Parameter file_name,from_volume_number to 0,from_folder to "",to_volume_number to 1,to_folder to "".
+		Parameter file_name,from_volume_number to 0,from_folder to " ",to_volume_number to 1,to_folder to " ".
 		local pfrom is path(volume(from_volume_number)).
-		if from_folder <> "" set pfrom to pfrom:combine(from_folder).
+		if from_folder <> " " set pfrom to pfrom:combine(from_folder).
 		local pto is path(volume(to_volume_number)).
-		if to_folder <> "" set pto to pto:combine(to_folder).
+		if to_folder <> " " set pto to pto:combine(to_folder).
 		if hasFile(file_name,from_volume_number,from_folder) { copypath(pfrom:combine(file_name),pto:combine(file_name)). } else {print(file_name+" not found.").}
 		return true.
 	}
 
   function retrieveFileList {
-        Parameter file_list,from_volume_number to 0,from_folder to "",to_volume_number to 1,to_folder to "",compileFile to true.
+        Parameter file_list,from_volume_number,from_folder,to_volume_number,to_folder,compileFile to true.
         local pfrom is path(volume(from_volume_number)).
         if from_folder <> "" set pfrom to pfrom:combine(from_folder).
         local pto is path(volume(to_volume_number)).
@@ -171,7 +169,7 @@
   }
 
   function refreshMissionFiles {
-		refreshSpecificFiles("mission",0,"missions/"+CORE:ELEMENT:name,BOOTVOLUME,"missions",true).
+		refreshSpecificFiles("mission",0,"missions/"+CORE:ELEMENT:name,BOOTVOLUME,"missions",false).
 		return true.
 	}
 
@@ -196,8 +194,8 @@
 				if not LEXFILES:contains(lx) {LEXFILES:add(lx). lexList:add(lx).}
 			}
 		}
-		UTL["delete files"]@:bind(DATAVOLUME,"lib").
-		UTL["delete files"]@:bind(DATAVOLUME,"lex","mnv").
+		UTL["delete files"](DATAVOLUME,"lib").
+		UTL["delete files"](DATAVOLUME,"lex","mnv").
 		updateLibFiles().
 		updateLexFiles().
 		for f in LIBFILES {
@@ -217,7 +215,9 @@
 	function updateLibFiles {
 		IF HOMECONNECTION:ISCONNECTED{
 			FOR f in LIBFILES {
-				compile "0:/"+"lib/"+f to DATAVOLUME+":/"+"lib/"+f.
+				// compile "0:/"+"lib/"+f to DATAVOLUME+":/"+"lib/"+f.
+        copypath("0:/lib/"+f+".ks",DATAVOLUME+":/lib/"+f+".ks").
+
 			}
 				UI["msg add"]("Library Files Updated.").
 		} ELSE {
@@ -229,7 +229,8 @@
 	function updateLexFiles {
 		IF HOMECONNECTION:ISCONNECTED{
 			FOR f in LEXFILES {
-				compile "0:/"+"lex/"+f to DATAVOLUME+":/"+"lex/"+f.
+				// compile "0:/"+"lex/"+f to DATAVOLUME+":/"+"lex/"+f.
+        copypath("0:/lex/"+f+".ks",DATAVOLUME+":/lex/"+f+".ks").
 			}
 				UI["msg add"]("Lexicon Files Updated.").
 		} ELSE {
@@ -241,7 +242,8 @@
 	function updateBootFile {
 		IF HOMECONNECTION:ISCONNECTED{
 			FOR f in LIBFILES {
-				compile "0:/boot/"+b to BOOTVOLUME+":/boot/"+b.
+				// compile "0:/boot/"+b to BOOTVOLUME+":/boot/"+b.
+        copypath("0:/boot/"+b+".ks",BOOTVOLUME+":/boot/"+b+".ks").
 			}
 			UI["msg add"]("Boot Files Updated.").
 		} ELSE {
@@ -255,10 +257,10 @@
 		local fname to core:element:name+"_log.txt".
 		local foldername to "0:/missions/"+core:element:name+"/".
 		log txt to fname. //stores locally
-		if homeConnection:isconnected {
+		if homeConnection:isconnected { //write to archive file and then delete local
 			if not exists(foldername) createdir(foldername).
-			if exists(foldername+fname) deletePath(foldername+fname).
-			copyPath(fname,foldername).
+			open(path(foldername+fname)):write(open(fname):readall).
+			deletepath(fname).
 		}
 	}
 
@@ -313,9 +315,7 @@
 	function parseCfgFile {
     parameter fName.
     local cfgLex to lex().
-    local tmpstr to "".
     local contents to open(fName):readall.
-    // print contents:string.
     local currLine to contents:iterator.
     until not currLIne:NEXT{
         local tmpstr to currLine:value.

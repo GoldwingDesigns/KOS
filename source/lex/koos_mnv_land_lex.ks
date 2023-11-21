@@ -1,5 +1,4 @@
 //@lazyglobal off.
-// #EXTERNAL_IDS lazyGlobal, MNV, MNV_TMP, VES, VES1, UTL, UI, SYS, man_check_stage, find_burntime, find_eta_to_true_anomaly, plane_change_info, find_landing_tgt_LAN,get_path_to_apprpoint,find_landing_tgt_LAN_lowalt, unlock_all, orbit_circumference, circle_distance, LAZcalc, LAZcalc_init, pitchangle, hillclimb
 //runoncepath(DATAVOLUME+":/lib/koos_obtcalc_lib"). 
 //runoncepath(DATAVOLUME+":/lib/koos_mnv_lib"). 
 
@@ -16,15 +15,19 @@
 
 	function match_landing_lat {
 		parameter tgt, finalalt is 0.
+		print "hello".
 		local desiredinc to abs(tgt:lat). //inclinations are expressed with positive num
+		print "hi".
 		if ship:obt:inclination > 90 {set desiredinc to 180-desiredinc. }  //if already retrograde, stay that way <-- dont do this.. messes up find LAN calc
-
+		PRINT "HERE".
 		if finalalt <> 0 { 
+			print "loly".
 			local lan to find_landing_tgt_LAN(tgt,desiredinc,finalalt).
-			return MNV["change inc lan alt"]@:bind(desiredinc,lan,finalalt).
+			print lan.
+			return MNV["change inc lan alt"](desiredinc,lan,finalalt). //took away the @bind delegate.
 		}else{
 			local lan to find_landing_tgt_LAN_lowalt(tgt, desiredinc).
-			return MNV["change inc lan"]@:bind(desiredinc,lan).
+			return MNV["change inc lan"](desiredinc,lan). //took away the @bind delegate.
 		}
 	}
 
@@ -126,7 +129,7 @@
 				wait 3.
 				set ship:control:pilotmainthrottle to 0.
 				set ship:control:neutralize to TRUE.
-				unlock_all().
+				MNV["unlock all"]().
 				VES1["sas on"]().
 				set waitstart to time:seconds.
 				return true.
@@ -221,7 +224,7 @@
 			{
 				set thrt to 0.
 				SET SHIP:CONTROL:PILOTMAINTHROTTLE to 0.
-				unlock_all().
+				MNV["unlock all"]().
 				wait 0.1.
 				return true.
 			}
@@ -371,7 +374,7 @@
 				set thrt to 0.
 				SET SHIP:CONTROL:PILOTMAINTHROTTLE to 0.
 				set ship:control:neutralize to TRUE.
-				unlock_all().
+				MNV["unlock all"]().
 				wait 0.1.
 				return true.
 			}

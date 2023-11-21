@@ -1,5 +1,4 @@
 //@lazyglobal off.
-// #EXTERNAL_IDS lazyGlobal, MNV, MNV_TMP, VES, VES1, UTL, UI, SYS, man_check_stage, find_burntime, find_eta_to_true_anomaly, plane_change_info, find_landing_tgt_LAN,get_path_to_apprpoint,find_landing_tgt_LAN_lowalt, unlock_all, orbit_circumference, circle_distance, LAZcalc, LAZcalc_init, pitchangle, hillclimb,etatoaltitude2
 local termheight to terminal:height.
 local termwidth to terminal:width.
 local midline to termwidth/2.
@@ -170,7 +169,7 @@ local currmenulist to list(). // have to store this here just in case of resize 
 
     FUNCTION pad_time { //borrowed from u/farsyte
         PARAMETER t, l is 2.
-        RETURN (""+t):PADLEFT(l):REPLACE(" ","0").
+        RETURN t:tostring:PADLEFT(l):REPLACE(" ","0").
     }
 
     // function scr_update {

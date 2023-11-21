@@ -1,7 +1,4 @@
-
 //@lazyglobal off.
-// #EXTERNAL_IDS lazyGlobal, MNV, MNV_TMP, VES, VES1, UTL, UI, SYS, man_check_stage, find_burntime, find_eta_to_true_anomaly, plane_change_info, find_landing_tgt_LAN,get_path_to_apprpoint,find_landing_tgt_LAN_lowalt, unlock_all, orbit_circumference, circle_distance, LAZcalc, LAZcalc_init, pitchangle, hillclimb,etatoaltitude2
-
 function man_check_stage{
   parameter laststage to VES1["&lastengine"]().
   //local press to MAX(0,MIN(1,ship:body:atm:altitudepressure(ship:altitude))).

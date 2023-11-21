@@ -1,5 +1,4 @@
 //@lazyglobal off.
-// #EXTERNAL_IDS lazyGlobal, MNV, MNV_TMP, VES, VES1, UTL, UI, SYS, man_check_stage, find_burntime, find_eta_to_true_anomaly, plane_change_info, find_landing_tgt_LAN,get_path_to_apprpoint,find_landing_tgt_LAN_lowalt, unlock_all, orbit_circumference, circle_distance, LAZcalc, LAZcalc_init, pitchangle, hillclimb
 //runoncepath(DATAVOLUME+":/lib/koos_pathfinding_lib"). 
 //runoncepath(DATAVOLUME+":/lib/lib_enum"). 
 
@@ -67,7 +66,7 @@
     local thrustx to 0.
     local thrusty to 0.
     local thrustz to 0.
-    UNTIL DTG < 0.01 {
+    UNTIL DTG < 0.05 {
       if onfinalappr and ship:controlpart:istype("DockingPort") and ship:controlpart:state <> "Ready" { break.}
       set thrustx to PID_X:UPDATE(TIME:SECONDS, V1x).
       set ship:control:starboard TO thrustx.
@@ -233,7 +232,8 @@
     // unlock steering.
     sas on.
     wait 1.
-		unlock_all().	
+		UNLOCK STEERING.
+    //MNV["unlock all"]().	
     secure_port(newport).
     secure_port(tgtPort).
 		ship:rootpart:controlfrom().
@@ -301,7 +301,8 @@
     }
     final_approach(tgtPort:nodeposition, tgtPort, final_speed).
     }
-    unlock_ALL().
+    UNLOCK STEERING.
+    //MNV["unlock all"]().
     sas ON.
     RCS OFF.
     return true.

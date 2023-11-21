@@ -1,0 +1,1 @@
+function d{parameter a,b,c is "". return(a+b+c).}function e{parameter a,b is"hello",c is "". return(a+b+c).}function f{parameter a,b is"", myvar is "hello". return(a+b+c).}function g{parameter a,b is"", myvar is "". return(a+b+c).}

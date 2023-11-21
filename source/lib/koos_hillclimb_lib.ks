@@ -1,4 +1,3 @@
-// #EXTERNAL_IDS lazyGlobal, MNV, MNV_TMP, VES, VES1, UTL, UI, SYS, man_check_stage, find_burntime, find_eta_to_true_anomaly, plane_change_info, find_landing_tgt_LAN,get_path_to_apprpoint,find_landing_tgt_LAN_lowalt, unlock_all, orbit_circumference, circle_distance, LAZcalc, LAZcalc_init, pitchangle, hillclimb,etatoaltitude2
 //@lazyglobal off.
 local INFINITY is 2^64.
 local BQ is QUEUE().
@@ -31,7 +30,7 @@ function hillclimb {
 	return answer.
 }
 
-function findneighbors{
+local function findneighbors{
 	parameter tgt, tgtvalue, ish.
 	local nd is BQ:POP().
 	local rlist to list().
@@ -49,7 +48,7 @@ function findneighbors{
 	return FALSE.
 }
 
-function findscoremean {
+local function findscoremean {
 	parameter meanarr.
 	local sum is 0.
 	for arr in meanarr {
@@ -59,7 +58,7 @@ function findscoremean {
 	return mean.
 }
 
-function arrsort{
+local function arrsort{
 	parameter arr.
 	local n to arr:LENGTH.
 	FROM {local i is 1.} UNTIL i >= n STEP {set i to i+1.} DO { 
@@ -77,7 +76,7 @@ function arrsort{
 	return arr.
 }		
 		
-function evaluate{
+local function evaluate{
 	parameter nd, tgt, tgtvalue, ish.
 	ADD nd.
 	WAIT 0.1.
@@ -87,7 +86,7 @@ function evaluate{
 	return list(nd,score).
 }
 
-function scorenode{
+local function scorenode{
 	parameter tgt, tgtvalue, nd.
 	local score is 1.
 	FROM {local i is 0.} UNTIL i = tgtvalue:LENGTH STEP {set i to i+2.} DO {
@@ -108,7 +107,7 @@ function scorenode{
 	return score.
 }
 
-function stepnode {
+local function stepnode {
 	parameter nd, i.
 	local j is 1/10^STEPSIZE.
 	local mult is 10.
