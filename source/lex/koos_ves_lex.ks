@@ -6,6 +6,7 @@
         local uiType to choose "digital" if not shipCfg:haskey("ui") else shipCfg:ui.
         local launchstage to choose 0 if not shipCfg:hasKey("lastlaunchstage") else shipCfg:lastlaunchstage.
         local rcsGain to choose 1 if not shipCfg:hasKey("rcsgain") else shipCfg:rcsgain.
+        local reentryRCS to choose true if not shipCfg:hasKey("rtryRCS") else shipCfg:rtryRCS="true".
         local name is s:name.
         local lastchutestage is 2147483647.
         local firstchutestage is 0.
@@ -23,6 +24,13 @@
         refreshparts().
 
         function refreshparts {
+            failablelist:clear().
+            parachuteslist:clear().
+            engineslist:clear().
+            fairinglist:clear().
+            failedlist:clear().
+            commslist:clear().
+            launchclamplist:clear().
             set parachuteslist to ship:partsdubbedpattern("^*chute*").
             list engines in engineslist.
             local flist to ship:partsnamedpattern("^fairing*").
@@ -48,16 +56,13 @@
                 }
             }
 
-            failablelist:clear().
-            failedlist:clear().
-            commslist:clear().
             for p in ship:parts { //add ohscrap parts to list and comms antenna parts.
 		        if p:modules:contains("ModuleUPFMEvents"){ failablelist:add(p:getmodule("ModuleUPFMEvents")). }
                 if p:modules:contains("Reliability"){failablelist:add(p:getmodule("Reliability")).}
                 if p:modules:contains("ModuleDataTransmitter"){ commslist:add(p). } 
                 if (p:name:contains("LaunchClamp") OR p:modules:contains("LaunchClamp")){ launchclamplist:add(p). }
             }
-
+            return true.
         }
 
         local this is lexicon(
@@ -66,6 +71,7 @@
             "&firstchute",      var_firstchute@,
             "&launchstage",     var_launchstage@,
             "&rcsGain",         var_rcsGain@,
+            "&rtryRCS",         var_reentryRCS@,
             "&chuteslist",      var_chuteslist@,
             "&commslist",       var_commslist@,
             "&failablelist",    var_failablelist@,
@@ -86,6 +92,9 @@
             "gear up",          meth_gear_off@,
             "stage",            meth_stage@,
             "extract stage",    meth_sep_stage@,
+            "refresh parts",    refreshparts@,
+            "extract stage lite",    meth_sep_stage_lite@,
+            "extract stage stbd",    meth_sep_stage_stbd@,
             "arm chutes",       meth_arm_chutes@,
             "check fail",       meth_check_fail@,
             "fairing deploy",   meth_deploy_fairing@,
@@ -108,6 +117,9 @@
         }
         function var_rcsGain {
             return rcsGain.
+        }
+        function var_reentryRCS {
+            return reentryRCS.
         }
         function var_chuteslist {
             return parachuteslist.
@@ -200,7 +212,7 @@
             local waitstart to 0.
             return list(
                 {if launchclamplist:length > 0 { 
-                    LOCK THROTTLE to 1. 
+                    LOCK THROTTLE to 0.1. 
                     UI["msg add"]("Throttle Up."). 
                     WAIT 2. 
                     UI["msg add"]("Engine Ignition.").
@@ -213,7 +225,7 @@
                     return true.
                 },
                 {
-                    return waitstart+2 < time:seconds.
+                    return waitstart+1 < time:seconds.
                 },
                 {
                     if failedlist:length > 0 {
@@ -332,6 +344,69 @@
                 },
                 {
                     return waitstart+10 < time:seconds.
+                },
+                {
+                    RCS OFF.
+                    UI["msg add"]("Stage "+stage:number+" extraction complete.").
+                    return true.
+                }
+            ).
+        }
+        function meth_sep_stage_lite {
+            local waitstart to 0.
+            UI["msg add"]("Commence stage "+stage:number+" extraction.").
+            return list (
+                {
+                    RCS ON.
+                    return true.
+                },
+                {
+                    set ship:control:fore to 0.25.
+                    set waitstart to time:seconds.
+                    return true.
+                },
+                {
+                    return waitstart+1 < time:seconds.
+                },
+                {
+                    set ship:control:neutralize to true.
+                    return true.
+                },
+                {
+                    RCS OFF.
+                    UI["msg add"]("Stage "+stage:number+" extraction complete.").
+                    return true.
+                }
+            ).
+        }
+        function meth_sep_stage_stbd {
+            parameter strength to 2.
+            local waitstart to 0.
+            UI["msg add"]("Commence stage "+stage:number+" extraction.").
+            return list (
+                {
+                    RCS ON.
+                    return true.
+                },
+                {
+                    set ship:control:starboard to 1.
+                    set waitstart to time:seconds.
+                    return true.
+                },
+                {
+                    return waitstart+strength < time:seconds.
+                },
+                {
+                    set ship:control:starboard to -1.
+                    set waitstart to time:seconds.
+                    return true.
+                },
+                {
+                    return waitstart+strength < time:seconds.
+                },
+                {
+                    set ship:control:neutralize to true.
+                    return true.
                 },
                 {
                     RCS OFF.

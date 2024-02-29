@@ -1,14 +1,16 @@
 //@lazyglobal off.
-local termheight to terminal:height.
-local termwidth to terminal:width.
-local midline to termwidth/2.
-local currmenutitle to "".  // have to store this here just in case of resize screen
-local currmenulist to list(). // have to store this here just in case of resize screen
+
 {
+    local termheight to terminal:height.
+    local termwidth to terminal:width.
+    local midline to termwidth/2.
+    local currmenutitle to "".  // have to store this here just in case of resize screen
+    local currmenulist to list(). // have to store this here just in case of resize screen
     global UI is lexicon (
         "run",          term_run@,
         "msg add",      msg_add@,
        // "scr update",   scr_update@,
+        "abort stop",     abort_stop@,
         "AG6 stop",     ag6_stop@
     ).
 
@@ -43,6 +45,7 @@ local currmenulist to list(). // have to store this here just in case of resize 
             until false {
                 local result to "".
                 local functionlist to list("Missions","Maneuvers","Vessel","Reboot"). 
+                if UTL["has file"](ship:name+".json",1) { functionlist:insert(functionlist:length-1,"Delete Persist File").}
                 clearscreen.
                 set result to menu_list("Choose a function:",functionlist).
                 if functionlist[result]="Missions"{
@@ -53,6 +56,8 @@ local currmenulist to list(). // have to store this here just in case of resize 
                     lexicon_menu_run(VES1).
                 } else if functionlist[result] = "Reboot" {
                     reboot.
+                } else if functionlist[result] = "Delete Persist File" {
+                    UTL["delete file"](ship:name+".json",1).
                 }
             }
         }
@@ -127,8 +132,15 @@ local currmenulist to list(). // have to store this here just in case of resize 
     function ag6_stop{
         if AG6 {
             AG6 off.
-            MIS1["stop"]().
+            return true.
         }
+        else return false.
+    }
+    function abort_stop{
+        if abort {
+            return true.
+        }
+        else return false.
     }
     // function msg_update{
     //     local tmpstring to "".

@@ -15,15 +15,10 @@
 
 	function match_landing_lat {
 		parameter tgt, finalalt is 0.
-		print "hello".
 		local desiredinc to abs(tgt:lat). //inclinations are expressed with positive num
-		print "hi".
 		if ship:obt:inclination > 90 {set desiredinc to 180-desiredinc. }  //if already retrograde, stay that way <-- dont do this.. messes up find LAN calc
-		PRINT "HERE".
 		if finalalt <> 0 { 
-			print "loly".
 			local lan to find_landing_tgt_LAN(tgt,desiredinc,finalalt).
-			print lan.
 			return MNV["change inc lan alt"](desiredinc,lan,finalalt). //took away the @bind delegate.
 		}else{
 			local lan to find_landing_tgt_LAN_lowalt(tgt, desiredinc).
@@ -69,7 +64,7 @@
 			{
 				VES1["sas off"]().
 				VES1["rcs on"]().
-				lock steering TO lookDirUp(-1*ship:velocity:surface,ewvec).
+				lock steering TO lookDirUp(-1*ship:velocity:surface,-1*ewvec).
 				set mytime to TIME:seconds.
 				lock throttle to 0.	
 				return true.
@@ -177,7 +172,7 @@
 		lock throttle to thrt.
 		local negind to 0.
 		local angdiff to 0.
-		local steervec to lookDirUp(-1*ship:velocity:orbit,-1*body:position).
+		local steervec to lookDirUp(-1*ship:velocity:orbit,body:position).
 		local waitstart to 0.
 		UI["msg add"]("Commence Initial Landing Angular Correction.").
 		return list(
@@ -208,7 +203,7 @@
 				set angdiff to vang(tgtvec,survec).
 				if angdiff > 2 {
 					set ship:control:neutralize to TRUE.
-					set steervec to lookDirUp(-1 * negind*vcrs(body:position,survec),-1*body:position).
+					set steervec to lookDirUp(-1 * negind*vcrs(body:position,survec),body:position).
 					if abs(vdot(vcrs(body:position,survec):normalized,ship:facing:vector:normalized)) > 0.98 
 					{ 
 						set thrt to angdiff. 
@@ -216,7 +211,7 @@
 					return false.
 				} else {
 					set thrt to 0.
-					set steervec to lookDirUp(-1*survec,-1*body:position).
+					set steervec to lookDirUp(-1*survec,body:position).
 					if abs(vdot(-1*survec,ship:facing:vector:normalized)) > 0.98 
 					{return true.}else{return false.} //done once angle < 0.02 and facing retrograde.
 					}
@@ -253,7 +248,7 @@
 		local angdiff to 0.
 		local deadband to 0.2.
 		local mindist to 2147483647.
-		local steervec to lookDirUp(-1*ship:velocity:orbit,-1*body:position).
+		local steervec to lookDirUp(-1*ship:velocity:orbit,body:position).
 		lock steering to steervec.
 		local hystate to 0.
 		UI["msg add"]("Commence Landing Angular Alignment.").
@@ -300,14 +295,14 @@
 				// }
 				if hystate = 1 {
 					set ship:control:neutralize to TRUE.
-					set steervec to lookDirUp(-1 * negind*vcrs(body:position,survec),-1*body:position).
+					set steervec to lookDirUp(-1 * negind*vcrs(body:position,survec),body:position).
 					if abs(vdot(vcrs(body:position,survec):normalized,ship:facing:vector:normalized)) > 0.98 { set thrt to angdiff. }
 					set hburnt to find_burntime(hvel).
 					set hburnd to (hburnt*hvel/2)+1000.
 				}
 				if hystate = 0 {
 					set thrt to 0.
-					set steervec to lookDirUp(-1*survec,-1*body:position).
+					set steervec to lookDirUp(-1*survec,body:position).
 					if abs(vdot(-1*survec,ship:facing:vector:normalized)) > 0.98 {
 						set ship:control:starboard to -2 * hdgpitch. // put the negative sign back if this is messed up
 					}
@@ -315,7 +310,7 @@
 				return tgtvec:mag < (hburnd).	
 			},
 			{
-				set steervec to lookDirUp(-1*survec,-1*body:position).
+				set steervec to lookDirUp(-1*survec,body:position).
 				set ship:control:neutralize to TRUE.
 				return true.
 			},
@@ -328,7 +323,7 @@
 				return true.
 			},
 			{
-				set steervec to lookDirUp(-1*survec,-1*body:position).
+				set steervec to lookDirUp(-1*survec,body:position).
 				if ADDONS:TR:AVAILABLE {
 					set angdiff to vang(tgtvec,survec).
 					if angdiff > deadband {
@@ -347,7 +342,7 @@
 				}
 			},
 			{
-				set steervec to lookDirUp(-1*survec,-1*body:position).
+				set steervec to lookDirUp(-1*survec,body:position).
 				if ADDONS:TR:AVAILABLE {
 					set errorvec to addons:tr:impactpos:altitudeposition(ship:altitude+alterr)-tgt:altitudeposition(ship:altitude+alterr).
 					set errorvechoriz to vxcl(cos(VANG(errorvec,BODY:POSITION))*Body:position:normalized,errorvec).
@@ -370,7 +365,7 @@
 			},
 			{
 				UI["msg add"]("Landing alignment CPA: "+mindist).
-				set steervec to lookDirUp(-1*ship:velocity:orbit,-1*body:position).
+				set steervec to lookDirUp(-1*ship:velocity:orbit,body:position).
 				set thrt to 0.
 				SET SHIP:CONTROL:PILOTMAINTHROTTLE to 0.
 				set ship:control:neutralize to TRUE.

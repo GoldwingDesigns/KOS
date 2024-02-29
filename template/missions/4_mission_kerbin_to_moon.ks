@@ -1,7 +1,7 @@
 parameter reboot_persist to true.// set to true to persist mission through reboot.
-local tgtmoonname to "Mun".
+local tgtmoonname to "minmus".
 local tgtmoon to body(tgtmoonname).
-local init_moon_obt_alt to 600000.
+local init_moon_obt_alt to (tgtmoon:soiradius-tgtmoon:radius)*0.9.
 
 UTL["build MNV lex"](list("core","mxfr")).
 
@@ -16,7 +16,8 @@ local event_list to list(
     ).
 
 local interrupt_list to list(
-    VES1["check fail"]@
+    VES1["check fail"]@,
+    UI["abort stop"]@
 ).
 
 // mission specific functions

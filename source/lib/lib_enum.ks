@@ -2,7 +2,8 @@
 // Copyright © 2015,2016 KSLib team 
 // Lic. MIT
 
-{global Enum is lex(
+{
+global ENUM is lex(
 "version", "0.1.1",
 "all", all@,
 "any", any@,

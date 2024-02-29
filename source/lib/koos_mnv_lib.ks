@@ -12,7 +12,8 @@ function man_check_stage{
       }
     } else {
 			local numEngOut to 0.
-			local numEngOn to 0.
+			// local numEngOn to 0.
+			local srbOut to false.
 			local numEngOther to 0.
 			// local engName to "".
 			local myengines to list().
@@ -20,17 +21,19 @@ function man_check_stage{
 			local stagenum is STAGE:NUMBER.
 			FOR eng IN myengines {
 				if eng:stage = stagenum{
-				IF eng:FLAMEOUT {
-					SET numEngOut TO numEngOut + 1.
-					// set engName to eng:title.
-				}
-				IF eng:maxThrust>0 and eng:allowshutdown set numEngOn to numEngOn + 1. //rules out SRBs
+					IF eng:FLAMEOUT {
+						SET numEngOut TO numEngOut + 1.
+						if not eng:allowshutdown set srbOut to true.
+						// set engName to eng:title.
+					}
+				// IF eng:maxThrust>0 and eng:allowshutdown set numEngOn to numEngOn + 1. //rules out SRBs
 				} else set numEngOther to numEngOther + 1.
 			}
 			if numEngOut > 0 { 
 				// print "on"+numEngOn+"oth"+numEngOther+"out"+numEngOut.
 				// UI["msg add"]("Stage: "+stagenum+" eng: "+engName+" flameout. "+numEngOn+" engines remain."). 
-				if numEngOn>0 or numEngOther>0 VES1["stage"](). 
+				// if numEngOn>0 or numEngOther>0 VES1["stage"](). 
+				if srbOut or numEngOther>0 VES1["stage"](). 
 			}
   	}
 	}

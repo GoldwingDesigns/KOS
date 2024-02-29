@@ -151,6 +151,26 @@ function plane_change_info {
     return LIST(theta,nd_time,negind).
 }
 
+function getLANForSunAngle{
+  parameter maxSunAngle is 90, minSunAngle is 0.
+  local sunpos is vang((body("sun"):position),(solarPrimeVector)).
+  local ind is vcrs((body("sun"):position):normalized,(solarPrimeVector):normalized):y.
+  if ind < 0 set sunpos to 360-sunpos.
+  local desiredSunAngle is (maxSunAngle+minSunAngle)/2.
+  local lan1 is sunpos-desiredSunAngle.
+  local lan2 is sunpos+desiredSunAngle.
+  set lan1 to mod(lan1+720,360).
+  until lan2<360 {set lan2 to lan2-360.}
+  local curLan is obt:lan.
+  if obt:inclination> 0 {
+    if abs(curLan-lan1)<90 return lan1.
+    else return lan2.
+  } else {
+    if abs(curLan-lan1)<90 return lan2.
+    else return lan1.
+  }
+}
+
 function find_landing_tgt_LAN{
     parameter tgt, inc, final_alt is 20000, init_alt is ship:obt:semimajoraxis-tgt:body:radius.
     // local initorbitperiod is orbit_period(tgt:body,init_alt,init_alt).

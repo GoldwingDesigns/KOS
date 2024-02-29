@@ -11,12 +11,13 @@
 		"hoh trans 2",			hohmann_trans2@,
 		"change inc lan alt",	change_inc_lan_alt@,
 		"change apo",			change_apo@,
+		"change per",			change_per@,
 		"circ",					circularize@,
-		"change inc lan",		change_inc_lan@
+		"change inc lan",		change_inc_lan@,
+		"orbit sun angle", orb_sun_angle@
  		//#endregion
 		).
 	
-//#region Core
   function exec_node{
 		parameter laststage to VES1["&lastengine"]().
 		//Execute Node Maneuvers
@@ -42,7 +43,7 @@
 			},
 			{
 				set dv0 to nd:deltav:vec.
-				return nd:ETA < burntime/2.
+				return nd:ETA <= burntime/2.
 			},
 			{
 				//recalculate current max_acceleration, as it changes while we burn through fuel
@@ -58,13 +59,13 @@
 				lock throttle to 0.
 				local sd to VES1["&solardir"]().
 				if sd:contains("fore") {
-						lock STEERING to Body("sun"):position.
+						lock STEERING to lookdirup(Body("sun"):position,BODY:POSITION).
 				} else if sd:contains("aft") {
-						lock STEERING to -1 * Body("sun"):position.
+						lock STEERING to lookdirup(-1 * Body("sun"):position,BODY:POSITION).
 				} else if sd:contains("side") {
-						lock STEERING to VCRS(Body("sun"):position,ship:velocity:orbit).
+						lock STEERING to lookdirup(VCRS(Body("sun"):position,ship:velocity:orbit),BODY:POSITION).
 				} else { 
-						lock STEERING to Body("sun"):position. 
+						lock STEERING to lookdirup(Body("sun"):position,BODY:POSITION). 
 				}.
 				set waitstart to time:seconds.
 				return true.
@@ -114,9 +115,7 @@
 
 	function change_inc_lan_alt {
 		parameter inc_t, lan_t, alt_t.
-		print "yoyuo".
 		if lan_t:istype("UserDelegate") set lan_t to lan_t:call.
-		
 		local info to plane_change_info(inc_t,lan_t).
 		local theta to info[0].
 		local nd_time to info[1].
@@ -148,6 +147,19 @@
 		return true.
 	}
 
+	function change_per{
+		parameter newalt.
+		local thisMU to BODY:MU.
+		local thisR to BODY:RADIUS + SHIP:APOAPSIS.
+		local thisA to BODY:RADIUS + ((SHIP:APOAPSIS + SHIP:PERIAPSIS)/2).
+		local nextA to BODY:RADIUS + ((SHIP:APOAPSIS + newalt)/2).
+		local thisDV to SQRT(thisMU * (2/thisR - 1/nextA)) - SQRT(thisMU * (2/thisR - 1/thisA)).
+		local nd to NODE(TIME:SECONDS + ETA:APOAPSIS,0,0,thisDV).
+		ADD nd.
+    UI["msg add"]("Change Pe Node Added.").
+    return true.
+	}
+	
 	function circularize{
 		local thisMU to BODY:MU.
 		local apoIsSoonest to ETA:APOAPSIS<ETA:PERIAPSIS.
@@ -179,6 +191,12 @@
 		return true.   
 	}
 
-//#endregion 
+	function orb_sun_angle {
+		parameter inc_t, alt_t, max_t, min_t to 0.
+		local lan_t is getLANForSunAngle(max_t,min_t).
+		change_inc_lan_alt(inc_t,lan_t,alt_t).
+		return true.
+	}
+
 
 }

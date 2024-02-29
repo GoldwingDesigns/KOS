@@ -147,7 +147,6 @@
         if to_folder <> "" set pto to pto:combine(to_folder).
         for file_name in file_list {
 		    if hasFile(file_name,from_volume_number,from_folder) {
-          //copypath(pfrom:combine(file_name),pto:combine(file_name)).
 					if compileFile {compile pfrom:combine(file_name) to pto:combine(file_name).}
 					else copypath(pfrom:combine(file_name),pto:combine(file_name)).
         } else {
@@ -169,7 +168,7 @@
   }
 
   function refreshMissionFiles {
-		refreshSpecificFiles("mission",0,"missions/"+CORE:ELEMENT:name,BOOTVOLUME,"missions",false).
+		refreshSpecificFiles("mission",0,"missions/"+CORE:ELEMENT:name,BOOTVOLUME,"missions",true).
 		return true.
 	}
 
@@ -194,12 +193,12 @@
 				if not LEXFILES:contains(lx) {LEXFILES:add(lx). lexList:add(lx).}
 			}
 		}
-		UTL["delete files"](DATAVOLUME,"lib").
+		UTL["delete files"](BOOTVOLUME,"lib").
 		UTL["delete files"](DATAVOLUME,"lex","mnv").
 		updateLibFiles().
 		updateLexFiles().
 		for f in LIBFILES {
-			runpath(DATAVOLUME+":/lib/"+f).
+			runpath(BOOTVOLUME+":/lib/"+f).
 		}
 		for f in lexlist {
 			runpath(DATAVOLUME+":/lex/"+f).
@@ -216,7 +215,7 @@
 		IF HOMECONNECTION:ISCONNECTED{
 			FOR f in LIBFILES {
 				// compile "0:/"+"lib/"+f to DATAVOLUME+":/"+"lib/"+f.
-        copypath("0:/lib/"+f+".ks",DATAVOLUME+":/lib/"+f+".ks").
+        copypath("0:/lib/"+f+".ks",BOOTVOLUME+":/lib/"+f+".ks").
 
 			}
 				UI["msg add"]("Library Files Updated.").
@@ -259,6 +258,7 @@
 		log txt to fname. //stores locally
 		if homeConnection:isconnected { //write to archive file and then delete local
 			if not exists(foldername) createdir(foldername).
+			if not exists(foldername+fname) create(foldername+fname).
 			open(path(foldername+fname)):write(open(fname):readall).
 			deletepath(fname).
 		}

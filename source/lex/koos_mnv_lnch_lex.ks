@@ -22,7 +22,8 @@
 		local newth to 0.
 		local atmoheight to SHIP:ORBIT:BODY:ATM:HEIGHT.
 		local stopatstage to VES1["&launchstage"]().
-		local launchaz to LAZcalc(LAZcalc_init(launchalt,launchinc)).
+		local launchazdata to LAZcalc_init(launchalt,launchinc).
+		local launchaz to LAZcalc(launchazdata).
 		// local launchaz to getLaunchAzimuth(launchinc).
 		local THRPID to CHOOSE PIDLOOP(0.1,0.0,0.1,-0.5,0.5) if thrByEta else PIDLOOP(0.1,0,0.01,-0.5,0.5). //PID loop to set throttle to DesiredTWR.
 		SET THRPID:SETPOINT to setpoint.
@@ -55,7 +56,7 @@
 			},
 			{
 				man_check_stage(stopatstage).
-				return ALT:RADAR > 500.
+				return ALT:RADAR > 300 or ship:airspeed > 50.
 			},
 			{
 				VES1["gear up"]().
@@ -66,7 +67,7 @@
 				set MyPitch to 90-pitchoverDeg.
 				local CurPoint to  ETA:APOAPSIS .
 				// local CurPoint to CHOOSE ETA:APOAPSIS if thrByEta else ShipTWR.
-				SET Steering_Lock TO HEADING(launchaz,MyPitch,roll).
+				SET Steering_Lock TO HEADING(LAZcalc(launchazdata),MyPitch,roll).
 				set newth to th+THRPID:UPDATE(time:seconds, CurPoint)*min(1,(launchalt-ship:apoapsis)/1000).
 				// SET th to MIN(1,MAX(newth,MinThrottle)).
 				SET th to MIN(1,MAX(newth,0.05)).
@@ -80,7 +81,7 @@
 			{
 				//set MyPitch TO 90 * (1 - ((SHIP:ALTITUDE-TurnStart) / TurnEnd) ^ TurnExponent).
 				// SET Steering_Lock to LOOKDIRUP(SHIP:srfPrograde:FOREVECTOR,SHIP:FACING:TOPVECTOR).
-				SET Steering_Lock to HEADING(launchaz,90-pitchangle(SHIP:srfPrograde),roll).
+				SET Steering_Lock to HEADING(LAZcalc(launchazdata),90-pitchangle(SHIP:srfPrograde),roll).
 				
 				// print dirangle(SHIP:srfPrograde:FOREVECTOR,"x").
 				// print SHIP:srfprograde:pitch.
@@ -93,7 +94,7 @@
 				return SHIP:ALTITUDE > TurnEnd or SHIP:APOAPSIS > launchalt. //If still following the launch curve and desired apoapsis not reached
 			},
 			{
-				SET Steering_Lock TO HEADING(launchaz,0,roll).
+				SET Steering_Lock TO HEADING(LAZcalc(launchazdata),0,roll).
 				IF SHIP:APOAPSIS < launchalt AND SHIP:ALTITUDE >=atmoheight{ //Apoapsis value has dropped due to drag.
 						set newth to 1*min(1,(launchalt-ship:apoapsis)/1000).
 				} ELSE { //Coasting to Apoapsis.

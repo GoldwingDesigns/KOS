@@ -8,7 +8,7 @@
 	
 //#region Reentry
 	function aero_ldg {
-			parameter laststage to VES1["&lastchute"]@.
+			parameter laststage to VES1["&lastchute"](), hasrcs to VES1["&rtryRCS"]().
 			local steervec to lookDirUp(-1*ship:velocity:orbit,-1*body:position).
 			lock steering to steervec.
 			local waitstart to 0.
@@ -31,25 +31,29 @@
 						if stage:number > laststage {return false.} else {return true.} 
 					}
 				},
-				{ //this is same as "ship sep" in the vessel lib.  consider how to put this there.
-					VES1["rcs on"](). 
+				{ 
+					if hasrcs VES1["rcs on"](). 
 					return true.
 				},
 				{
+					if hasrcs {
 					set ship:control:fore to 1.
 					set waitstart to time:seconds.
+					}
 					return true.
 				},
 				{
-					return waitstart+3 < time:seconds.
+					if hasrcs return true. else	return waitstart+3 < time:seconds.
 				},
 				{
+					if hasrcs {
 					set ship:control:neutralize to true.
 					set waitstart to time:seconds.
+					}
 					return true.
 				},
 				{
-					return waitstart+10 < time:seconds.
+					if hasrcs return true. else	return waitstart+10 < time:seconds.
 				},
 				{
 					VES1["rcs off"]().

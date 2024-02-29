@@ -1,36 +1,32 @@
-//@lazyglobal off.
-//runoncepath(DATAVOLUME+":/lib/koos_pathfinding_lib"). 
-//runoncepath(DATAVOLUME+":/lib/lib_enum"). 
+// //@lazyglobal off.
+// //runoncepath(DATAVOLUME+":/lib/koos_pathfinding_lib"). 
+// //runoncepath(DATAVOLUME+":/lib/lib_enum"). 
 
 {
 	global MNV_TMP is lexicon(
-		//#region Dock
 		"align ports facing",			align_ports@,
+    "get own port", get_ship_port@,
+    "get best tgt port", get_target_port@,
     "cancel vel RCS", cancel_rel_vel_RCS@,
     "cancel vel", cancel_rel_vel@,
     "distant approach", distant_approach@,
-    "get own port", get_ship_port@,
-    "get best tgt port", get_target_port@,
     "close approach", close_approach@,
     "final approach", final_approach@,
-    "dock with vessel", dock_with_vessel@,
-    "undock from vessel", undock_from_vessel@
-		//#endregion
+    "dock with vessel", dock_with_vessel2@,
+    "undock from vessel", undock_from_vessel@,
+    "prepare port", prepare_port@
  	).
 	
-//#region Dock
-
   function xfer_to_pos {
-    parameter goal, referenceObj to ship, speed to 1, epsilon to speed/100, onfinalappr is false.
+    parameter goal, referenceObj is ship, speed is 1, epsilon is speed/100, onfinalappr is false.
     rcs on.
     local staticgoal to goal-(referenceObj:position).
 		local gain is VES1["&RCSgain"]().
-    local twn to gain*2. local tzeta to gain*0.2. local Kp to twn^2. local Ki to 0. local Kd to 2*tzeta*twn.
+    local twn to gain*2. local tzeta to gain*1. local Kp to twn^2. local Ki to 0. local Kd to 2*tzeta*twn.
     local currobjpos to V(0,0,0).
-    local min_output to -1.
-    local max_output to 1.
+    local min_output to -1.0.
+    local max_output to 1.0.
     if not onfinalappr {lock currobjpos to (staticgoal+(referenceObj:position))-ship:controlpart:position.} else { lock currobjpos to referenceObj:nodeposition-ship:controlpart:position.}. //final docking using nodeposition is more accurate
-    // if not onfinalappr {lock currobjpos to (staticgoal+(referenceObj:position))-ship:controlpart:position.} else { lock currobjpos to referenceObj:nodeposition-ship:controlpart:position.}. //final docking using nodeposition is more accurate
     lock DTG to currobjpos:mag.
     lock Vx to ship:facing:starvector.
     lock Vy to ship:facing:topvector.
@@ -90,7 +86,7 @@
   }
   
 	function align_ports {
-    parameter target_port.
+    parameter target_port is target.
     lock steering to -target_port:portfacing:vector.
     UI["msg add"]("Aligning Reference and Target Ports").
     wait 5.
@@ -105,7 +101,7 @@
   }
   
 	function get_target_port {
-    parameter tgtObj, shipPort is 0.
+    parameter tgtObj is target, shipPort is 0.
     if tgtObj:istype("vessel"){
     if shipPort = 0 {
       set shipPort to get_ship_port().
@@ -121,7 +117,7 @@
   }
   
 	function cancel_rel_vel_RCS {
-    parameter tgtObj.
+    parameter tgtObj is target.
     if not tgtObj:istype("Vessel") {set tgtObj to tgtObj:ship.}
 		local gain is VES1["&RCSgain"]().
     LOCK Vrel TO SHIP:VELOCITY:ORBIT - tgtObj:VELOCITY:ORBIT.
@@ -156,13 +152,13 @@
   }
   
 	function cancel_rel_vel {
-    parameter tgtObj.
+    parameter tgtObj is target.
     if not tgtObj:istype("Vessel") {set tgtObj to tgtObj:ship.}
+    local TH to 0.
     LOCK Vrel TO SHIP:VELOCITY:ORBIT - tgtObj:VELOCITY:ORBIT.
     sas off.
-    lock STEERING to -Vrel.
+    lock STEERING to -1 * Vrel.
     wait until vcrs(ship:facing:forevector,Vrel):mag<0.1.
-    local th to 0.
     lock THROTTLE to th.
     until Vrel:mag < 0.1 {
        SET TH TO MIN(1,Vrel:mag/20).
@@ -170,30 +166,45 @@
     set th to 0.
     UNLOCK Vrel.
     Unlock Steering.
-    Unlock throttle.
+    Unlock THROTTLE.
     sas on.
     WAIT 1.
     RETURN true.
   }
   
   function distant_approach {
-    parameter tgtObj to target, speed to 1.
+    parameter tgtObj is target, speed is 1.
     UI["msg add"]("Distant Approach To "+tgtObj:name).
     xfer_to_pos(tgtObj:position:normalized *(tgtObj:position:mag-50), tgtObj, speed).
     cancel_rel_vel_RCS(tgtObj).
     RETURN true.
   }
   
-	function close_approach {
-    parameter goal, tgtObj to target, speed to 0.5.
+	function close_approach_maneuver {
+    parameter goal, tgtObj is target, speed is 0.5.
     UI["msg add"]("Close Approach to "+tgtObj:name).
     xfer_to_pos(goal, tgtObj, speed).
     cancel_rel_vel_RCS(tgtObj).
     RETURN true.
   }
   
+  function close_approach {
+    parameter tgtObj is target, speed is 0.5.
+    local path_list to get_path_to_apprpoint(tgtObj).
+    IF path_list:length > 0 {
+      local cumulative_path to V(0,0,0).
+      for leg in path_list {
+        if leg <> V(0,0,0){
+        close_approach_maneuver(leg-cumulative_path,tgtObj,speed).
+        set cumulative_path to cumulative_path + leg.
+        }
+      }
+    }
+    return true.
+  }
+  
 	function final_approach {
-    parameter goal, tgtObj to target, speed to 0.2.
+    parameter goal is target:nodeposition, tgtObj is target, speed is 0.2.
     UI["msg add"]("Final Approach To "+tgtObj:name).
     xfer_to_pos(goal, tgtObj, speed, 0, true).
     if ship:controlpart:istype("DockingPort") and ship:controlpart:state <> "Ready" {
@@ -201,7 +212,85 @@
     RETURN true.
   }
    
-	function undock_from_vessel {
+	function secure_port {
+    parameter p.
+    if p:hasmodule("ModuleAnimateGeneric") { 
+      if p:getmodule("ModuleAnimateGeneric"):hasevent("close") {
+        p:getmodule("ModuleAnimateGeneric"):doevent("close"). 
+      }
+      if p:getmodule("ModuleAnimateGeneric"):hasevent("close shield") {
+        p:getmodule("ModuleAnimateGeneric"):doevent("close shield"). 
+      }
+      if p:getmodule("ModuleAnimateGeneric"):hasevent("retract") {
+        p:getmodule("ModuleAnimateGeneric"):doevent("retract"). 
+      }
+    }.
+    return true.
+}
+  
+// 	// function dock_with_vessel {
+//   //   parameter vessName, dist_speed is 2, close_speed is 1, final_speed is 0.2.
+//   //   SAS OFF.
+//   //   // RCS ON.
+//   //   local tgtShip to vessel(vessName).
+//   //   set target to vessName. //not really used but here for some of the sub functions
+//   //   local shipPort to get_ship_port().
+//   //   prepare_port(shipPort).
+//   //   shipPort:controlfrom().
+//   //   local tgtPort to get_target_port(tgtShip, shipPort).
+//   //   // if tgtPort = 0 return true.  //tgtport not found
+//   //   prepare_port(tgtPort).
+//   //   align_ports(tgtPort).
+//   //   if tgtship:position:mag > 100 distant_approach(tgtShip, dist_speed).
+//   //   set target to tgtPort.
+//   //   close_approach(tgtPort).
+//   //   final_approach(tgtPort:nodeposition, tgtPort, final_speed).
+    
+//   //   UNLOCK STEERING.
+//   //   //MNV["unlock all"]().
+//   //   sas ON.
+//   //   RCS OFF.
+//   //   return true.
+//   // }
+  function dock_with_vessel2{
+    parameter tgtShip is target.
+    local dist_speed is 2.
+    local close_speed is 1.
+    local final_speed is 0.2.
+    set target to tgtShip.
+    local shipPort to "".
+    local tgtPort to "".
+    return list(
+    
+    VES1["RCS ON"]@,
+
+    {
+      if tgtship:position:mag > 100 {MNV["distant approach"](target, dist_speed). return true.}  else return true.
+    },
+    {
+        set shipPort to MNV["get own port"]().
+        set tgtPort to MNV["get best tgt port"](tgtShip, shipPort).
+        MNV["Prepare Port"](shipPort).
+        MNV["Prepare Port"](tgtPort).
+        shipPort:controlfrom().
+        
+        UI["msg add"](tgtPort:name).
+        set target to tgtPort.
+        return true.
+    },
+    VES1["SAS OFF"]@,
+    MNV["align ports facing"]@,
+    MNV["close approach"]@,
+    MNV["final approach"]@,
+    {
+    UNLOCK STEERING.
+    },
+    //MNV["unlock all"]().
+    VES1["SAS ON"]@,
+    VES1["RCS OFF"]@
+    ).
+  }
+function undock_from_vessel {
     //works with first docking port nearest kos core.
     function findchildport{
       parameter prt.
@@ -227,7 +316,7 @@
 		local newport is get_ship_port().
     newport:controlfrom().
     align_ports(tgtPort).
-	  close_approach(tgtport:facing:vector*tgtPort:ship:bounds:relmax:mag*2, tgtPort, 0.5).
+	  close_approach_maneuver(tgtport:facing:vector*tgtPort:ship:bounds:relmax:mag*2, tgtPort, final_speed).
     rcs off.
     // unlock steering.
     sas on.
@@ -257,56 +346,6 @@
     return true.
   }
   
-	function secure_port {
-    parameter p.
-    if p:hasmodule("ModuleAnimateGeneric") { 
-      if p:getmodule("ModuleAnimateGeneric"):hasevent("close") {
-        p:getmodule("ModuleAnimateGeneric"):doevent("close"). 
-      }
-      if p:getmodule("ModuleAnimateGeneric"):hasevent("close shield") {
-        p:getmodule("ModuleAnimateGeneric"):doevent("close shield"). 
-      }
-      if p:getmodule("ModuleAnimateGeneric"):hasevent("retract") {
-        p:getmodule("ModuleAnimateGeneric"):doevent("retract"). 
-      }
-    }.
-    return true.
-}
-  
-	function dock_with_vessel {
-    parameter vessName, dist_speed to 2, close_speed to 1, final_speed to 0.2.
-    SAS OFF.
-    // RCS ON.
-    local tgtShip to vessel(vessName).
-    set target to vessName. //not really used but here for some of the sub functions
-    local shipPort to get_ship_port().
-    prepare_port(shipPort).
-    shipPort:controlfrom().
-    local tgtPort to get_target_port(tgtShip, shipPort).
-    if tgtPort = 0 return true.  //tgtport not found
-    prepare_port(tgtPort).
-    align_ports(tgtPort).
-    // distant_approach(tgtShip, dist_speed).
-    local path_list is list().
-    set target to tgtPort.
-    set path_list to get_path_to_apprpoint(tgtPort).
-    IF path_list:length > 0 {
-      local cumulative_path to V(0,0,0).
-    for leg in path_list {
-      if leg <> V(0,0,0){
-      close_approach(leg-cumulative_path,tgtShip,close_speed).
-      set cumulative_path to cumulative_path + leg.
-      }
-      
-    }
-    final_approach(tgtPort:nodeposition, tgtPort, final_speed).
-    }
-    UNLOCK STEERING.
-    //MNV["unlock all"]().
-    sas ON.
-    RCS OFF.
-    return true.
-  }
 
-//#endregion
+// //#endregion
 }

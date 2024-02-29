@@ -49,6 +49,10 @@
         parameter a, descending to true.
         return list(
 			{
+                UI["msg add"]("Warping to altitude: "+a).
+                return true.
+            },
+            {
                 if (descending and ship:altitude > a) or (not descending and ship:altitude < a){
 				warpto(etatoaltitude2(a)+time:seconds).}//requires obtcalc lib!  need to fix...
 				return true.

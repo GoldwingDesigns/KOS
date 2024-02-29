@@ -1,7 +1,7 @@
 //@lazyglobal off.
 {
     function create_mission {
-        parameter event_list to list(), interrupt_list to list(), reboot_persist to true, missionname is "Unknown Mission".// set to true to persist mission through reboot.
+        parameter event_list to list(), interrupt_list to list(), reboot_persist to true, missionname is "Unknown Mission", abort_stop to false.// set to true to persist mission through reboot.
         
         local L TO LEXICON().
         local jsonname to BOOTVOLUME+":/"+ship:name+".json".
@@ -18,7 +18,6 @@
         function runmission {
             local i is init_i.
             local j is init_j.
-            set stopFlag to FALSE.
             UI["msg add"]("Running Mission: "+missionname).
             until i = event_list:length or stopFlag = TRUE {
                 local result is event_list[i]:call.
@@ -30,6 +29,7 @@
                             writeJson(L,jsonname).
                         }
                         check_triggers().
+                        if abort_stop and UI["abort stop"]() stopmission().
                         wait 0.1.
                     }
                     set i to i+1.
@@ -38,12 +38,13 @@
                     set L["jstep"] to j.
                     writeJson(L,jsonname).
                 } else if result:istype("boolean") {
-                if result {
-                    set i to i+1.
-                    set L["istep"] to i.
-                    writeJson(L,jsonname).
-                }
-                check_triggers().
+                    if result {
+                        set i to i+1.
+                        set L["istep"] to i.
+                        writeJson(L,jsonname).
+                    }
+                    check_triggers().
+                    if abort_stop and UI["abort stop"]() stopmission().
                 }
                 wait 0.1.
             }

@@ -19,7 +19,7 @@ runOncePath(DATAVOLUME+":/lib/lib_enum").
     c_copy:add(apoint).
     return a_star(ship:position,apoint,c,getneighbors@:bind(noboxintersect@:bind(B),c_copy)).
   }
-function lineboxintersects{
+local function lineboxintersects{
   parameter B, v0 to ship:position, v1 to target:nodeposition+target:PORTFACING:VECTOR *B:RELMAX:MAG.
   local a_corr to target:ship:facing:inverse. //axis corection
   set v0 to v0 * a_corr.
@@ -45,7 +45,7 @@ function lineboxintersects{
   
     return tmax>tmin.
 }
-function get_corners {
+local function get_corners {
   parameter B, buffer to ship:bounds:relmax:mag.
   local rn to B:relmin:normalized * (B:relmin:mag + buffer).
   local rx to B:relmax:normalized * (B:relmax:mag + buffer).
@@ -53,12 +53,12 @@ function get_corners {
   local f to B:FACING.
   return list(ao + f * V(rn:X, rn:Y, rn:Z),ao + f * V(rn:X, rn:Y, rx:Z),ao + f * V(rn:X, rx:Y, rn:Z),ao + f * V(rn:X, rx:Y, rx:Z),ao + f * V(rx:X, rn:Y, rn:Z),ao + f * V(rx:X, rn:Y, rx:Z),ao + f * V(rx:X, rx:Y, rn:Z),ao + f * V(rx:X, rx:Y, rx:Z)).
 }
-function noboxintersect {
+local function noboxintersect {
   parameter Box, a, b.
-  return not lineboxintersects(Box, a, b).
+  return not lineboxintersects(Box, b, a).
   // return not lineboxintersects(Box, a, b) and not lineboxintersects(Box, b, a).
 }
-function getneighbors {
+local function getneighbors {
   parameter clearpath,//delegate returning a clearpath from a to b
   n_list, //list of all nodes.
   current.
@@ -72,7 +72,7 @@ function getneighbors {
   }
   return returnlist.
 }
-function a_star {
+local function a_star {
   parameter start, goal, nodes, neighbors.
   local infinity is 1.7976931348623157E+308.
   local F is lex().

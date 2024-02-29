@@ -7,7 +7,8 @@ local event_list to list(
 ).
 
 local interrupt_list to list(
-    VES1["check fail"]@
+    VES1["check fail"]@,
+    UI["abort stop"]@
 ).
 
 // mission specific functions
