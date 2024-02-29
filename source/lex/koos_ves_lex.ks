@@ -59,7 +59,7 @@
             for p in ship:parts { //add ohscrap parts to list and comms antenna parts.
 		        if p:modules:contains("ModuleUPFMEvents"){ failablelist:add(p:getmodule("ModuleUPFMEvents")). }
                 if p:modules:contains("Reliability"){failablelist:add(p:getmodule("Reliability")).}
-                if p:modules:contains("ModuleDataTransmitter"){ commslist:add(p). } 
+                if p:modules:contains("ModuleDataTransmitter"){ if p:TAG:matchespattern("^((?!NOSTAGE).)*$") commslist:add(p). } 
                 if (p:name:contains("LaunchClamp") OR p:modules:contains("LaunchClamp")){ launchclamplist:add(p). }
             }
             return true.
