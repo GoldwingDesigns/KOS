@@ -41,7 +41,7 @@ local function findneighbors{
 	local sortlist is arrsort(rlist).
 	local bestscore is sortlist[0][1].
 	if bestscore = 0 {set answer to sortlist[0][0]. return TRUE.}
-	if bestscore > LASTSCORE {BQ:PUSH(nd). if stepsize < 4 {set STEPSIZE to STEPSIZE + 1.} else {set STEPSIZE to 0.}}
+	if bestscore > LASTSCORE {BQ:PUSH(nd). if stepsize < 6 {set STEPSIZE to STEPSIZE + 1.} else {set STEPSIZE to 0.}}
 	// if bestscore > LASTSCORE {set answer to nd. return TRUE.}
 	else {BQ:PUSH(sortlist[0][0]). set LASTSCORE to bestscore.}
 	// print STEPSIZE.

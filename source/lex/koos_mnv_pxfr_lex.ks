@@ -4,74 +4,59 @@
 {
 	global MNV_TMP is lexicon(
 		//#region Moon Transfer
-		"capture",				capture_orbit@,
-		"planet trans",			planet_trans@
+		"capture",			capture_orbit@,
+		"planet trans",	planet_trans@,
+		"node refine",	refine_next_node@
 		//#endregion
 	).
 	
 ///#region Planet Transfer
 	
+	// function planet_trans{
+	// 	parameter tgtplanet, planet_peri.
+	// 	UI["msg add"]("Finding Transfer to "+tgtplanet:name).
+	// local nd to NODE(0,0,0,0).
+	// 	local burns to addons:astrogator:calculateBurns(tgtplanet).
+	// 	local i to 0.
+	// 	for burnnode in burns {
+	// 		set i to i+1.
+	// 		set nd to NODE(burnnode:attime, burnnode:radial, burnnode:normal, burnnode:prograde).
+	// 		if i = burns:length {set nd to hillclimb(nd, tgtplanet, list("periapsis",planet_peri), 500).}
+	// 		add nd.
+	// 	}
+	// 	UI["msg add"]("Planet Transfer Node(s) To "+tgtplanet:name+" Added").
+	// 	return true.
+	// }
+
 	function planet_trans{
-		parameter tgtplanet, moon_peri.
-		UI["msg add"]("Finding Transfer to "+tgtmoon:name).
-		local parentMU to SHIP:ORBIT:BODY:BODY:MU.
-		// local oldSMA to SHIP:ORBIT:SEMIMAJORAXIS.
-		// local moonPEdistfromplanet to tgtmoon:obt:semimajoraxis - (moon_peri+tgtmoon:RADIUS).
-		// local newSMA to (moonPEdistfromplanet+oldSMA)/2.
-		local oldSMA to SHIP:BODY:ORBIT:SEMIMAJORAXIS.
-		local newSMA to tgtplanet:ORBIT:SEMIMAJORAXIS.
-		//copied from reddit user 
-		
-		local T2 is tgtplanet:obt:period.
-		local A2 is tgtplanet:obt:semimajoraxis.
-
-		// periapsis height of the transfer orbit is your altitude
-		// apoapsis height of the transfer orbit is tgtmoon's altitude
-		// so we can calculate SMA of the transfer orbit
-		local A1 is newSMA.
-
-		// 3rd Kepler's law tells us that (A1/A2)^3 = (T1/T2)^2
-		// where T1 is period of transfer orbit
-		// so T1 = T2 * (A1/A2)^1.5
-		local T1 is T2 * (A1/A2)^1.5.
-
-		// now we can calculate the angle between tgtmoon's position at the start of the transfer
-		// and at the end of the transfer
-		local aa is mod(((T1*0.5)/T2)*360, 360).
-		//local aa is mod(360*(T1/T2), 360).
-
-		// the angle we are looking for is 180-alpha
-		// or 360-alpha if you are using angles in range [0..360]
-		local transferAngle is 180 - aa.
-
-		//copied from reddit user ollieshmollie and toukiedatak
-
-		local shippos to ship:orbit:position - ship:body:position.
-		local tgtmoonpos to tgtmoon:orbit:position - tgtmoon:body:position.
-		local phaseangle to vang(tgtmoonpos,shippos).
-		local phaseanglecrs to vcrs(tgtmoonpos,shippos).
-		if vdot(v(1,1,1), phaseanglecrs) <= 0 {
-			set phaseangle to -1 * phaseangle.
+		parameter tgtplanet, planet_peri, ish to 5000.
+		UI["msg add"]("Finding Transfer to "+tgtplanet:name).
+		local nd to NODE(0,0,0,0).
+		local burns to addons:astrogator:calculateBurns(tgtplanet).
+		local i to 0.
+		for burnnode in burns {
+			// set i to i+1.
+			set nd to NODE(burnnode:attime, burnnode:radial, burnnode:normal, burnnode:prograde).
+			// if i = burns:length {set nd to hillclimb(nd, tgtplanet, list("periapsis",planet_peri), ish).}
+			add nd.
 		}
-		
-		local tgtAngVel is 2*constant:radtodeg*constant:pi/tgtmoon:orbit:period.
-		local shipAngVel is 2*constant:radtodeg*constant:pi/ship:orbit:period.
-		local angdiff is phaseangle-transferAngle.
-		if angdiff < 0 set angdiff to angdiff+360.
-		
-		local transtimeUTC to TIME:SECONDS + (angdiff)/ABS(tgtAngVel-shipAngVel).
-		local initialV to sqrt(parentMU/oldSMA).
-		local finalV to sqrt(parentMU*(2/oldSMA-1/newSMA)).
-		local thisDV to finalV - initialV.
-		
-		local nd to NODE(transtimeUTC,0,0,thisDV).
-
-		local hnd is hillclimb(nd, tgtmoon, list("periapsis",moon_peri), 500).
-		ADD hnd.
-		UI["msg add"]("Moon Transfer Node To "+tgtmoon:name+" Added").
+		UI["msg add"]("Planet Transfer Node(s) To "+tgtplanet:name+" Added").
 		return true.
 	}
-	
+	function refine_next_node {
+		parameter tgtplanet, planet_peri, ish to 5000.
+		UI["msg add"]("Refining Transfer Node to "+tgtplanet:name).
+		if not hasNode {
+			UI["msg add"]("No Node To Refine").
+		} else {
+			local nd to nextNode.
+			remove nextNode.
+			set nd to hillclimb(nd, tgtplanet, list("periapsis",planet_peri), ish).
+			add nd.
+			UI["msg add"]("Planet Transfer Node To "+tgtplanet:name+" Refined").
+		}
+		return true.
+	}
 	function capture_orbit{ //thanks to u/bdlarkin for example guidance
 		parameter capture_altitude is SHIP:ORBIT:PERIAPSIS.
 		local thistime to TIME:SECONDS.

@@ -41,7 +41,12 @@
     }
 
     function warp_to_nextpatch{
-        warpto(TIME:SECONDS+ORBIT:NEXTPATCHETA-5).
+        if hasnextpatch{
+            UI["msg add"]("Warp To Orbit Around "+nextpatch:body:name).
+            warpto(TIME:SECONDS+ORBIT:NEXTPATCHETA-5).
+        } else {
+            UI["msg add"]("No Next Patch").
+        }
         return true.
     }
 

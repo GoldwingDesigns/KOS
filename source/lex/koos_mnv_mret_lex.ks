@@ -102,20 +102,20 @@
 		local dV to Vbo-vnow.  //have to take into acount how fast we are actually going
 		local ecc to (((m_peri*Vbo^2)/m_mu)-1).
 		local angburntoeject to arccos(-1/ecc).
-
-		local shippos to ship:orbit:position - ship:body:position.
-		local m_vec_inv to ship:body:body:velocity:orbit. //this is retrograde of moon to parent
-		local angshiptoeject to vang(m_vec_inv,shippos).
-		local angshiptoejectcrs to vcrs(m_vec_inv,shippos).
-		if vdot(v(1,1,1), angshiptoejectcrs) <= 0 {
-			set angshiptoeject to -1 * angshiptoeject.
-		}
-		if angshiptoeject < 0 set angshiptoeject to angshiptoeject + 360.
-		local p_AngVel is 2*constant:radtodeg*constant:pi/ship:body:orbit:period.
-		local shipAngVel is 2*constant:radtodeg*constant:pi/ship:orbit:period.
-		local angdiff is angshiptoeject-angburntoeject.
-		if angdiff < 0 set angdiff to angdiff+360.
-		local transtimeUTC to TIME:SECONDS + (angdiff)/ABS(p_AngVel-shipAngVel).
+    local transtimeUTC to calc_ejection_UTC(angburntoeject).
+		// local shippos to ship:orbit:position - ship:body:position.
+		// local m_vec_inv to ship:body:body:velocity:orbit. //this is retrograde of moon to parent
+		// local angshiptoeject to vang(m_vec_inv,shippos).
+		// local angshiptoejectcrs to vcrs(m_vec_inv,shippos).
+		// if vdot(v(1,1,1), angshiptoejectcrs) <= 0 {
+		// 	set angshiptoeject to -1 * angshiptoeject.
+		// }
+		// if angshiptoeject < 0 set angshiptoeject to angshiptoeject + 360.
+		// local p_AngVel is 2*constant:radtodeg*constant:pi/ship:body:orbit:period.
+		// local shipAngVel is 2*constant:radtodeg*constant:pi/ship:orbit:period.
+		// local angdiff is angshiptoeject-angburntoeject.
+		// if angdiff < 0 set angdiff to angdiff+360.
+		// local transtimeUTC to TIME:SECONDS + (angdiff)/ABS(p_AngVel-shipAngVel).
 		
 		// nodetime to vang(needed position,current position) / current speed + speed of moon
 		

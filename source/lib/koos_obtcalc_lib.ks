@@ -259,3 +259,83 @@ function calc_lng_from_tgt {
         }
     }
 }
+
+function calc_ejection_UTC {
+    // parameter angburntoeject, refTime to TIME:SECONDS.
+    // local shippos to ship:orbit:position - ship:body:position.
+    // local m_vec_inv to -1 * ship:body:body:velocity:orbit. //this is retrograde of moon to parent
+    // local angshiptoeject to vang(m_vec_inv,shippos).
+    // local angshiptoejectcrs to vcrs(m_vec_inv,shippos).
+    // if vdot(v(1,1,1), angshiptoejectcrs) <= 0 {
+    //     set angshiptoeject to -1 * angshiptoeject.
+    // }
+    // clearVecDraws().
+    // local shipvec to vecDraw({return ship:body:position.},{return ship:orbit:position - ship:body:position.},red,"ship",1.0,true).
+    // local m_vec_inv_vec to vecDraw({return ship:body:position.},{return ship:body:body:velocity:orbit - ship:body:position.},blue,"ship",1.0,true).
+    // if angshiptoeject < 0 set angshiptoeject to angshiptoeject + 360.
+    // local p_AngVel is 2*constant:radtodeg*constant:pi/ship:body:orbit:period.
+    // local shipAngVel is 2*constant:radtodeg*constant:pi/ship:orbit:period.
+    // local angdiff is angshiptoeject-angburntoeject.
+    // if angdiff < 0 set angdiff to angdiff+360.
+    // local transtimeUTC to TIME:SECONDS + (angdiff)/ABS(p_AngVel-shipAngVel).
+    // return transtimeUTC.
+
+    //  parameter angburntoeject, refTime to TIME:SECONDS.
+    // local bodypos to positionAt(ship:body,refTime).
+    // local shippos to (positionat(ship,refTime) - bodypos):normalized.
+    // local m_vec_inv to (-1 * velocityat(ship:body:body,refTime):orbit):normalized. //this is retrograde of moon to parent
+    // local angshiptoeject to vang(m_vec_inv,shippos).
+    // local angshiptoejectcrs to vcrs(m_vec_inv,shippos).
+    // if vdot(v(1,1,1), angshiptoejectcrs) <= 0 {
+    //     set angshiptoeject to -1 * angshiptoeject.
+    // }
+
+    // if angshiptoeject < 0 set angshiptoeject to angshiptoeject + 360.
+    // local p_AngVel is 360/ship:body:orbit:period.
+    // local shipAngVel is 360/ship:orbit:period.
+    // local angdiff is angshiptoeject-angburntoeject.
+    // if angdiff < 0 set angdiff to angdiff+360.
+    // clearVecDraws().
+    // print("curtime is "+time:seconds).
+    // print("reftime is "+refTime).
+    // print("body speed is "+m_vec_inv:mag).
+    // print("angdiff is "+angdiff).
+    // print("burtoe is "+angburntoeject+"  shiptoe is "+angshiptoeject).
+    // print("timetoadd is "+((angdiff)/ABS(p_AngVel-shipAngVel))).
+    // Wait 3.
+    // local shipvec to vecDraw({return ship:body:position.},{return (positionat(ship,refTime) - positionAt(ship:body,refTime)):normalized.},red,"ship",1000000,true,0.0000001).
+    // local m_vec_inv_vec to vecDraw({return ship:body:position.},{return (-1 * velocityat(ship:body:body,refTime):orbit):normalized.},blue,"vel",1000000,true,0.0000001).
+    // local transtimeUTC to refTime + (angdiff)/ABS(p_AngVel-shipAngVel).
+    // return transtimeUTC.
+
+    parameter angburntoeject, refTime to TIME:SECONDS.
+    local difftime is max(refTime - Time:seconds,0).
+    local p_AngVel is 360/ship:body:orbit:period.
+    local shipAngVel is 360/ship:orbit:period.
+    local shippos to (ship:orbit:position - ship:body:position):normalized.
+    local m_vec_inv to (-1 * ship:body:body:velocity:orbit):normalized. //this is retrograde of moon to parent
+    local angshiptoeject to vang(m_vec_inv,shippos).
+    local angshiptoejectcrs to vcrs(m_vec_inv,shippos).
+    if vdot(v(1,1,1), angshiptoejectcrs) <= 0 {
+        set angshiptoeject to -1 * angshiptoeject.
+    }
+
+    if angshiptoeject < 0 set angshiptoeject to angshiptoeject + 360.
+    local angdiff is angshiptoeject-angburntoeject.
+    // if angdiff < 0 set angdiff to angdiff+360.
+    set angdiff to angdiff+(p_AngVel*difftime-shipAngVel*difftime).
+    until angdiff<360{ set angdiff to angdiff-360.}
+    // until angdiff>360{set angdiff to angdiff+360.}
+    // clearVecDraws().
+    // print("curtime is "+time:seconds).
+    // print("reftime is "+refTime).
+    // print("body speed is "+m_vec_inv:mag).
+    // print("angdiff is "+angdiff).
+    // print("burtoe is "+angburntoeject+"  shiptoe is "+angshiptoeject).
+    // print("timetoadd is "+((angdiff)/ABS(p_AngVel-shipAngVel))).
+    // Wait 3.
+    // local shipvec to vecDraw({return ship:body:position.},{return (positionat(ship,refTime) - positionAt(ship:body,refTime)):normalized.},red,"ship",1000000,true,0.0000001).
+    // local m_vec_inv_vec to vecDraw({return ship:body:position.},{return (-1 * velocityat(ship:body:body,refTime):orbit):normalized.},blue,"vel",1000000,true,0.0000001).
+    local transtimeUTC to refTime + (angdiff)/ABS(p_AngVel-shipAngVel).
+    return transtimeUTC.
+}

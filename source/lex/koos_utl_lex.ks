@@ -8,6 +8,7 @@
 		"lnch", list("koos_mnv_lnch_lex"),
 		"mret", list("koos_mnv_mret_lex"),
 		"mxfr", list("koos_mnv_mxfr_lex"),
+		"pxfr", list("koos_mnv_pxfr_lex"),
 		"rdvz", list("koos_mnv_rdvz_lex"),
 		"rtry", list("koos_mnv_rtry_lex")
 	).
@@ -20,6 +21,7 @@
 		"lnch", list("lib_LAZcalc","koos_mnv_lib"),
 		"mret", list("koos_mnv_lib","koos_hillclimb_lib","lib_LAZcalc"),
 		"mxfr", list("koos_hillclimb_lib"),
+		"pxfr", list("koos_hillclimb_lib"),
 		"rdvz", list("koos_hillclimb_lib","koos_mnv_lib", "koos_obtcalc_lib"),
 		"rtry", list()
 	).
