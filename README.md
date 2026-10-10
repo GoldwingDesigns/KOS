@@ -1,5 +1,10 @@
 # KOOS
 
+**Version 0.0.1**
+
+> [!WARNING]
+> **Experimental, for personal use only.** KOOS is a work in progress. It is not complete, and neither the code nor this documentation should be considered accurate. Use it at your own risk.
+
 KOOS is a mission-automation framework for Kerbal Space Program, written for the [kOS](https://ksp-kos.github.io/KOS/) mod. A ship boots into a menu on its kOS terminal, and from there you can run a whole mission (launch, rendezvous, dock, fly to a moon, land, return, reenter) or any single maneuver or vessel action.
 
 Missions are short scripts that list steps in order. KOOS runs the steps, saves progress so a mission picks up where it left off after a reboot, watches for part failures, and writes a timestamped mission log back to the archive.
